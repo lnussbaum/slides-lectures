@@ -1,0 +1,1219 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-02-04 11:16+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#.  handout
+#. \usepackage{bera}
+#. \renewcommand*\ttdefault{cmvtt}
+#. type: Plain text
+#: ssh.tex:11
+msgid "\\mode<presentation> \\usetheme{ln12en}"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:11
+msgid "\\usepackage{listings}"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:11
+msgid "\\usepackage{inconsolata}"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:11
+msgid "\\usepackage{moresize}"
+msgstr ""
+
+#. type: title{#2}
+#: ssh.tex:19
+msgid "An introduction to SSH"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:19
+msgid ""
+"\\authorteaching \\instituteiutlp \\newcommand{\\tilda}{\\textasciitilde{}} "
+"\\date{}"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:28
+msgid ""
+"\\AtBeginSection[] { \\begin{frame} \\frametitle{Plan} "
+"\\tableofcontents[currentsection] \\end{frame} }"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:32
+msgid "\\usepackage{tikz}"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:32
+msgid "\\usetikzlibrary{shapes,arrows,positioning}"
+msgstr ""
+
+#. type: section{#2}
+#: ssh.tex:62
+msgid "SSH basics"
+msgstr ""
+
+#. type: subsection{#2}
+#: ssh.tex:62
+msgid "SSH 101"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:62
+msgid "Introduction"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "SSH = Secure SHell"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Standard network protocol and service (TCP port 22)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Many implementations, including:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "OpenSSH: Linux/Unix, Mac OS X \\alert{$\\leftarrow$ this talk, mostly}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Putty: Windows, client only"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Dropbear: small systems (routers, embedded)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Unix command (\\texttt{ssh}); server-side: \\texttt{sshd}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Establish a \\alert{secure communication channel} between two machines"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Relies on cryptography"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Most basic usage: \\alert{get shell access} on a remote machine"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Many advanced usages:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Data transfer (\\texttt{scp}, \\texttt{sftp}, \\texttt{rsync})"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Connect to specific services (such as Git or SVN servers)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Dig secure tunnels through the public Internet"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Several authentication schemes: password, public key"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:68
+msgid "Basic usage"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:68
+msgid ""
+"Connecting to a remote server:\\\\ \\texttt{\\$ ssh login@remote-server} "
+"\\\\ $\\leadsto$ Provides a shell on \\textsl{remote-server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:72
+msgid ""
+"Executing a command on a remote server:\\\\ \\texttt{\\$ ssh "
+"login@remote-server ls /etc}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:89
+msgid ""
+"Copying data (with \\texttt{scp}, similar to \\texttt{cp}):\\\\ \\texttt{\\$ "
+"scp local-file login@remote-serv:remote-directory/} \\\\ \\texttt{\\$ scp "
+"login@remote-serv:remote-dir/file local-dir/}\\\\ Usual \\texttt{cp} options "
+"work, e.g. \\texttt{-r} (recursive)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:89
+msgid ""
+"Copying data (with \\texttt{rsync}, more efficient than \\texttt{scp} with "
+"many files):\\\\ \\texttt{\\$ rsync -avzP localdir "
+"login@server:path-to-rem-dir/}\\\\ \\hbr Note: trailing slash on source "
+"matters with \\texttt{rsync} (not with \\texttt{cp})\\\\"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:89
+msgid "\\texttt{rsync -a dir1 u@h:dir2} $\\leadsto$ dir1 copied inside dir2"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:89
+msgid "\\texttt{rsync -a dir1/ u@h:dir2} $\\leadsto$ content of dir1 copied to dir2"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:117 ssh.tex:117
+msgid "Public-key authentication"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "General idea:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "Asymmetric cryptography (or public-key cryptography):"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "The public key is used to encrypt something"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "Only the private key can decrypt it"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "User owns a private (secret) key, stored on the local machine"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "The server has the public key corresponding to the private key"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "Authentication = \\textsl{<server> prove that you own that private key!}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "Implementation (\\textsl{challenge-response authentication}):"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Server generates a nonce (random value)"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Server encrypts the nonce with the Client's public key"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Server sends the encrypted nonce (= the challenge) to client"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Client uses the private key to decrypt the challenge"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Client sends the nonce (= the response) to the Server"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Server compares the nonce with the response"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:135
+msgid "Public-key authentication (2)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid "Advantages:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid "The password does not need to be sent over the network"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid "The private key never leaves the client"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid "The process can be automated"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid ""
+"However, the private key should be protected (what if your laptop gets "
+"stolen?)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid "Usually with a passphrase"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:162
+msgid "Key-pair generation"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:162
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\scriptsize,escapeinside={||}]\n"
+"$ ssh-keygen\n"
+"Generating public/private rsa key pair.\n"
+"Enter file in which to save the key (/home/user/.ssh/id_rsa): "
+"|\\textbf{[ENTER]}|\n"
+"Enter passphrase (empty for no passphrase): |\\textbf{passphrase}|\n"
+"Enter same passphrase again: |\\textbf{passphrase}|\n"
+"Your identification has been saved in /home/user/.ssh/id_rsa.\n"
+"Your public key has been saved in /home/user/.ssh/id_rsa.pub.\n"
+"The key fingerprint is:\n"
+"f6:35:53:71:2f:ff:00:73:59:78:ca:2c:7c:ff:89:7b user@my.hostname.net\n"
+"The key's randomart image is:\n"
+"+--[ RSA 2048]----+\n"
+"|              ..o|\n"
+"|\\textbf{(...)}|\n"
+"|             .o  |\n"
+"+-----------------+\n"
+"$"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:162
+msgid "Creates the key-pair:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:162
+msgid "\\texttt{\\tilda/.ssh/id\\_rsa} (private key)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:162
+msgid "\\texttt{\\tilda/.ssh/id\\_rsa.pub} (public key)"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:168
+msgid "Copying the public key to the server"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:168
+msgid ""
+"Example public key:\\\\ {\\footnotesize \\texttt{ssh-rsa "
+"AAAAB3NX[\\ldots]hpoR3/PLlXgGcZS4oR user@my.hostname.net}}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:171
+msgid ""
+"On the server, \\texttt{\\bf \\tilda{}user/.ssh/authorized\\_keys} contains "
+"the list of public keys authorized to connect to the \\texttt{user} account"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:181
+msgid "The key can be copied manually there"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:181
+msgid ""
+"Or use \\texttt{ssh-copy-id} to automatically copy the key:\\\\ "
+"\\texttt{client\\$ ssh-copy-id user@server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:181
+msgid ""
+"Sometimes the public key needs to be provided using a web interface (e.g. on "
+"GitHub, FusionForge, Redmine, etc.)"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:203
+msgid "Remembering the passphrase"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid ""
+"If the private key is not protected with a passphrase, the connection is "
+"established immediately:\\\\ \\hbr {\\ttfamily\\footnotesize *** "
+"login@laptop:\\tilda\\$ ssh rlogin@rhost \\textbf{ [ENTER]}\\\\ *** "
+"rlogin@rhost:\\tilda\\$\\\\ }"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid ""
+"Otherwise, \\texttt{ssh} asks for the passphrase:\\\\ \\hbr "
+"{\\ttfamily\\footnotesize *** login@laptop:\\tilda\\$ ssh rlogin@rhost "
+"\\textbf{ [ENTER]}\\\\ Enter passphrase for key '/home/login/id\\_rsa': "
+"\\textbf{[passphrase+ENTER]}\\\\ *** rlogin@rhost:\\tilda\\$\\\\ }"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid "An \\textbf{SSH agent} can be used to remember the passphrase"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid "Most desktop environments act as SSH agents automatically"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid "One can be started with \\texttt{ssh-agent} if needed"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid "Add keys manually with \\texttt{ssh-add}"
+msgstr ""
+
+#. type: subsection{#2}
+#: ssh.tex:205
+msgid "Checking the server's identity"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:222
+msgid "Checking the server identity: \\texttt{known\\_hosts}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:222
+msgid ""
+"Goal: detect hijacked servers\\\\ \\textsl{What if someone replaced the "
+"server to steal passwords?}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:222
+msgid ""
+"When you connect to a server for the first time, \\texttt{ssh} stores the "
+"server's public key in \\texttt{\\tilda/.ssh/known\\_hosts}"
+msgstr ""
+
+#. type: frame
+#: ssh.tex:222
+msgid ""
+"{\\ttfamily\\small *** login@laptop:\\tilda\\$ ssh rlogin@server\\textbf{ "
+"[ENTER]}\\\\ The authenticity of host 'server (10.1.6.2)' can't be "
+"established.\\\\ RSA key fingerprint is "
+"94:48:62:18:4b:37:d2:96:67:c9:7f:2f:af:2e:54:a5.\\\\ Are you sure you want "
+"to continue connecting (yes/no)? \\textbf{yes [ENTER]}\\\\ Warning: "
+"Permanently added 'server,10.1.6.2'(RSA) to the list of known hosts.\\\\ "
+"rlogin@server's password:\\\\ }"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:248
+msgid "Checking the server identity: \\texttt{known\\_hosts} (2)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:248
+msgid ""
+"During each following connection, \\texttt{ssh} ensures that the key still "
+"matches, and warns the user otherwise"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:248
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\ssmall,escapeinside={||}]\n"
+"*** login@laptop:~$ ssh rlogin@server|\\textbf{ [ENTER]}|\n"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
+"@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @\n"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
+"IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!\n"
+"Someone could be eavesdropping on you right now (man-in-the-middle "
+"attack)!\n"
+"It is also possible that a host key has just been changed.\n"
+"The fingerprint for the RSA key sent by the remote host is\n"
+"e3:94:03:90:5d:81:ed:bb:d5:d2:f2:de:ba:31:18:d8.\n"
+"Please contact your system administrator.\n"
+"Add correct host key in /home/login/.ssh/known_hosts to get rid of this "
+"message.\n"
+"Offending RSA key in /home/login/.ssh/known_hosts:12\n"
+"RSA host key for server has changed and you have requested strict "
+"checking.\n"
+"Host key verification failed.\n"
+"*** login@laptop:~$ "
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:248
+msgid ""
+"Remove a truly outdated key can be removed with\\\\ \\texttt{ssh-keygen -R "
+"server}"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:270 ssh.tex:270
+msgid "Configuring SSH"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "SSH gets configuration data from:"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:270
+msgid "command-line options (\\texttt{-o ...})"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:270
+msgid "the user's configuration file: \\texttt{\\tilda/.ssh/config}"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:270
+msgid "the system-wide configuration file: \\texttt{/etc/ssh/ssh\\_config}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "Options are documented in the \\texttt{ssh\\_config(5)} man page"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "\\texttt{\\tilda/.ssh/config} contains a list of hosts (with wildcards)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "For each parameter, the first obtained value is used\\\\"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "Host-specific declarations are given near the beginning"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "General defaults at the end"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:275
+msgid "Example: \\texttt{\\tilda/.ssh/config}"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:275
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"Host mail.acme.com\n"
+"    User root\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:279
+#, no-wrap
+msgid ""
+"Host foo # alias/shortcut. 'ssh foo' works\n"
+"    Hostname very-long-hostname.acme.net\n"
+"    Port 2222\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:285
+#, no-wrap
+msgid ""
+"Host *.acme.com\n"
+"    User jdoe\n"
+"    Compression yes # default is no\n"
+"    PasswordAuthentication no # only use public key\n"
+"    ServerAliveInternal 60 # keep-alives for bad firewall\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:288
+#, no-wrap
+msgid ""
+"Host *\n"
+"    User john"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:293
+msgid ""
+"Note: \\texttt{bash-completion} can auto-complete using "
+"\\texttt{ssh\\_config} hosts"
+msgstr ""
+
+#. type: section{#2}
+#: ssh.tex:295
+msgid "Advanced usage"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:308 ssh.tex:308
+msgid "SSH as a communication layer for applications"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:308
+msgid "Several applications use SSH as their communication layer\\\\"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:308
+msgid "Sometimes also authentication layer"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:308
+msgid "\\texttt{scp}, \\texttt{sftp}, \\texttt{rsync} (data transfer)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:308
+msgid "\\texttt{unison} (synchronization)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:315
+msgid ""
+"\\alert{Subversion:} \\texttt{svn checkout "
+"svn+ssh://user@rhost/path/to/repo}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:315
+msgid ""
+"\\alert{Git:} \\texttt{git clone "
+"ssh://git@github.com/path-to/repository.git}\\\\ Or: \\texttt{git clone "
+"git@github.com:path-to/repository.git}"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:333 ssh.tex:333
+msgid "Access remote filesystems over SSH: sshfs"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:333
+msgid "\\texttt{sshfs}: FUSE-based solution to access remote machines"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:333
+msgid ""
+"Ideal for remote file editing with a GUI, copying small amounts of data, "
+"etc."
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:333
+msgid ""
+"Mount a remote directory:\\\\ \\texttt{sshfs root@server:/etc "
+"/tmp/local-mountpoint}\\\\ Unmount: \\texttt{fusermount -u "
+"/tmp/local-mountpoint}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:333
+msgid ""
+"Combine with \\texttt{afuse} to auto-mount any machine:\\\\ \\texttt{afuse "
+"-o mount\\_template=\"sshfs \\%r:/ \\%m\" -o \\textbackslash \\\\ "
+"unmount\\_template=\"fusermount -u -z \\%m\" \\tilda/.sshfs/}\\\\[0.5em] "
+"$\\leadsto$ \\texttt{cd \\tilda/.sshfs/rhost/etc/ssh}"
+msgstr ""
+
+#. type: subsection{#2}
+#: ssh.tex:353
+msgid "SSH tunnels, X11 forwarding, and SOCKS proxy"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:353 ssh.tex:387
+msgid "SSH tunnels with -L and -R"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "Goal: transport traffic through a secure connection"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "Work-around network filtering (firewalls)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "Avoid sending unencrypted data on the Internet"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "But only works for TCP connections"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "\\textbf{-L}: access a remote service behind a firewall (Intranet server)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "\\texttt{ssh -L 12345:service:1234 server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "Still on \\textsl{Client}: \\texttt{telnet localhost 12345}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid ""
+"\\textsl{Server} establishes a TCP connection to \\textsl{Service}, port "
+"1234"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "The traffic is tunnelled inside the SSH connection to \\textsl{Server}"
+msgstr ""
+
+#. type: tikzpicture
+#: ssh.tex:360
+msgid ""
+"\\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (0,0) {}; "
+"\\node[name=private,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (5,0) {}; \\draw[blue,fill] "
+"(-2.5,-0.1) rectangle (2.5,0.1); \\draw[darkred,fill] (7.5,0) circle (2mm);"
+msgstr ""
+
+#. type: tikzpicture
+#: ssh.tex:376
+msgid ""
+"\\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
+"\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); \\draw (-2.5,-1) node "
+"{Client}; \\draw (2.5,-1) node {Server}; \\draw (7.5,-1) node[align=center] "
+"{TCP Service \\\\on port 1234}; \\draw (0, -0.2) node [below] {\\small \\sl "
+"Internet}; \\draw (5, -0.2) node [below] {\\small \\sl Private network}; "
+"\\only<2->{ \\draw[orange,fill,ultra thick,->] (-2.5,0) -- (7.3,0); "
+"\\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
+"\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); }"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:387
+msgid "\\textbf{-R}: provide remote access to a local private service"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:387
+msgid "\\texttt{ssh -R 12345:service:1234 server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:387
+msgid "On \\textsl{Server}: \\texttt{telnet localhost 12345}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:387
+msgid ""
+"\\textsl{Client} establishes a TCP connection to \\textsl{Service}, port "
+"1234"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:387
+msgid "The traffic is tunnelled inside the SSH connection to \\textsl{Client}"
+msgstr ""
+
+#. type: tikzpicture
+#: ssh.tex:393
+msgid ""
+"\\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (0,0) {}; "
+"\\node[name=private,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (5,0) {}; \\draw[blue,fill] (2.5,-0.1) "
+"rectangle (7.5,0.1);"
+msgstr ""
+
+#. type: tikzpicture
+#: ssh.tex:413
+msgid ""
+"\\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
+"\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); \\draw[darkred,fill] "
+"(7.5,0) circle (2mm); \\draw (2.5,-1) node {Client}; \\draw (7.5,-1) node "
+"{Server}; \\draw (-2.5,-1) node[align=center] {TCP Service \\\\on port "
+"1234}; \\draw (0, -0.2) node [below] {\\small \\sl Private network}; \\draw "
+"(5, -0.2) node [below] {\\small \\sl Internet}; \\only<2->{ "
+"\\draw[orange,fill,ultra thick,->] (7.5,0) -- (-2.3,0); \\draw[darkred,fill] "
+"(2.5,0) circle (2mm); \\draw[darkred,fill] (7.5,0) circle (2mm); }"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:413
+msgid ""
+"Note: SSH tunnels don't work very well for HTTP, because IP+port are not "
+"enough to identify a website (\\texttt{Host:} HTTP header)"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:440
+msgid "X11 forwarding with -X: GUI apps over SSH"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid "Run a graphical application on a remote machine, display locally"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid "Similar to VNC, but on a per-application basis"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid "\\texttt{ssh -X server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid ""
+"\\texttt{\\$DISPLAY} will be set by SSH on the server:\\\\ \\texttt{\\$ echo "
+"\\$DISPLAY\\\\ localhost:10.0}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid "Then start GUI applications on server (e.g. \\texttt{xeyes})"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid "Troubleshooting:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid "\\texttt{xauth} must be installed on the remote machine"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid "The local Xorg server must allow TCP connections"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid "\\texttt{pgrep -a Xorg} $\\leadsto$ \\texttt{-nolisten} must not be included"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid "Can be configured in your login manager"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:440
+msgid "Does not work very well over slow or high-latency connections"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:467
+msgid "SOCKS proxy with -D"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:467
+msgid "SOCKS: protocol to proxy TCP connections via a remote machine"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:467
+msgid "SSH can act as a SOCKS server: \\texttt{ssh -D 1080 server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:467
+msgid "Use case similar to tunnelling with -L, but more flexible"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:467
+msgid "Set up the proxy once, use for multiple connections"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:467
+msgid "Usage:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:467
+msgid "Manual: configure applications to use the SOCKS proxy"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:467
+msgid "Transparent: use \\texttt{tsocks} to re-route connections via SOCKS"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:467
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"$ cat /etc/tsocks.conf\n"
+"server = 127.0.0.1\n"
+"server_type = 5\n"
+"server_port = 1080 # then start ssh with -D 1080\n"
+"$ tsocks pidgin # tunnel application through socks"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:470 ssh.tex:470
+msgid "Jumping through hosts with ProxyCommand"
+msgstr ""
+
+#. type: tikzpicture
+#: ssh.tex:532
+msgid ""
+"\\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (0,0) {}; "
+"\\node[name=private,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (5,0) {}; "
+"\\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
+"\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); \\draw[darkred,fill] "
+"(7.5,0) circle (2mm); \\draw (-2.5,-1) node {Client}; \\draw (2.5,-1) node "
+"{Server}; \\draw (7.5,-1) node[align=center] {Server2 on\\\\ private "
+"network}; \\draw (5, -0.2) node [below] {\\small \\sl Private network}; "
+"\\draw (0, -0.2) node [below] {\\small \\sl Internet}; "
+"\\draw[orange,fill,ultra thick,->] (-2.3,0) -- (2.3,0); "
+"\\draw[orange,fill,ultra thick,->] (2.7,0) -- (7.3,0);"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid "Problem: to connect to Server2, you need to connect to Server"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid ""
+"Can you do that in a single step? (required for data transfer, tunnels, X11 "
+"forwarding)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid "Combines two SSH features:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid ""
+"\\texttt{ProxyCommand} option: command used to connect to host; connection "
+"available on standard input \\& output"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid ""
+"\\texttt{ssh -W host:port} $\\leadsto$ establish a TCP connection, provide "
+"it on standard input \\& output (suitable for \\texttt{ProxyCommand})"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:532
+msgid "Jumping through hosts with ProxyCommand (2)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid "Example configuration:"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:532
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"Host server2 # ssh server2 works\n"
+"    ProxyCommand ssh -W server2:22 server"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid "Also works with wildcards"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:532
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"Host *.priv # ssh host1.priv works\n"
+"    ProxyCommand ssh -W $(basename %h .priv):%p server"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid ""
+"-W only available since OpenSSH 5.4 (circa 2010), but the same can be "
+"achieved with netcat:"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:532
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"Host *.priv\n"
+"    ProxyCommand ssh serv nc -q 0 $(basename %h .priv) %p"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid "Similar solution to connect via a proxy:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid "SOCKS: \\texttt{connect-proxy -4 -S myproxy:1080 rhost 22}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid "HTTP (with CONNECT): \\texttt{corkscrew myproxy 1080 rhost 22}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:532
+msgid ""
+"When CONNECT requests are forbidden, set up \\texttt{httptunnel} on a remote "
+"server, and use \\texttt{htc} and \\texttt{hts}"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:553 ssh.tex:553
+msgid "Triggering remote command execution securely"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:553
+msgid "Goal: notify Server2 that something finished on Server1"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:553
+msgid "But Server1 must not have full shell access on Server2"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:553
+msgid "Method: limit to a single command in \\texttt{authorized\\_keys}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:553
+msgid "Also known as SSH triggers"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:553
+msgid "Example \\texttt{authorized\\_keys} on Server2:"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:553
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"from=\"server1.acme.com\",command=\"tar czf - /home\",no-pty,\n"
+"no-port-forwarding ssh-rsa AAAA[...]oR user@my.host.net"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:576 ssh.tex:576
+msgid "Escape sequences"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:576
+msgid "Goal: interact with an already established SSH connection"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:576
+msgid "Add tunnels or SOCKS proxy, kill unresponsive connection"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:576
+msgid "Escape sequences start with '\\tilda', at the beginning of a line"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:576
+msgid "So press \\texttt{[enter]}, then \\texttt{\\tilda}, then e.g. '\\texttt{?}'"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:576
+msgid "Main sequences (others documented in \\texttt{ssh(1)}):"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:576
+msgid "\\texttt{\\tilda{}.} -- disconnect (for unresponsive connections)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:576
+msgid "\\texttt{\\tilda{}?} -- show the list of escape sequences"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:576
+msgid ""
+"\\texttt{\\tilda{}C} -- open SSH command-line. e.g. \\texttt{\\tilda{}C -D "
+"1080}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:576
+msgid ""
+"\\texttt{\\tilda{}\\&} -- logout and background SSH while waiting for "
+"forwarded connections or X11 sessions to terminate"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:598 ssh.tex:598
+msgid "Conclusions"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:598
+msgid "The Swiss-army knife of remote administration"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:598
+msgid "Very powerful tool, many useful features"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:598
+msgid "Practical session: test everything mentioned in this presentation"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:598
+msgid "Other topics not covered in this presentation:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:598
+msgid "Built-in support for VPN"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:598
+msgid "Other authentication methods (certificates)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:598
+msgid ""
+"Managing long executions on a remote machine with \\texttt{screen} or "
+"\\texttt{tmux}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:598
+msgid "Mosh, an SSH alternative suited for Wi-Fi, cellular and long distance links"
+msgstr ""

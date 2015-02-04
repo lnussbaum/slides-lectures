@@ -1,0 +1,26 @@
+% po4a: command author []{_}
+% po4a: command frame {}
+% po4a: environment axis [_]
+% po4a: environment frame []{_}
+% po4a: verbatim environment lstlisting
+% po4a: environment tikzpicture []
+% po4a: command title [_]{_}
+
+% po4a: command -date {_}
+% po4a: command -textbf {_}
+
+% po4a: command hypersetup {}
+% po4a: command tableofcontents []
+
+% po4a: command newcommand {}{}
+% po4a: command renewcommand {}{}
+
+% po4a: command mode 
+% po4a: command +usepackage {_}
+% po4a: command *usetheme
+% po4a: command *br
+% po4a: command *hbr
+% po4a: command *hhbr
+% po4a: command *small
+% po4a: command *seprule
+
