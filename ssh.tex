@@ -1,0 +1,599 @@
+% handout
+\documentclass[11pt,final,usepdftitle=false]{beamer}
+\mode<presentation>
+\usetheme{ln12en}
+\graphicspath{{\logopath}{\picspath}{\figspath}{./logos/}{./pics/}{./figs/}}
+\usepackage{listings}
+%\usepackage{bera}
+\usepackage{inconsolata}
+\usepackage{moresize}
+%\renewcommand*\ttdefault{cmvtt}
+
+
+\hypersetup{pdftitle={Lucas Nussbaum - SSH}}
+\title{An introduction to SSH}
+\authorteaching
+\instituteiutlp
+\newcommand{\tilda}{\textasciitilde{}}
+\date{}
+
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Plan}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+\newcommand{\Gentsroom}{{\fontfamily{mvs}\fontencoding{U}\fontseries{m}\fontshape{n}\selectfont\char120}}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{SSH basics}
+\subsection{SSH 101}
+\begin{frame}{Introduction}
+\begin{itemize}
+\item SSH = Secure SHell
+\item Standard network protocol and service (TCP port 22)
+\item Many implementations, including:
+	\begin{itemize}
+		\item OpenSSH: Linux/Unix, Mac OS X \alert{$\leftarrow$ this talk, mostly}
+		\item Putty: Windows, client only
+		\item Dropbear: small systems (routers, embedded)
+	\end{itemize}
+\item Unix command (\texttt{ssh}); server-side: \texttt{sshd}
+\item Establish a \alert{secure communication channel} between two machines
+\item Relies on cryptography
+\item Most basic usage: \alert{get shell access} on a remote machine
+\item Many advanced usages:
+	\begin{itemize}
+		\item Data transfer (\texttt{scp}, \texttt{sftp}, \texttt{rsync})
+		\item Connect to specific services (such as Git or SVN servers)
+		\item Dig secure tunnels through the public Internet
+	\end{itemize}
+\item Several authentication schemes: password, public key
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Basic usage}
+\begin{itemize}
+\item Connecting to a remote server:\\
+	\texttt{\$ ssh login@remote-server} \\
+	$\leadsto$ Provides a shell on \textsl{remote-server}
+
+\br
+\item Executing a command on a remote server:\\
+	\texttt{\$ ssh login@remote-server ls /etc}
+
+\br
+\item Copying data (with \texttt{scp}, similar to \texttt{cp}):\\
+	\texttt{\$ scp local-file login@remote-serv:remote-directory/} \\
+	\texttt{\$ scp login@remote-serv:remote-dir/file local-dir/}\\
+	Usual \texttt{cp} options work, e.g. \texttt{-r} (recursive)
+\br
+\item Copying data (with \texttt{rsync}, more efficient than \texttt{scp} with many files):\\
+	\texttt{\$ rsync -avzP localdir login@server:path-to-rem-dir/}\\
+	\hbr
+	Note: trailing slash on source matters with \texttt{rsync} (not with \texttt{cp})\\
+	\begin{itemize}
+		\item \texttt{rsync -a dir1 u@h:dir2}  $\leadsto$ dir1 copied inside dir2
+		\item \texttt{rsync -a dir1/ u@h:dir2}  $\leadsto$ content of dir1 copied to dir2
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{Public-key authentication}
+\begin{frame}{Public-key authentication}
+\begin{itemize}
+\item General idea:
+	\begin{itemize}
+		\item Asymmetric cryptography (or public-key cryptography):
+			\begin{itemize}
+				\item The public key is used to encrypt something
+				\item Only the private key can decrypt it
+			\end{itemize}
+		\item User owns a private (secret) key, stored on the local machine
+		\item The server has the public key corresponding to the private key 
+		\item Authentication = \textsl{<server> prove that you own that private key!}
+	\end{itemize}
+\hbr
+\item Implementation (\textsl{challenge-response authentication}):
+	\begin{enumerate}
+		\item Server generates a nonce (random value)
+		\item Server encrypts the nonce with the Client's public key
+		\item Server sends the encrypted nonce (= the challenge) to client
+		\item Client uses the private key to decrypt the challenge
+		\item Client sends the nonce (= the response) to the Server
+		\item Server compares the nonce with the response
+	\end{enumerate}
+\end{itemize}
+% FIXME schéma
+\end{frame}
+
+\begin{frame}{Public-key authentication (2)}
+\begin{itemize}
+	\item Advantages:
+		\begin{itemize}
+			\item The password does not need to be sent over the network
+			\hbr
+			\item The private key never leaves the client
+			\hbr
+			\item The process can be automated
+		\end{itemize}
+	\hbr
+	\item However, the private key should be protected (what if your laptop gets stolen?)
+		\begin{itemize}
+			\item Usually with a passphrase
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Key-pair generation}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,escapeinside={||}]
+$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/user/.ssh/id_rsa): |\textbf{[ENTER]}|
+Enter passphrase (empty for no passphrase): |\textbf{passphrase}|
+Enter same passphrase again: |\textbf{passphrase}|
+Your identification has been saved in /home/user/.ssh/id_rsa.
+Your public key has been saved in /home/user/.ssh/id_rsa.pub.
+The key fingerprint is:
+f6:35:53:71:2f:ff:00:73:59:78:ca:2c:7c:ff:89:7b user@my.hostname.net
+The key's randomart image is:
++--[ RSA 2048]----+
+|              ..o|
+|\textbf{(...)}|
+|             .o  |
++-----------------+
+$\end{lstlisting}
+\begin{itemize}
+	\item Creates the key-pair:
+		\begin{itemize}
+			\item \texttt{\tilda/.ssh/id\_rsa} (private key)
+			\item \texttt{\tilda/.ssh/id\_rsa.pub} (public key)
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Copying the public key to the server}
+\begin{itemize}
+\item Example public key:\\
+	{\footnotesize \texttt{ssh-rsa AAAAB3NX[\ldots]hpoR3/PLlXgGcZS4oR user@my.hostname.net}}
+\hbr
+
+\item On the server, \texttt{\bf \tilda{}user/.ssh/authorized\_keys} contains
+	the list of public keys authorized to connect to the \texttt{user} account
+
+\hbr
+\item The key can be copied manually there
+\hbr
+\item Or use \texttt{ssh-copy-id} to automatically copy the key:\\
+	\texttt{client\$ ssh-copy-id user@server}
+\hbr
+\item Sometimes the public key needs to be provided using a web interface (e.g. on GitHub, FusionForge, Redmine, etc.)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Remembering the passphrase}
+\begin{itemize}
+\item If the private key is not protected with a passphrase, the connection is established immediately:\\ \hbr
+{\ttfamily\footnotesize 
+*** login@laptop:\tilda\$  ssh rlogin@rhost \textbf{ [ENTER]}\\
+*** rlogin@rhost:\tilda\$\\ }
+\hbr
+\item Otherwise, \texttt{ssh} asks for the passphrase:\\ \hbr
+{\ttfamily\footnotesize 
+*** login@laptop:\tilda\$ ssh rlogin@rhost \textbf{ [ENTER]}\\
+Enter passphrase for key '/home/login/id\_rsa':  \textbf{[passphrase+ENTER]}\\ 
+*** rlogin@rhost:\tilda\$\\ }
+\hbr
+\item An \textbf{SSH agent} can be used to remember the passphrase
+\begin{itemize}
+	\item Most desktop environments act as SSH agents automatically
+	\item One can be started with \texttt{ssh-agent} if needed
+	\item Add keys manually with \texttt{ssh-add}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{Checking the server's identity}
+
+\begin{frame}{Checking the server identity: \texttt{known\_hosts}}
+\begin{itemize}
+\item Goal: detect hijacked servers\\
+\textsl{What if someone replaced the server to steal passwords?}
+\hbr
+\item When you connect to a server for the first time, \texttt{ssh} stores the server's public key in
+	\texttt{\tilda/.ssh/known\_hosts}
+\end{itemize}
+{\ttfamily\small
+*** login@laptop:\tilda\$ ssh rlogin@server\textbf{ [ENTER]}\\ 
+The authenticity of host 'server (10.1.6.2)' can't be established.\\
+RSA key fingerprint is 94:48:62:18:4b:37:d2:96:67:c9:7f:2f:af:2e:54:a5.\\
+Are you sure you want to continue connecting (yes/no)? \textbf{yes [ENTER]}\\ 
+Warning: Permanently added 'server,10.1.6.2'(RSA) to the list of known hosts.\\
+rlogin@server's password:\\ }
+\end{frame}
+
+\begin{frame}[fragile]{Checking the server identity: \texttt{known\_hosts} (2)}
+\begin{itemize}
+\item During each following connection, \texttt{ssh} ensures that the key still matches, and warns the user otherwise
+\end{itemize}
+\begin{lstlisting}[basicstyle=\ttfamily\ssmall,escapeinside={||}]
+*** login@laptop:~$ ssh rlogin@server|\textbf{ [ENTER]}|
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+The fingerprint for the RSA key sent by the remote host is
+e3:94:03:90:5d:81:ed:bb:d5:d2:f2:de:ba:31:18:d8.
+Please contact your system administrator.
+Add correct host key in /home/login/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /home/login/.ssh/known_hosts:12
+RSA host key for server has changed and you have requested strict checking.
+Host key verification failed.
+*** login@laptop:~$ 
+\end{lstlisting}
+\begin{itemize}
+	\item Remove a truly outdated key can be removed with\\ \texttt{ssh-keygen -R server}
+\end{itemize}
+\end{frame}
+
+\subsection{Configuring SSH}
+\begin{frame}{Configuring SSH}
+	\begin{itemize}
+		\item SSH gets configuration data from:
+			\begin{enumerate}
+				\item command-line options (\texttt{-o ...})
+				\item the user's configuration file: \texttt{\tilda/.ssh/config}
+				\item the system-wide configuration file: \texttt{/etc/ssh/ssh\_config}
+			\end{enumerate}
+		\hbr
+		\item Options are documented in the \texttt{ssh\_config(5)} man page
+		\hbr
+		\item \texttt{\tilda/.ssh/config} contains a list of hosts (with wildcards)
+		\hbr
+		\item For each parameter, the first obtained value is used\\
+			\begin{itemize}
+				\item Host-specific declarations are given near the beginning
+				\item General defaults at the end
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Example: \texttt{\tilda/.ssh/config}}
+\begin{lstlisting}[basicstyle=\ttfamily\small,escapeinside={||}]
+Host mail.acme.com
+    User root
+
+Host foo # alias/shortcut. 'ssh foo' works
+    Hostname very-long-hostname.acme.net
+    Port 2222
+
+Host *.acme.com
+    User jdoe
+    Compression yes # default is no
+    PasswordAuthentication no # only use public key
+    ServerAliveInternal 60 # keep-alives for bad firewall
+
+Host *
+    User john
+\end{lstlisting}
+\begin{itemize}
+	\item Note: \texttt{bash-completion} can auto-complete using \texttt{ssh\_config} hosts
+\end{itemize}
+\end{frame}
+
+\section{Advanced usage}
+
+\subsection{SSH as a communication layer for applications}
+\begin{frame}{SSH as a communication layer for applications}
+	\begin{itemize}
+		\item Several applications use SSH as their communication layer\\
+			\begin{itemize}
+				\item Sometimes also authentication layer
+			\end{itemize}
+		\hbr
+		\item \texttt{scp}, \texttt{sftp}, \texttt{rsync} (data transfer)
+			\hbr
+		\item \texttt{unison} (synchronization)
+		\hbr
+
+	\item \alert{Subversion:} \texttt{svn checkout svn+ssh://user@rhost/path/to/repo}
+		\hbr
+	\item \alert{Git:} \texttt{git clone ssh://git@github.com/path-to/repository.git}\\
+	 Or: \texttt{git clone git@github.com:path-to/repository.git}
+	\end{itemize}
+\end{frame}
+
+\subsection{Access remote filesystems over SSH: sshfs}
+\begin{frame}[fragile]{Access remote filesystems over SSH: sshfs}
+	\begin{itemize}
+		\item \texttt{sshfs}: FUSE-based solution to access remote machines
+			\hbr
+	\item Ideal for remote file editing with a GUI, copying small amounts of data, etc.
+			\hbr
+		\item Mount a remote directory:\\
+			\texttt{sshfs root@server:/etc /tmp/local-mountpoint}\\
+			Unmount: \texttt{fusermount -u /tmp/local-mountpoint}
+		\hbr
+	\item Combine with \texttt{afuse} to auto-mount any machine:\\
+	 \texttt{afuse -o mount\_template="sshfs \%r:/ \%m" -o \textbackslash \\
+	 unmount\_template="fusermount -u -z \%m" \tilda/.sshfs/}\\[0.5em]
+			$\leadsto$ \texttt{cd \tilda/.sshfs/rhost/etc/ssh}
+	\end{itemize}
+\end{frame}
+
+
+\subsection{SSH tunnels, X11 forwarding, and SOCKS proxy}
+\begin{frame}{SSH tunnels with -L and -R}
+        \begin{itemize}
+                \item Goal: transport traffic through a secure connection
+			\begin{itemize}
+				\item Work-around network filtering (firewalls)
+				\item Avoid sending unencrypted data on the Internet
+				\item But only works for TCP connections
+			\end{itemize}
+                        \hbr
+		\item \textbf{-L}: access a remote service behind a firewall (Intranet server)
+			\begin{itemize}
+				\item \texttt{ssh -L 12345:service:1234 server}
+				\item Still on \textsl{Client}: \texttt{telnet localhost 12345}
+				\item \textsl{Server} establishes a TCP connection to \textsl{Service}, port 1234
+				\item The traffic is tunnelled inside the SSH connection to \textsl{Server}
+			\end{itemize}
+	\end{itemize}
+	
+\begin{center}
+\begin{tikzpicture}
+	\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum width=5cm,minimum height=2cm,draw] at (0,0) {};
+	\node[name=private,gray,cloud,aspect=1,cloud puffs=23,minimum width=5cm,minimum height=2cm,draw] at (5,0) {};
+	\draw[blue,fill] (-2.5,-0.1) rectangle (2.5,0.1);
+	\draw[darkred,fill] (7.5,0) circle (2mm);
+
+	\draw[name=client,darkred,fill] (-2.5,0) circle (2mm);
+	\draw[name=server,darkred,fill] (2.5,0) circle (2mm);
+	\draw (-2.5,-1) node  {Client};
+	\draw (2.5,-1) node  {Server};
+	\draw (7.5,-1) node[align=center]  {TCP Service \\on port 1234};
+	\draw (0, -0.2) node [below] {\small \sl Internet};
+	\draw (5, -0.2) node [below] {\small \sl Private network};
+	\only<2->{
+	\draw[orange,fill,ultra thick,->] (-2.5,0) -- (7.3,0);
+	\draw[name=client,darkred,fill] (-2.5,0) circle (2mm);
+	\draw[name=server,darkred,fill] (2.5,0) circle (2mm);
+}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}{SSH tunnels with -L and -R}
+        \begin{itemize}
+		\item \textbf{-R}: provide remote access to a local private service
+			\begin{itemize}
+				\item \texttt{ssh -R 12345:service:1234 server}
+				\item On \textsl{Server}: \texttt{telnet localhost 12345}
+				\item \textsl{Client} establishes a TCP connection to \textsl{Service}, port 1234
+				\item The traffic is tunnelled inside the SSH connection to \textsl{Client}
+			\end{itemize}
+	\end{itemize}
+	
+\begin{center}
+\begin{tikzpicture}
+	\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum width=5cm,minimum height=2cm,draw] at (0,0) {};
+	\node[name=private,gray,cloud,aspect=1,cloud puffs=23,minimum width=5cm,minimum height=2cm,draw] at (5,0) {};
+	\draw[blue,fill] (2.5,-0.1) rectangle (7.5,0.1);
+
+	\draw[name=client,darkred,fill] (-2.5,0) circle (2mm);
+	\draw[name=server,darkred,fill] (2.5,0) circle (2mm);
+	\draw[darkred,fill] (7.5,0) circle (2mm);
+	\draw (2.5,-1) node  {Client};
+	\draw (7.5,-1) node  {Server};
+	\draw (-2.5,-1) node[align=center]  {TCP Service \\on port 1234};
+	\draw (0, -0.2) node [below] {\small \sl Private network};
+	\draw (5, -0.2) node [below] {\small \sl Internet};
+	\only<2->{
+	\draw[orange,fill,ultra thick,->] (7.5,0) -- (-2.3,0);
+	\draw[darkred,fill] (2.5,0) circle (2mm);
+	\draw[darkred,fill] (7.5,0) circle (2mm);
+}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+	\item Note: SSH tunnels don't work very well for HTTP, because IP+port are not enough to identify a website (\texttt{Host:} HTTP header)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{X11 forwarding with -X: GUI apps over SSH}
+\begin{itemize}
+	\item Run a graphical application on a remote machine, display locally
+		\hbr
+	\item Similar to VNC, but on a per-application basis
+		\hbr
+	\item \texttt{ssh -X server}
+		\hbr
+	\item \texttt{\$DISPLAY} will be set by SSH on the server:\\
+		\texttt{\$ echo \$DISPLAY\\
+		localhost:10.0}
+		\hbr
+\item Then start GUI applications on server (e.g. \texttt{xeyes})
+		\hbr
+	\item Troubleshooting:
+		\begin{itemize}
+			\item \texttt{xauth} must be installed on the remote machine
+			\item The local Xorg server must allow TCP connections
+				\begin{itemize}
+					\item \texttt{pgrep -a Xorg} $\leadsto$ \texttt{-nolisten} must not be included 
+					\item Can be configured in your login manager
+				\end{itemize}
+			\item Does not work very well over slow or high-latency connections
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{SOCKS proxy with -D}
+\begin{itemize}
+\item SOCKS: protocol to proxy TCP connections via a remote machine
+\hbr
+\item SSH can act as a SOCKS server: \texttt{ssh -D 1080 server}
+\hbr
+\item Use case similar to tunnelling with -L, but more flexible
+	\begin{itemize}
+		\item Set up the proxy once, use for multiple connections
+	\end{itemize}
+\hbr
+\item Usage:
+\begin{itemize}
+\item Manual: configure applications to use the SOCKS proxy
+\hbr
+\item Transparent: use \texttt{tsocks} to re-route connections via SOCKS
+\end{itemize}
+\begin{lstlisting}[basicstyle=\ttfamily\small,escapeinside={||}]
+$ cat /etc/tsocks.conf
+server = 127.0.0.1
+server_type = 5
+server_port = 1080 # then start ssh with -D 1080
+$ tsocks pidgin # tunnel application through socks
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\subsection{Jumping through hosts with ProxyCommand}
+\begin{frame}[fragile]{Jumping through hosts with ProxyCommand}
+
+\begin{tikzpicture}
+	\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum width=5cm,minimum height=2cm,draw] at (0,0) {};
+	\node[name=private,gray,cloud,aspect=1,cloud puffs=23,minimum width=5cm,minimum height=2cm,draw] at (5,0) {};
+	\draw[name=client,darkred,fill] (-2.5,0) circle (2mm);
+	\draw[name=server,darkred,fill] (2.5,0) circle (2mm);
+	\draw[darkred,fill] (7.5,0) circle (2mm);
+	\draw (-2.5,-1) node  {Client};
+	\draw (2.5,-1) node  {Server};
+	\draw (7.5,-1) node[align=center]  {Server2 on\\ private network};
+	\draw (5, -0.2) node [below] {\small \sl Private network};
+	\draw (0, -0.2) node [below] {\small \sl Internet};
+	\draw[orange,fill,ultra thick,->] (-2.3,0) -- (2.3,0);
+	\draw[orange,fill,ultra thick,->] (2.7,0) -- (7.3,0);
+\end{tikzpicture}
+\begin{itemize}
+\item Problem: to connect to Server2, you need to connect to Server
+	\begin{itemize}
+		\item Can you do that in a single step? (required for data transfer, tunnels, X11 forwarding)
+	\end{itemize}
+	\hbr
+\item Combines two SSH features:
+\begin{itemize}
+\item \texttt{ProxyCommand} option: command used to connect to host; connection available on standard input \& output
+\hbr
+\item \texttt{ssh -W host:port} $\leadsto$ establish a TCP connection, provide it on standard input \& output (suitable for \texttt{ProxyCommand})
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Jumping through hosts with ProxyCommand (2)}
+	\hbr
+\begin{itemize}
+\item Example configuration:
+\end{itemize}\vspace{-0.8em}
+\begin{lstlisting}[basicstyle=\ttfamily\small,escapeinside={||}]
+Host server2 # ssh server2 works
+    ProxyCommand ssh -W server2:22 server
+\end{lstlisting}\vspace{-0.2em}
+\hbr
+\begin{itemize}
+\item Also works with wildcards
+\end{itemize}\vspace{-0.8em}
+\begin{lstlisting}[basicstyle=\ttfamily\small,escapeinside={||}]
+Host *.priv # ssh host1.priv works
+    ProxyCommand ssh -W $(basename %h .priv):%p server
+\end{lstlisting}\vspace{-0.2em}
+\begin{itemize}
+\item -W only available since OpenSSH 5.4 (circa 2010), but the same can be achieved with netcat:
+\end{itemize}\vspace{-0.8em}
+\begin{lstlisting}[basicstyle=\ttfamily\small,escapeinside={||}]
+Host *.priv
+    ProxyCommand ssh serv nc -q 0 $(basename %h .priv) %p
+\end{lstlisting}\vspace{-0.2em}
+\begin{itemize}
+\item Similar solution to connect via a proxy:
+\begin{itemize}
+	\item SOCKS: \texttt{connect-proxy -4 -S myproxy:1080 rhost 22}
+	\item HTTP (with CONNECT): \texttt{corkscrew myproxy 1080 rhost 22}
+	\item When CONNECT requests are forbidden, set up \texttt{httptunnel} on a remote server, and use \texttt{htc} and \texttt{hts}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{Triggering remote command execution securely}
+\begin{frame}[fragile]{Triggering remote command execution securely}
+\begin{itemize}
+\item Goal: notify Server2 that something finished on Server1
+	\begin{itemize}
+		\item But Server1 must not have full shell access on Server2
+	\end{itemize}
+	\hbr
+\item Method: limit to a single command in \texttt{authorized\_keys}
+	\begin{itemize}
+		\item Also known as SSH triggers
+	\end{itemize}
+\hbr
+\item Example \texttt{authorized\_keys} on Server2:
+\end{itemize}
+\begin{lstlisting}[basicstyle=\ttfamily\small,escapeinside={||}]
+from="server1.acme.com",command="tar czf - /home",no-pty,
+no-port-forwarding ssh-rsa AAAA[...]oR user@my.host.net
+\end{lstlisting}
+\end{frame}
+
+\subsection{Escape sequences}
+\begin{frame}[fragile]{Escape sequences}
+\begin{itemize}
+\item Goal: interact with an already established SSH connection
+	\begin{itemize}
+		\item Add tunnels or SOCKS proxy, kill unresponsive connection
+	\end{itemize}
+\hbr
+\item Escape sequences start with '\tilda', at the beginning of a line
+	\begin{itemize}
+		\item So press \texttt{[enter]}, then \texttt{\tilda}, then e.g. '\texttt{?}'
+	\end{itemize}
+\hbr
+\item Main sequences (others documented in \texttt{ssh(1)}):
+	\begin{itemize}
+		\item \texttt{\tilda{}.} -- disconnect (for unresponsive connections)
+		\item \texttt{\tilda{}?} -- show the list of escape sequences
+		\item \texttt{\tilda{}C} -- open SSH command-line. e.g. \texttt{\tilda{}C -D 1080}
+		\item \texttt{\tilda{}\&} -- logout and background SSH while waiting for forwarded connections or X11 sessions to terminate
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Conclusions}
+\begin{frame}{Conclusions}
+	\begin{itemize}
+		\item The Swiss-army knife of remote administration
+			\hbr
+		\item Very powerful tool, many useful features
+			\hbr
+		\item Practical session: test everything mentioned in this presentation
+			\hbr
+		\item Other topics not covered in this presentation:
+			\begin{itemize}
+				\item Built-in support for VPN
+					\hbr
+				\item Other authentication methods (certificates)
+					\hbr
+				\item Managing long executions on a remote machine with \texttt{screen} or \texttt{tmux}
+					\hbr
+				\item Mosh, an SSH alternative suited for Wi-Fi, cellular and long distance links
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\end{document}

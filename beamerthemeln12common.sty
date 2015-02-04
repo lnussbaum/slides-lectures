@@ -1,0 +1,222 @@
+\ProvidesPackageRCS $Header: /cvsroot/latex-beamer/latex-beamer/themes/theme/compatibility/beamerthemeln12common.sty,v 1.8 2004/10/07 20:53:10 tantau Exp $
+
+\mode<presentation>
+
+% From Boadilla
+\newif\ifbeamer@secheader
+\beamer@secheaderfalse
+
+\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
+\ProcessOptionsBeamer
+
+\useinnertheme[shadow]{rounded}
+
+% do not reduce size of subitems
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\normalsize}
+
+\useitemizeitemtemplate{%
+	\scriptsize\raise1.25pt\hbox{\color{beamerstructure}$\blacktriangleright$}
+}
+\usesubitemizeitemtemplate{%
+	\scriptsize\raise1.25pt\hbox{\color{beamerstructure}$\blacklozenge$}
+}
+\usesubsubitemizeitemtemplate{%
+	\scriptsize\raise1.25pt\hbox{\color{beamerstructure}$\bigstar$}
+}
+
+\setbeamersize{text margin left=1em,text margin right=1em}
+
+\ifbeamer@secheader\else\setbeamertemplate{headline}[default]\fi
+
+%%% end of copy from Boadilla
+
+\definecolor{myred}{HTML}{d01e1e}
+\definecolor{mygreen}{HTML}{129d1c}
+\definecolor{colorsimterpose}{HTML}{bd0505}
+\definecolor{mydarkred}{HTML}{a41313}
+\definecolor{mylightgray}{HTML}{F4F1F1}
+
+\setbeamercolor{section in toc}{fg=black,bg=white}
+\setbeamercolor{alerted text}{fg=darkred!80!gray}
+\setbeamercolor*{palette primary}{fg=black,bg=gray!30!white}
+\setbeamercolor*{palette secondary}{fg=darkred!70!black,bg=gray!15!white}
+\setbeamercolor*{palette tertiary}{bg=darkred!80!black,fg=gray!10!white}
+\setbeamercolor*{palette quaternary}{fg=darkred,bg=gray!5!white}
+
+\setbeamercolor*{sidebar}{fg=darkred,bg=gray!10!white}
+
+\setbeamercolor*{palette sidebar primary}{fg=darkred!10!black}
+\setbeamercolor*{palette sidebar secondary}{fg=white}
+\setbeamercolor*{palette sidebar tertiary}{fg=darkred!50!black}
+\setbeamercolor*{palette sidebar quaternary}{fg=gray!10!white}
+
+\setbeamercolor{titlelike}{bg=mydarkred, fg=white}
+\setbeamercolor{frametitle}{bg=gray!10!white, fg=mydarkred}
+\setbeamercolor{frametitle right}{bg=gray!60!white}
+
+\setbeamercolor{block body}{fg=black}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamercolor{structure}{fg=mydarkred}
+
+\setbeamertemplate{navigation symbols}{}
+
+\setbeamercovered{transparent}
+
+% blocks
+\defbeamertemplate*{block begin}{emptty}
+{
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[colsep*=.75ex]{block title}
+    \usebeamerfont*{block title}\insertblocktitle\vspace{-.2\baselineskip}% Just added this vskip
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  \ifbeamercolorempty[bg]{block title}
+  {}
+  {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[colsep*=.75ex,vmode]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+}
+
+\defbeamertemplate*{block end}{emptty}
+{\end{beamercolorbox}\vskip 0.5em}
+
+% title theme
+\setbeamertemplate{frametitle}{%
+  \ifbeamer@plainframe%
+  \else%
+    \vskip0.1em%
+    {\leftskip-\beamer@leftmargin\advance\leftskip by0.3cm%
+      \rightskip-\beamer@rightmargin plus1fil\advance\rightskip by0.3cm\leavevmode
+      {\usebeamercolor{frametitle}\usebeamerfont{frametitle}
+      \Large\bfseries{\underline{\insertframetitle}}}\par}%
+      \vskip-.3cm
+  \fi%
+}
+
+
+%% footline theme
+\setbeamercolor{author in head/foot}{fg=white!20!black,bg=white}
+\setbeamercolor{title in head/foot}{fg=white!20!black,bg=white}
+
+\defbeamertemplate*{footline}{split theme}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.1cm plus1fill,rightskip=.1cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.1cm,rightskip=.1cm plus1fil]{title in head/foot}%
+	  \usebeamerfont{title in head/foot}\insertshorttitle \hfill \insertframenumber{} / \inserttotalframenumber{}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\mode
+<all>
+
+\usepackage{wasysym}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{helvet}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{xspace}
+\usepackage{comment}
+\usepackage{figlatex}
+\usepackage{verbatim}
+\usepackage{comment}
+\usepackage{soul}
+\usepackage{tabularx}
+\usepackage{listings}
+\beamertemplatetransparentcovereddynamic
+\setbeamercovered{invisible}
+\newcommand{\br}{\vskip 1em}
+\newcommand{\hbr}{\vskip 0.5em}
+\newcommand{\hhbr}{\vskip 0.25em}
+\newcommand{\Fleche}{\textbf{$\Rightarrow$}\xspace}
+\newcommand{\fleche}{\textbf{$\rightarrow$}\xspace}
+
+\renewcommand{\ttdefault}{aett}
+\usepackage{aecompl}
+
+
+\newcommand{\logopath}{/home/lucas/d/junkdocs/latex/logos/}
+\newcommand{\picspath}{/home/lucas/d/junkdocs/latex/pics/}
+\newcommand{\figspath}{/home/lucas/d/junkdocs/latex/figs/}
+
+
+
+%%%%%%%%%% Useful macros
+
+\definecolor{darkgreen}{rgb}{0,.7,0}
+\definecolor{darkred}{rgb}{.7,0,0}
+\newcommand{\Smiley}{{\color{darkgreen}\smiley}}
+\newcommand{\Frownie}{{\color{darkred}\frownie}}
+\newcommand{\authorteaching}{\author[Lucas Nussbaum]{Lucas Nussbaum\\{\small\texttt{lucas.nussbaum@univ-lorraine.fr}}}}
+\newcommand{\authorresearch}{\author[Lucas Nussbaum]{Lucas Nussbaum\\{\small\texttt{lucas.nussbaum@loria.fr}}}}
+\newcommand{\instituteresearch}{%
+\institute{
+\vspace{0.3cm}
+\begin{columns}[b]
+\begin{column}{1cm}
+\end{column}
+\begin{column}{2.5cm}
+	\centerline{\includegraphics[height=.7cm]{logo-loria.pdf}}
+\end{column}
+\begin{column}{2.5cm}
+	\centerline{\includegraphics[height=.7cm]{logo-cnrs.pdf}}
+\end{column}
+\begin{column}{2.5cm}
+	\centerline{\includegraphics[height=.7cm]{logo-inria.pdf}}
+\end{column}
+\begin{column}{2.5cm}
+	\centerline{\includegraphics[height=.7cm]{logo-ul.pdf}}
+\end{column}
+\begin{column}{1cm}
+\end{column}
+\end{columns}
+}
+}
+\newcommand{\instituteresearchgrid}{%
+\institute{
+\vspace{0.3cm}
+\begin{columns}[b]
+\begin{column}{1cm}
+\end{column}
+\begin{column}{2.5cm}
+	\centerline{\includegraphics[height=.8cm]{INRIA_SCIENTIFIQUE_UK_CMJN.pdf}}
+\end{column}
+\begin{column}{2.5cm}
+	\centerline{\includegraphics[height=.8cm]{UL_LOGO_CMJN-crop.pdf}}
+\end{column}
+\begin{column}{2.5cm}
+	\centerline{\includegraphics[height=.8cm]{logo_loria_complet_couleur.pdf}}
+\end{column}
+\begin{column}{2.5cm}
+	\centerline{\includegraphics[height=.8cm]{grid5000-logo.pdf}}
+\end{column}
+\begin{column}{2.5cm}
+	\centerline{\includegraphics[height=.8cm]{logo-cnrs.pdf}}
+\end{column}
+\begin{column}{1cm}
+\end{column}
+\end{columns}
+}
+}
+\newcommand{\instituteiutlp}{%
+\institute{\small Licence professionnelle ASRALL\\
+{\scriptsize \sl Administration de systèmes, réseaux et applications à base de logiciels libres}\\[1em]
+\includegraphics[width=6cm]{logo-iut-info}
+}
+}
+\newcommand{\instituteiutras}{%
+\institute{\small Réseaux (Année Spéciale)\\[1em]
+\includegraphics[width=6cm]{logo-iut-info}
+}
+}
+
+\newcommand{\pedp}{\NoAutoSpaceBeforeFDP}
