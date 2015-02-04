@@ -9,7 +9,20 @@ ssh: Introduction to SSH (Taught in ASRALL, Outils Libres)
 
 ## Compiling
 
-FIXME
+Installing build-dependencies:
+* Texlive stuff:
+ apt-get install --no-install-recommends texlive-latex-extra texlive-latex-recommended texlive-fonts-recommended texlive-fonts-extra
+* Additional tools for building and translations:
+ apt-get install --no-install-recommends latex-make po4a
+
+To translate the document, po4a is used. You need to edit po4a/po/fr.po, and
+run 'make translate' to translate the file and create (e.g.) ssh.fr.tex. Then
+pdflatex ssh.fr.tex to generate the PDF, or just 'make ssh.fr.pdf'. There are
+high-level tools and plugins for various editors to edit the po file.
+
+Also look at
+http://anonscm.debian.org/cgit/collab-maint/packaging-tutorial.git/tree/README.translators
+(which uses the same toolset for translations)
 
 ## License 
 
