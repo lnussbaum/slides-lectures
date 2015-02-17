@@ -53,7 +53,7 @@ msgstr ""
 #. type: section{#2}
 #: ssh.tex:62
 msgid "SSH basics"
-msgstr ""
+msgstr "Bases de SSH"
 
 #. type: subsection{#2}
 #: ssh.tex:62
@@ -78,7 +78,7 @@ msgstr ""
 #. type: itemize
 #: ssh.tex:62
 msgid "Many implementations, including:"
-msgstr ""
+msgstr "De nombreuses implémentations, dont:"
 
 #. type: itemize
 #: ssh.tex:62
