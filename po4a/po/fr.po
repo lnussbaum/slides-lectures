@@ -47,6 +47,8 @@ msgid ""
 "\\authorteaching \\instituteiutlp \\newcommand{\\tilda}{\\textasciitilde{}} "
 "\\date{}"
 msgstr ""
+"\\author[Lucas Nussbaum]{Lucas Nussbaum\\\\{\\small\\texttt{lucas.nussbaum@univ-lorraine.fr}}\\\\[0.5em] Traduction Française: François Dupont (ASRALL 2015)} \\instituteiutlp \\newcommand{\\tilda}{\\textasciitilde{}} "
+"\\date{}"
 
 #. type: Plain text
 #: ssh.tex:28
