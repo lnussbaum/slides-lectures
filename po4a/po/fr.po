@@ -19,7 +19,7 @@ msgstr ""
 #. type: Plain text
 #: ssh.tex:11
 msgid "\\mode<presentation> \\usetheme{ln12en}"
-msgstr ""
+msgstr "\\mode<presentation> \\usetheme{ln12fr}"
 
 #. type: Plain text
 #: ssh.tex:11

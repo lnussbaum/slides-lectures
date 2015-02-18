@@ -119,7 +119,6 @@
 <all>
 
 \usepackage{wasysym}
-\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{helvet}
 \usepackage{times}
@@ -220,3 +219,9 @@
 }
 
 \newcommand{\pedp}{\NoAutoSpaceBeforeFDP}
+
+\lstset{
+    extendedchars=true,
+    inputencoding=utf8,
+    literate={à}{{\`a}}1 {è}{{\`e}}1 {é}{{\'e}}1
+}
