@@ -122,7 +122,7 @@ msgstr "La commande Unix (\\texttt{ssh}); coté serveur: \\texttt{sshd}"
 #: ssh.tex:62
 msgid "Establish a \\alert{secure communication channel} between two machines"
 msgstr ""
-"Établit une \\alert{communication sur un canal sécurisé} entre deux machines"
+"Établit une \\alert{communication sécurisé} entre deux machines"
 
 #. type: itemize
 #: ssh.tex:62
@@ -133,8 +133,7 @@ msgstr "S'appuie sur la cryptogrphie"
 #: ssh.tex:62
 msgid "Most basic usage: \\alert{get shell access} on a remote machine"
 msgstr ""
-"L'usage le plus simple: \\alert{obtenir un accès shell} sur une machine "
-"distante"
+"L'usage le plus simple: \\alert{l'accès shell} sur une machine distante"
 
 #. type: itemize
 #: ssh.tex:62
@@ -149,7 +148,7 @@ msgstr "Transfert de données (\\texttt{scp}, \\texttt{sftp}, \\texttt{rsync})"
 #. type: itemize
 #: ssh.tex:62
 msgid "Connect to specific services (such as Git or SVN servers)"
-msgstr "Connexion à des services specifiques (comme des serveurs Git ou SVN )"
+msgstr "Connexion à des services specifiques (Git ou SVN )"
 
 #. type: itemize
 #: ssh.tex:62
@@ -210,15 +209,14 @@ msgstr ""
 #: ssh.tex:89
 msgid "\\texttt{rsync -a dir1 u@h:dir2} $\\leadsto$ dir1 copied inside dir2"
 msgstr ""
-"\\texttt{rsync -a dir1 u@h:dir2} $\\leadsto$ répertoire1 copié dans "
-"répertoire2"
+"\\texttt{rsync -a rep1 u@h:rep2} $\\leadsto$ rep1 copié dans rep2"
 
 #. type: itemize
 #: ssh.tex:89
 msgid ""
 "\\texttt{rsync -a dir1/ u@h:dir2} $\\leadsto$ content of dir1 copied to dir2"
 msgstr ""
-"\\texttt{rsync -a dir1/ u@h:dir2} $\\leadsto$ le contenu de répertoire1 est "
+"\\texttt{rsync -a rep1/ u@h:rep2} $\\leadsto$ le contenu de répertoire1 est "
 "copié dans répertoire2"
 
 #. type: frame{#2}
