@@ -47,7 +47,9 @@ msgid ""
 "\\authorteaching \\instituteiutlp \\newcommand{\\tilda}{\\textasciitilde{}} "
 "\\date{}"
 msgstr ""
-"\\author[Lucas Nussbaum]{Lucas Nussbaum\\\\{\\small\\texttt{lucas.nussbaum@univ-lorraine.fr}}\\\\[0.5em] Traduction Française: François Dupont (ASRALL 2015)} \\instituteiutlp \\newcommand{\\tilda}{\\textasciitilde{}} "
+"\\author[Lucas Nussbaum]{Lucas Nussbaum\\\\{\\small\\texttt{lucas."
+"nussbaum@univ-lorraine.fr}}\\\\[0.5em] Traduction Française: François Dupont "
+"(ASRALL 2015)} \\instituteiutlp \\newcommand{\\tilda}{\\textasciitilde{}} "
 "\\date{}"
 
 #. type: Plain text
@@ -85,7 +87,7 @@ msgstr "Introduction"
 #. type: itemize
 #: ssh.tex:62
 msgid "SSH = Secure SHell"
-msgstr ""
+msgstr "SSH = Secure SHell"
 
 #. type: itemize
 #: ssh.tex:62
@@ -121,8 +123,7 @@ msgstr "La commande Unix (\\texttt{ssh}); coté serveur: \\texttt{sshd}"
 #. type: itemize
 #: ssh.tex:62
 msgid "Establish a \\alert{secure communication channel} between two machines"
-msgstr ""
-"Établit une \\alert{communication sur un canal sécurisé} entre deux machines"
+msgstr "Établit une \\alert{communication sécurisé} entre deux machines"
 
 #. type: itemize
 #: ssh.tex:62
@@ -133,8 +134,7 @@ msgstr "S'appuie sur la cryptogrphie"
 #: ssh.tex:62
 msgid "Most basic usage: \\alert{get shell access} on a remote machine"
 msgstr ""
-"L'usage le plus simple: \\alert{obtenir un accès shell} sur une machine "
-"distante"
+"L'usage le plus simple: \\alert{l'accès shell} sur une machine distante"
 
 #. type: itemize
 #: ssh.tex:62
@@ -149,7 +149,7 @@ msgstr "Transfert de données (\\texttt{scp}, \\texttt{sftp}, \\texttt{rsync})"
 #. type: itemize
 #: ssh.tex:62
 msgid "Connect to specific services (such as Git or SVN servers)"
-msgstr "Connexion à des services specifiques (comme des serveurs Git ou SVN )"
+msgstr "Connexion à des services specifiques (Git ou SVN )"
 
 #. type: itemize
 #: ssh.tex:62
@@ -159,7 +159,7 @@ msgstr "\"Creuse\" des tunnels sécurisés à travers l'internet "
 #. type: itemize
 #: ssh.tex:62
 msgid "Several authentication schemes: password, public key"
-msgstr "Plusieurs systèmes d'authentification: mot de passe, clef publique"
+msgstr "Plusieurs systèmes d'authentification: mot de passe, clé publique"
 
 #. type: frame{#2}
 #: ssh.tex:68
@@ -209,22 +209,19 @@ msgstr ""
 #. type: itemize
 #: ssh.tex:89
 msgid "\\texttt{rsync -a dir1 u@h:dir2} $\\leadsto$ dir1 copied inside dir2"
-msgstr ""
-"\\texttt{rsync -a dir1 u@h:dir2} $\\leadsto$ répertoire1 copié dans "
-"répertoire2"
+msgstr "\\texttt{rsync -a rep1 u@h:rep2} $\\leadsto$ rep1 copié dans rep2"
 
 #. type: itemize
 #: ssh.tex:89
 msgid ""
 "\\texttt{rsync -a dir1/ u@h:dir2} $\\leadsto$ content of dir1 copied to dir2"
 msgstr ""
-"\\texttt{rsync -a dir1/ u@h:dir2} $\\leadsto$ le contenu de répertoire1 est "
-"copié dans répertoire2"
+"\\texttt{rsync -a rep1/ u@h:rep2} $\\leadsto$ contenu de rep1 dans rep2"
 
 #. type: frame{#2}
 #: ssh.tex:117
 msgid "Public-key authentication"
-msgstr "Authentification par clef publique"
+msgstr "Authentification par clé publique"
 
 #. type: itemize
 #: ssh.tex:117
@@ -239,31 +236,30 @@ msgstr "Cryptographie asymétrique (ou cryptographie à clé publique)"
 #. type: itemize
 #: ssh.tex:117
 msgid "The public key is used to encrypt something"
-msgstr "La clef publique est utilisé pour chiffrer quelque chose"
+msgstr "La clé publique est utilisé pour chiffrer quelque chose"
 
 #. type: itemize
 #: ssh.tex:117
 msgid "Only the private key can decrypt it"
-msgstr "Que seul la clef privée peut déchiffrer"
+msgstr "Que seul la clé privée peut déchiffrer"
 
 #. type: itemize
 #: ssh.tex:117
 msgid "User owns a private (secret) key, stored on the local machine"
 msgstr ""
-"L'utilisateur possède une clef privée (secrète), stockée sur la machine "
-"locale"
+"L'utilisateur possède une clé privée (secrète), stockée sur la machine locale"
 
 #. type: itemize
 #: ssh.tex:117
 msgid "The server has the public key corresponding to the private key"
-msgstr "Le serveur a une clef publique correspondant e à la clef privée"
+msgstr "Le serveur a une clé publique correspondante à la clé privée"
 
 #. type: itemize
 #: ssh.tex:117
 msgid ""
 "Authentication = \\textsl{<server> prove that you own that private key!}"
 msgstr ""
-"Authentification = \\textsl{<server> prouve que tu possèdes cette clef "
+"Authentification = \\textsl{<server> prouve que tu possèdes cette clé "
 "privée!}"
 
 #. type: itemize
@@ -279,7 +275,7 @@ msgstr "Le serveur génère un nonce (une valeur aléatoire arbitraire)"
 #. type: enumerate
 #: ssh.tex:117
 msgid "Server encrypts the nonce with the Client's public key"
-msgstr "Le serveur chiffre ce nonce avec la clef publique du client"
+msgstr "Le serveur chiffre ce nonce avec la clé publique du client"
 
 #. type: enumerate
 #: ssh.tex:117
@@ -289,7 +285,7 @@ msgstr "Le serveur envoie le nonce chiffré (=le challenge) au client"
 #. type: enumerate
 #: ssh.tex:117
 msgid "Client uses the private key to decrypt the challenge"
-msgstr "Le client utilise la clef privée pour déchiffrer le challenge"
+msgstr "Le client utilise la clé privée pour déchiffrer le challenge"
 
 #. type: enumerate
 #: ssh.tex:117
@@ -304,7 +300,7 @@ msgstr "Le serveur compare le nonce avec la réponse"
 #. type: frame{#2}
 #: ssh.tex:135
 msgid "Public-key authentication (2)"
-msgstr "Authentification par clef publique (2)"
+msgstr "Authentification par clé publique (2)"
 
 #. type: itemize
 #: ssh.tex:135
@@ -319,7 +315,7 @@ msgstr "Les mots de passes ne sont pas envoyés par le réseau"
 #. type: itemize
 #: ssh.tex:135
 msgid "The private key never leaves the client"
-msgstr "La clef privée ne quitte JAMAIS le client"
+msgstr "La clé privée ne quitte JAMAIS le client"
 
 #. type: itemize
 #: ssh.tex:135
@@ -332,7 +328,7 @@ msgid ""
 "However, the private key should be protected (what if your laptop gets "
 "stolen?)"
 msgstr ""
-"Cependant, la clef privée doit être protégée (que se passerait-il sivotre "
+"Cependant, la clé privée doit être protégée (que se passerait-il si votre "
 "ordinateur portable était volé?)"
 
 #. type: itemize
@@ -343,7 +339,7 @@ msgstr "Habituellement avec une passphrase"
 #. type: frame{#2}
 #: ssh.tex:162
 msgid "Key-pair generation"
-msgstr "Génération d'une paire de clef"
+msgstr "Génération d'une paire de clé"
 
 #. type: lstlisting
 #: ssh.tex:162
@@ -371,7 +367,7 @@ msgstr ""
 #. type: itemize
 #: ssh.tex:162
 msgid "Creates the key-pair:"
-msgstr "Créer une paire de clef"
+msgstr "Créer une paire de clé"
 
 #. type: itemize
 #: ssh.tex:162
@@ -386,7 +382,7 @@ msgstr ""
 #. type: frame{#2}
 #: ssh.tex:168
 msgid "Copying the public key to the server"
-msgstr "Copier la clef publique sur un serveur"
+msgstr "Copier la clé publique sur un serveur"
 
 #. type: itemize
 #: ssh.tex:168
@@ -404,12 +400,12 @@ msgid ""
 "the list of public keys authorized to connect to the \\texttt{user} account"
 msgstr ""
 "Sur le serveur, \\texttt{\\bf \\tilda{}user/.ssh/authorized\\_keys} contient "
-"une liste des clefs publiques autorisées au compte \\texttt{user}"
+"une liste des clés publiques autorisées au compte \\texttt{user}"
 
 #. type: itemize
 #: ssh.tex:181
 msgid "The key can be copied manually there"
-msgstr "La clef peut y être copiée manuellement"
+msgstr "La clé peut y être copiée manuellement"
 
 #. type: itemize
 #: ssh.tex:181
@@ -417,7 +413,7 @@ msgid ""
 "Or use \\texttt{ssh-copy-id} to automatically copy the key:\\\\ "
 "\\texttt{client\\$ ssh-copy-id user@server}"
 msgstr ""
-"Ou utiliser \\texttt{ssh-copy-id} pour copier la clef automatiquement:\\\\ "
+"Ou utiliser \\texttt{ssh-copy-id} pour copier la clé automatiquement:\\\\ "
 "\\texttt{client\\$ ssh-copy-id user@server}"
 
 #. type: itemize
@@ -426,7 +422,7 @@ msgid ""
 "Sometimes the public key needs to be provided using a web interface (e.g. on "
 "GitHub, FusionForge, Redmine, etc.)"
 msgstr ""
-"Parfois la clef publique a besoin d'être fournie en utilisant une interface "
+"Parfois la clé publique a besoin d'être fournie en utilisant une interface "
 "web(e.g. sur GitHub, FusionForge, Redmine, etc.)"
 
 #. type: frame{#2}
@@ -442,7 +438,7 @@ msgid ""
 "login@laptop:\\tilda\\$ ssh rlogin@rhost \\textbf{ [ENTER]}\\\\ *** "
 "rlogin@rhost:\\tilda\\$\\\\ }"
 msgstr ""
-"Si la clef privée n'est pas protégée par une passphrase, la connexion est "
+"Si la clé privée n'est pas protégée par une passphrase, la connexion est "
 "établie immédiatement:\\\\ \\hbr {\\ttfamily\\footnotesize *** login@laptop:"
 "\\tilda\\$ ssh rlogin@rhost \\textbf{ [ENTER]}\\\\ *** rlogin@rhost:\\tilda\\"
 "$\\\\ }"
@@ -481,7 +477,7 @@ msgstr "On peut lancer \\texttt{ssh-agent} si besoin"
 #. type: itemize
 #: ssh.tex:203
 msgid "Add keys manually with \\texttt{ssh-add}"
-msgstr "On ajoute les clefs manuellement avec \\texttt{ssh-add}"
+msgstr "On ajoute les clés manuellement avec \\texttt{ssh-add}"
 
 #. type: subsection{#2}
 #: ssh.tex:205
@@ -509,7 +505,7 @@ msgid ""
 "server's public key in \\texttt{\\tilda/.ssh/known\\_hosts}"
 msgstr ""
 "Quand on se connecte à un serveur pour la première fois, \\texttt{ssh} "
-"stocke la clef publique du serveur dans \\texttt{\\tilda/.ssh/known\\_hosts}"
+"stocke la clé publique du serveur dans \\texttt{\\tilda/.ssh/known\\_hosts}"
 
 #. type: frame
 #: ssh.tex:222
@@ -533,7 +529,7 @@ msgid ""
 "During each following connection, \\texttt{ssh} ensures that the key still "
 "matches, and warns the user otherwise"
 msgstr ""
-"À chaque nouvelle connexion, \\texttt{ssh} s'assure que la clef est toujours "
+"À chaque nouvelle connexion, \\texttt{ssh} s'assure que la clé est toujours "
 "la même, ou averti l'utilisateur dans le cas contraire"
 
 #. type: lstlisting
@@ -564,7 +560,7 @@ msgid ""
 "Remove a truly outdated key can be removed with\\\\ \\texttt{ssh-keygen -R "
 "server}"
 msgstr ""
-"Supprimer une véritable clef périmée avec \\\\ \\texttt{ssh-keygen -R server}"
+"Supprimer une véritable clé périmée avec \\\\ \\texttt{ssh-keygen -R server}"
 
 #. type: frame{#2}
 #: ssh.tex:270
@@ -683,7 +679,7 @@ msgstr "Utilisation avancée"
 #. type: frame{#2}
 #: ssh.tex:308
 msgid "SSH as a communication layer for applications"
-msgstr "SSH, une couche communication pour les applications"
+msgstr "SSH : couche de communication pour applications"
 
 #. type: itemize
 #: ssh.tex:308
@@ -903,14 +899,14 @@ msgid ""
 "Note: SSH tunnels don't work very well for HTTP, because IP+port are not "
 "enough to identify a website (\\texttt{Host:} HTTP header)"
 msgstr ""
-"Note: les tunnels SSH ne fonctionnent pas très bien pour HTTP, parce que IP"
-"+port est insufisant pour identifier un site web (\\texttt{Host:} HTTP "
+"Note: les tunnels SSH fonctionnent mal pour HTTP, car IP"
+"+port est insuffisant pour identifier un site web (\\texttt{Host:} HTTP "
 "header)"
 
 #. type: frame{#2}
 #: ssh.tex:440
 msgid "X11 forwarding with -X: GUI apps over SSH"
-msgstr "X11 transféré à l'aide de -X: applications GUI à travers SSH "
+msgstr "X11 transféré avec -X: applis GUI à travers SSH "
 
 #. type: itemize
 #: ssh.tex:440
@@ -969,12 +965,12 @@ msgstr ""
 #. type: itemize
 #: ssh.tex:440
 msgid "Can be configured in your login manager"
-msgstr "Peut être configuré dans le gestionnaire de sessions utilisateur"
+msgstr "Configurable dans le gestionnaire de sessions utilisateur"
 
 #. type: itemize
 #: ssh.tex:440
 msgid "Does not work very well over slow or high-latency connections"
-msgstr "Ne fonctionne pas bien sur des connexions lentes ou à forte latence"
+msgstr "Fonctionne mal sur des connexions lentes ou à forte latence"
 
 #. type: frame{#2}
 #: ssh.tex:467
@@ -994,7 +990,7 @@ msgstr "SSH peut agir en tant que serveur SOCKS: \\texttt{ssh -D 1080 server}"
 #. type: itemize
 #: ssh.tex:467
 msgid "Use case similar to tunnelling with -L, but more flexible"
-msgstr "Cas d'utilisation similaires aux tunnels avec -L mais en plus flexible"
+msgstr "Similaire aux tunnels avec -L mais en plus flexible"
 
 #. type: itemize
 #: ssh.tex:467
@@ -1034,7 +1030,7 @@ msgstr ""
 "server = 127.0.0.1\n"
 "server_type = 5\n"
 "server_port = 1080 # puis, lancer ssh avec -D 1080\n"
-"$ tsocks pidgin # tunneliser l'application à travers le socket"
+"$ tsocks pidgin #tunneliser l'appli à travers le socket"
 
 #. type: frame{#2}
 #: ssh.tex:470
@@ -1055,7 +1051,17 @@ msgid ""
 "\\draw (0, -0.2) node [below] {\\small \\sl Internet}; \\draw[orange,fill,"
 "ultra thick,->] (-2.3,0) -- (2.3,0); \\draw[orange,fill,ultra thick,->] "
 "(2.7,0) -- (7.3,0);"
-msgstr ""
+msgstr "\\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum width=5cm,"
+"minimum height=2cm,draw] at (0,0) {}; \\node[name=privé,gray,cloud,"
+"aspect=1,cloud puffs=23,minimum width=5cm,minimum height=2cm,draw] at (5,0) "
+"{}; \\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
+"\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); \\draw[darkred,fill] "
+"(7.5,0) circle (2mm); \\draw (-2.5,-1) node {Client}; \\draw (2.5,-1) node "
+"{Server}; \\draw (7.5,-1) node[align=center] {Server2 \\\\ réseau "
+"privé}; \\draw (5, -0.2) node [below] {\\small \\sl Réseau privé}; "
+"\\draw (0, -0.2) node [below] {\\small \\sl Internet}; \\draw[orange,fill,"
+"ultra thick,->] (-2.3,0) -- (2.3,0); \\draw[orange,fill,ultra thick,->] "
+"(2.7,0) -- (7.3,0);"
 
 #. type: itemize
 #: ssh.tex:532
@@ -1172,17 +1178,17 @@ msgstr ""
 #. type: frame{#2}
 #: ssh.tex:553
 msgid "Triggering remote command execution securely"
-msgstr "Déclancher l'exécution de commandes distantes en toute sécurité "
+msgstr "Déclencher des commandes distantes en sécurité "
 
 #. type: itemize
 #: ssh.tex:553
 msgid "Goal: notify Server2 that something finished on Server1"
-msgstr "Objectif: notifier Server2 que quelque chose s'est terminé sur Server1"
+msgstr "Objectif: notifier Serv2 qu'un évènement s'est terminé sur Serv1"
 
 #. type: itemize
 #: ssh.tex:553
 msgid "But Server1 must not have full shell access on Server2"
-msgstr "Mais Server1 ne doit pas avoir un accès shell total sur Server2"
+msgstr "Mais Serv1 ne doit pas avoir un accès shell total sur Serv2"
 
 #. type: itemize
 #: ssh.tex:553
@@ -1224,7 +1230,7 @@ msgstr "Objectif: interagir avec une connexion SSH déjà établie"
 #: ssh.tex:576
 msgid "Add tunnels or SOCKS proxy, kill unresponsive connection"
 msgstr ""
-"Ajouter des tunnels ou des proxy SOCKS, terminer les connections qui ne "
+"Ajouter des tunnels ou des proxy SOCKS, terminer les connexions qui ne "
 "répondent pas"
 
 #. type: itemize
@@ -1292,7 +1298,7 @@ msgstr "Disposant de nombreuses fonctionnalités utiles et puissantes"
 #: ssh.tex:598
 msgid "Practical session: test everything mentioned in this presentation"
 msgstr ""
-"Travaux pratique: tester tous les examples mentionnés dans cette présentation"
+"TP: tester tous les exemples mentionnés dans cette présentation"
 
 #. type: itemize
 #: ssh.tex:598

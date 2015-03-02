@@ -66,16 +66,16 @@
 	\texttt{\$ ssh login@remote-server} \\
 	$\leadsto$ Provides a shell on \textsl{remote-server}
 
-\br
+\hbr
 \item Executing a command on a remote server:\\
 	\texttt{\$ ssh login@remote-server ls /etc}
 
-\br
+\hbr
 \item Copying data (with \texttt{scp}, similar to \texttt{cp}):\\
 	\texttt{\$ scp local-file login@remote-serv:remote-directory/} \\
 	\texttt{\$ scp login@remote-serv:remote-dir/file local-dir/}\\
 	Usual \texttt{cp} options work, e.g. \texttt{-r} (recursive)
-\br
+\hbr
 \item Copying data (with \texttt{rsync}, more efficient than \texttt{scp} with many files):\\
 	\texttt{\$ rsync -avzP localdir login@server:path-to-rem-dir/}\\
 	\hbr
