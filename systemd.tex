@@ -21,13 +21,13 @@
 \date{}
 
 
-\AtBeginSection[]
-{
-  \begin{frame}
-    \frametitle{Plan}
-    \tableofcontents[currentsection]
-  \end{frame}
-}
+% \AtBeginSection[]
+% {
+%   \begin{frame}
+%     \frametitle{Outline}
+%     \tableofcontents[currentsection]
+%   \end{frame}
+% }
 
 \usepackage{tikz}
 \usetikzlibrary{shapes,arrows,positioning}
@@ -36,6 +36,12 @@
 \begin{document}
 
 \frame{\titlepage}
+
+\begin{frame}{Outline}
+	\tableofcontents
+\end{frame}
+
+\section{Introduction}
 
 \begin{frame}{Init system}
 \begin{itemize}
@@ -85,6 +91,8 @@
 		\item Additional features: logging, timer units (cron-like), user sessions handling, containers management
 	\end{itemize}
 \end{frame}
+
+\section{Behind the scenes: cgroups}
 
 \begin{frame}{Behind the scenes: cgroups}
 \begin{itemize}
@@ -151,6 +159,8 @@
 \end{framed}
 Note: requires enabling \texttt{CPUAccounting}, \texttt{BlockIOAccounting}, \texttt{MemoryAccounting}
 \end{frame}
+
+\section{Managing services}
 
 \begin{frame}{Managing services with \texttt{systemctl}}
 	\begin{itemize}
@@ -259,6 +269,51 @@ local-fs-pre.target
 \end{center}
 \end{frame}
 
+\section{Analyzing startup performance}
+
+\begin{frame}[fragile]{Analyzing startup performance}
+	\begin{itemize}
+		\item Matters in some use-cases:
+			\begin{itemize}
+				\item Faster reboots during maintenances
+					\hbr
+				\item Faster boots in the virtualization / cloud context\\
+					{\small (Almost no BIOS / hardware checks $\leadsto$ only software startup)}
+			\end{itemize}
+			\hbr
+		\item \texttt{systemd-analyze time}: 
+	\end{itemize}
+			\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,escapeinside={||}]
+			Startup finished in 4.883s (kernel) + 5.229s (userspace) = 10.112s
+			\end{lstlisting}
+	\begin{itemize}
+			\hbr
+		\item \texttt{systemd-analyze blame}:
+\begin{lstlisting}[basicstyle=\ttfamily\normalsize,escapeinside={||}]
+2.417s systemd-udev-settle.service
+2.386s postgresql@9.4-main.service
+1.507s apache2.service
+ 240ms NetworkManager.service
+ 236ms ModemManager.service
+ 194ms accounts-daemon.service
+\end{lstlisting}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{systemd-analyze plot}
+	\hbr
+	\includegraphics[width=\textwidth]{figs/systemd-analyze-plot.png}
+	\begin{itemize}
+		\item Similar to bootchartd, but does not require rebooting with a custom \texttt{init=} kernel command-line
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{systemd-analyze critical-chain}
+	\includegraphics[width=\textwidth]{figs/systemd-analyze-critical-chain.pdf}
+\end{frame}
+
+\section{Exploring the system status}
+
 \begin{frame}{Exploring the system status}
 \begin{itemize}
 \item Listing units with \texttt{systemctl list-units} (or just \texttt{systemctl}):
@@ -271,6 +326,8 @@ local-fs-pre.target
 \end{itemize}
 \hbr
 \item Whole system overview: \texttt{systemctl status}
+\hbr
+\item GUI available: \texttt{systemadm}
 \end{itemize}
 \end{frame}
 
@@ -287,6 +344,8 @@ Includes:
 \end{itemize}
 \end{frame}
 
+\section{Writing unit files}
+
 \begin{frame}{Writing unit files}
 \begin{itemize}
 \item With sysVinit: shell scripts in \texttt{/etc/init.d/}
@@ -299,10 +358,10 @@ Includes:
 \item With systemd: declarative syntax (.desktop-like)
 \begin{itemize}
 \item Most of the intelligence is moved from the script to systemd
-\item Covers most of the needs -- shell scripts can still be used if needed
-\item Can use includes and overrides
-\item View a unit file for a known service: \texttt{systemctl cat atd.service}
-\item Or just find the file under \texttt{/lib/systemd/system/} (system defaults) or \texttt{/etc/systemd/system} (local overrides)
+\item Covers most of the needs, but shell scripts can still be used
+\item Can use includes and overrides (\texttt{systemd-delta})
+\item View unit file for a service: \texttt{systemctl cat atd.service}
+\item Or just find the file under \texttt{/lib/systemd/system/} (distribution's defaults) or \texttt{/etc/systemd/system} (local overrides)
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -367,7 +426,7 @@ Also conditions on architecture, virtualization, kernel command-line, AC power, 
 		\item Specify the list of \texttt{capabilities(7)} for a service:\\
 			\texttt{CapabilityBoundingSet=CAP\_CHOWN CAP\_KILL}\\
 			Or just remove one:\\
-			\texttt{CapabilityBoundingSet=~CAP\_SYS\_PTRACE}
+			\texttt{CapabilityBoundingSet=\textasciitilde{}CAP\_SYS\_PTRACE}
 			\hbr
 		\item Disallow forking:\\
 			\texttt{LimitNPROC=1}
@@ -391,9 +450,283 @@ Also conditions on architecture, virtualization, kernel command-line, AC power, 
 			\texttt{ControlGroupAttribute=memory.swappiness 70}
 			\hbr
 		\item More information:
+				\href{http://0pointer.net/blog/projects/systemd-for-admins-3.html}{\ul{Converting sysV init scripts to systemd service files}},
 				\href{http://0pointer.net/blog/projects/security.html}{\ul{Securing your services}},
 				\href{http://0pointer.net/blog/projects/changing-roots.html}{\ul{Changing roots}},
 				\href{http://0pointer.net/blog/projects/resources.html}{\ul{Managing resources}}
+	\end{itemize}
+\end{frame}
+
+\section{Timer units}
+
+\begin{frame}{Timer units}
+	\begin{itemize}
+		\item Similar to cron, but with all the power of systemd (dependencies, execution environment configuration, etc)
+		\hbr
+	\item \alert{Realtime (wallclock) timers}: calendar event expressions
+			\begin{itemize}
+				\item Expressed using a complex format (see \texttt{systemd.time(7)}), matching timestamps like:
+					\texttt{Fri 2012-11-23 11:12:13}
+				\hbr
+			\item Examples of valid values:  \texttt{hourly} (= \texttt{*-*-* *:00:00}), \texttt{daily} (= \texttt{*-*-* 00:00:00}), \texttt{*:2/3} (= \texttt{*-*-* *:02/3:00})
+		\end{itemize}
+		\hbr
+	\item \alert{Monotonic timers}, relative to different starting points:
+		\begin{itemize}
+			\item 5 hours and 30 mins after system boot: \texttt{OnBootSec=5h 30m}
+				\hbr
+			\item 50s after systemd startup: \texttt{OnstartupSec=50s}
+				\hbr
+			\item 1 hour after the unit was last activated: \texttt{OnUnitActiveSec=1h}\\
+				(can be combined with \texttt{OnBootSec} or \texttt{OnStartupSec} to ensure that a unit runs on a regular basis)
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Timer units example}
+\begin{itemize}
+\item \texttt{myscript.service}:
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize,escapeinside={||}]
+[Unit]
+Description=MyScript
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/myscript
+\end{lstlisting}
+\item \texttt{myscript.timer}:
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize,escapeinside={||}]
+[Unit]
+Description=Runs myscript every hour
+
+[Timer]
+# Time to wait after booting before we run first time
+OnBootSec=10min
+# Time between running each consecutive time
+OnUnitActiveSec=1h
+Unit=myscript.service
+
+[Install]
+WantedBy=multi-user.target
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+\begin{frame}{Timer units example (2)}
+	\begin{itemize}
+\item Start timer:\\ \texttt{systemctl start myscript.timer}
+	\hbr
+\item Enable timer to start at boot:\\
+	\texttt{systemctl enable myscript.timer}
+\hbr
+\item List all timers:\\ \texttt{systemctl list-timers}
+\end{itemize}
+\end{frame}
+
+\section{Socket activation}
+
+\begin{frame}{Socket activation}
+\begin{itemize}
+\item Similar to inetd:
+	\begin{itemize}
+		\item The service is not started automatically at boot
+		\item systemd listens for connections on behalf of service
+		\item systemd starts the service to handle the connection
+	\end{itemize}
+\hbr
+\item Useful for services that are seldomly used: cups, sshd
+\hbr
+\item Same idea for dbus activation and fs activation (autofs-like)
+\hbr
+\item Also makes it possible to parallelize startup\\ {\small (synchronization on first interaction using sockets)}
+\hbr
+\item More information: \href{http://0pointer.net/blog/projects/inetd.html}{\ul{Converting inetd Service}}, \href{http://0pointer.net/blog/projects/socket-activation.html}{\ul{Socket Activation for developers}} (+ \href{http://0pointer.net/blog/projects/socket-activation2.html}{\ul{follow-up}})
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Socket activation example (sshd)}
+\begin{itemize}
+\item \texttt{sshd.socket}:
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize,escapeinside={||}]
+[Unit]
+Description=SSH Socket for Per-Connection Servers
+
+[Socket]
+ListenStream=22
+Accept=yes
+
+[Install]
+WantedBy=sockets.target
+\end{lstlisting}
+\item \texttt{sshd@.service}:
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize,escapeinside={||}]
+[Unit]
+Description=SSH Per-Connection Server
+
+[Service]
+ExecStart=-/usr/sbin/sshd -i
+StandardInput=socket
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Socket activation example (sshd) (2)}
+\begin{itemize}
+	\item \texttt{sshd@.service} means that this is an \alert{instanciated service}
+	\hbr
+\item There's one instance of \texttt{sshd@.service} per connection:
+\end{itemize}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+# systemctl --full | grep ssh
+sshd@172.31.0.52:22-172.31.0.4:47779.service  loaded active running
+sshd@172.31.0.52:22-172.31.0.54:52985.service loaded active running
+sshd.socket                                   loaded active listening
+\end{lstlisting}
+\begin{itemize}
+\item Instanciated services are also used by getty, for example\\
+	See \href{http://0pointer.de/blog/projects/serial-console.html}{\ul{Serial console}}
+	and \href{http://0pointer.de/blog/projects/instances.html}{\ul{Instanciated services}}
+\end{itemize}
+\end{frame}
+
+\section{Logging with journald}
+
+\begin{frame}{Logging with journald}
+\begin{itemize}
+\item Component of systemd
+\hbr
+\item Captures syslog messages, kernel log messages, initrd and early boot messages, messages written to stdout/stderr by all services
+	\begin{itemize}
+		\item Forwards everything to syslog
+	\end{itemize}
+\hbr
+\item Structured format (key/value fields), can contain arbitrary data
+\begin{itemize}
+\item But viewable as syslog-like format with \texttt{journalctl}
+\end{itemize}
+\hbr
+\item Indexed, binary logs
+\hbr
+\item Can replace syslog (but can also work in parallel)
+\hbr
+\item Not persistent across reboots by default -- to make it persistent:\\
+	\texttt{mkdir -p /var/log/journal}
+\hbr
+\item Can log to a remote host (with \texttt{systemd-journal-gateway}, not in Debian yet)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Example journal entry}
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+_SERVICE=systemd-logind.service
+MESSAGE=User harald logged in
+MESSAGE_ID=422bc3d271414bc8bc9570f222f24a9
+_EXE=/lib/systemd/systemd-logind
+_COMM=systemd-logind
+_CMDLINE=/lib/systemd/systemd-logind
+_PID=4711
+_UID=0
+_GID=0
+_SYSTEMD_CGROUP=/system/systemd-logind.service
+_CGROUPS=cpu:/system/systemd-logind.service
+PRIORITY=6
+_BOOT_ID=422bc3d271414bc8bc95870f222f24a9
+_MACHINE_ID=c686f3b205dd48e0b43ceb6eda479721
+_HOSTNAME=waldi
+LOGIN_USER=500
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Using \texttt{journalctl}}
+	\begin{itemize}
+		\item View the full log: \texttt{journalctl}
+			\hbr
+		\item Since last boot: \texttt{journalctl -b}
+			\hbr
+	\item For a given time interval: \texttt{journalctl --since=yesterday}\\
+		or \texttt{journalctl --until="2013-03-15 13:10:30"}
+			\hbr
+		\item View it in the verbose (native) format: \texttt{journal -o verbose}
+			\hbr
+		\item Filter by systemd unit: \texttt{journalctl -u ssh}
+			\hbr
+		\item Filter by field from the verbose format:\\
+			\texttt{journalctl \_SYSTEMD\_UNIT=ssh.service}\\
+			\texttt{journalctl \_PID=810}
+			\hbr
+		\item Line view ($\approx$ tail -f): \texttt{journalctl -f}
+			\hbr
+		\item Last entries ($\approx$ tail): \texttt{journalctl -n}
+		\hbr
+		\item Works with bash-completion (beware of sudo though)
+			\hbr
+		\item See also: \href{https://docs.google.com/document/pub?id=1IC9yOXj7j6cdLLxWEBAGRL6wl97tFxgjLUEHIX3MSTs}{\ul{Journald design document}}, \href{http://0pointer.net/blog/projects/journalctl.html}{\ul{Using the Journal}}
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Containers integration}
+\begin{itemize}
+	\item General philosophy: \alert{integrate management of services from machines (VMs and containers) with those of the host}
+	\begin{itemize}
+		\item \texttt{systemd-machined}: tracks machines, provides an API to list, create, register, kill, terminate machines
+			\hbr
+		\item \texttt{machinectl}: command-line utility to manipulate machines
+			\hbr
+		\item other tools also have containers support:
+			\begin{itemize}
+				\item \texttt{systemctl -M mycontainer restart foo}
+				\item \texttt{systemctl list-machines}: provides state of containers
+				\item \texttt{journalctl -M mycontainer}
+				\item \texttt{journalctl -m}: combined log of all containers
+			\end{itemize}
+	\end{itemize}
+\hbr
+\item systemd has its own mini-container manager: \texttt{systemd-nspawn}
+\hbr
+\item Other virtualization solutions can also \href{http://www.freedesktop.org/wiki/Software/systemd/machined/}{\ul{talk to \texttt{machined}}}
+\hbr
+\item More information: \href{http://0pointer.net/blog/systemd-for-administrators-part-xxi.html}{\ul{Container integration}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{From the service developer's point of view}
+	\begin{itemize}
+		\item Much easier to write service files than sysVinit scripts
+			\hbr
+		\item Many things can be handled by systemd for free:
+			\begin{itemize}
+				\item No need to fork
+					\hbr
+				\item No need to drop privileges
+					\hbr
+				\item No need to write a pid file
+					\hbr
+				\item Can just output logs to stdout (with systemd, stdout will go to journald and syslog)
+					\begin{itemize}
+						\item \href{http://0pointer.net/blog/projects/journal-submit.html}{\ul{Priorities are even supported}}
+					\end{itemize}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{More stuff}
+	\begin{itemize}
+		\item \href{http://0pointer.net/blog/projects/the-new-configuration-files.html}{\ul{New cross-distro configuration files}}: \texttt{/etc/hostname}, \texttt{/etc/locale.conf}, \texttt{/etc/sysctl.d/*.conf}, \texttt{/etc/tmpfiles.d/*.conf}
+			\hbr
+		\item \href{http://www.certdepot.net/rhel7-get-started-systemd/}{\ul{Tools to manage hostname, locale, time and date}}: \texttt{hostnamectl}, \texttt{localectl}, \texttt{timedatectl}
+			\hbr
+		\item \href{http://0pointer.net/blog/projects/watchdog.html}{\ul{Support for watchdogs}}
+			\hbr
+		\item Handling of user sessions
+			\begin{itemize}
+				\item Each within its own cgroup
+					\hbr
+				\item \href{http://0pointer.net/blog/projects/multi-seat.html}{\ul{Multi-seat support}}
+					\hbr
+				\item \texttt{loginctl} to manage sessions, users, seats
+			\end{itemize}
+			\hbr
+		\item systemd networking: systemd-networkd, systemd-resolved
 	\end{itemize}
 \end{frame}
 
