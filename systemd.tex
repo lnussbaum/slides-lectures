@@ -83,7 +83,7 @@
 					\hbr
 				\item Declarative syntax for unit files $\leadsto$ more efficient/robust
 					\hbr
-				\item Socket activation (on-demand startup of services)
+				\item Socket activation for parallel services startup
 					\hbr
 				\item Nicer user interface (systemctl \& friends)
 			\end{itemize}
@@ -540,27 +540,69 @@ WantedBy=multi-user.target
 
 \begin{frame}{Socket activation}
 \begin{itemize}
-\item Similar to inetd:
-	\begin{itemize}
-		\item The service is not started automatically at boot
-		\item systemd listens for connections on behalf of service
-		\item systemd starts the service to handle the connection
-	\end{itemize}
+\item systemd listens for connection on behalf of service until the service is ready, then passes pending connections
 \hbr
-\item Two use cases:
+\item Benefits:
 	\begin{itemize}
-		\item Services that are \alert{seldomly used}: cups, sshd
+		\item \alert{No need to express ordering of services during boot}:
+			\begin{itemize}
+				\item They can all be started in parallel $\leadsto$ \alert{faster boot}
+				\item And they will wait for each other when needed (when they will talk to each other), thanks to socket activation
+			\end{itemize}
 			\hbr
-		\item During system boot, \alert{parallelize startup} of services and delay synchronization until first interaction using sockets
+		\item Services that are \alert{seldomly used do not need to keep running}, and can be started on-demand
 \end{itemize}
 \hbr
-\item Same idea for dbus activation and fs activation (autofs-like)
+\item Not limited to network services: also D-Bus activation and path activation
 \hbr
 \item More information: \href{http://0pointer.net/blog/projects/inetd.html}{\ul{Converting inetd Service}}, \href{http://0pointer.net/blog/projects/socket-activation.html}{\ul{Socket Activation for developers}} (+ \href{http://0pointer.net/blog/projects/socket-activation2.html}{\ul{follow-up}})
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Socket activation example (sshd)}
+\begin{frame}[fragile]{Socket activation example: dovecot}
+\begin{columns}[t]
+\begin{column}{0.41\textwidth}
+	\alert{\texttt{dovecot.socket}:}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,escapeinside={||}]
+[Unit]
+Description=Dovecot IMAP/POP3 \
+ email server activation socket
+
+[Socket]
+# dovecot expects separate
+# IPv4 and IPv6 sockets
+BindIPv6Only=ipv6-only
+ListenStream=0.0.0.0:143
+ListenStream=[::]:143
+ListenStream=0.0.0.0:993
+ListenStream=[::]:993
+KeepAlive=true
+
+[Install]
+WantedBy=sockets.target
+\end{lstlisting}
+\end{column}
+\begin{column}{0.49\textwidth}
+\alert{\texttt{dovecot.service}:}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,escapeinside={||}]
+[Unit]
+Description=Dovecot IMAP/POP3 \
+ email server
+After=local-fs.target network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/dovecot -F
+NonBlocking=yes
+
+[Install]
+WantedBy=multi-user.target
+\end{lstlisting}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Socket activation example: sshd}
 \begin{itemize}
 \item \texttt{sshd.socket}:
 \begin{lstlisting}[basicstyle=\ttfamily\footnotesize,escapeinside={||}]
@@ -586,7 +628,7 @@ StandardInput=socket
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Socket activation example (sshd) (2)}
+\begin{frame}[fragile]{Socket activation example: sshd (2)}
 \begin{itemize}
 	\item \texttt{sshd@.service} means that this is an \alert{instanciated service}
 	\hbr
