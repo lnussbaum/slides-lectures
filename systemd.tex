@@ -47,7 +47,7 @@
 \begin{itemize}
 \item First process started by the kernel (pid 1)
 	\hbr
-\item Responsible for bringing up the rest of userspace
+\item Responsible for \alert{bringing up the rest of userspace}
 	\begin{itemize}
 		\item Mounting filesystems
 		\item Starting services
@@ -56,7 +56,7 @@
 	\hbr
 \item Also the parent for orphan processes
 	\hbr
-\item Traditional init system on Linux: sysVinit
+\item Traditional init system on Linux: \alert{sysVinit}
 	\begin{itemize}
 		\item Inherited from Unix System V
 		\item With additional tools (insserv, startpar) to handle dependencies and parallel initialization
@@ -102,7 +102,7 @@
 \hbr
 \item Limit, account for and isolate \alert{processes and their resource usage} (CPU, memory, disk I/O, network, etc.)
 \hbr
-\item Related to \textsl{namespace isolation}:
+\item Related to \alert{namespace isolation}:
 	\begin{itemize}
 		\item Isolate processes from the rest of the system
 			\hbr
@@ -117,7 +117,7 @@
 
 \begin{frame}{cgroups and systemd}
 	\begin{itemize}
-	\item Each service runs in its own cgroup
+		\item \alert{Each service runs in its own cgroup}
 		\hhbr
 	\item Enables:
 		\begin{itemize}
@@ -138,7 +138,7 @@
 			\item No resources limitation (or using \texttt{setrlimit} (= \texttt{ulimit}), which is per-process, not per-service)
 		\end{itemize}
 	\hhbr
-	\item Also isolate user sessions $\leadsto$ kill all user processes (not by default)
+	\item \alert{Also isolate user sessions} $\leadsto$ kill all user processes (not by default)
 	\hhbr
 \item More information: \href{http://0pointer.net/blog/projects/cgroups-vs-cgroups.html}{\ul{Control Groups vs. Control Groups}} and\\ \href{http://0pointer.net/blog/projects/systemd-for-admins-2.html}{\ul{Which Service Owns Which Processes?}}
 \end{itemize}
@@ -146,7 +146,7 @@
 
 
 
-\begin{frame}{\texttt{systemd-cgls}: visualizing cgroup hierarchy}
+\begin{frame}{\texttt{systemd-cgls}: visualizing the cgroups hierarchy}
 % export GTK_MODULES=/usr/lib/gtk-3.0/modules/libgtk-vector-screenshot.so
 % take-vector-screenshot
 \hbr
@@ -157,14 +157,14 @@
 \begin{framed}
 \includegraphics[width=1\textwidth]{figs/systemd-cgtop}
 \end{framed}
-Note: requires enabling \texttt{CPUAccounting}, \texttt{BlockIOAccounting}, \texttt{MemoryAccounting}
+Requires enabling \texttt{CPUAccounting}, \texttt{BlockIOAccounting}, \texttt{MemoryAccounting}
 \end{frame}
 
 \section{Managing services}
 
 \begin{frame}{Managing services with \texttt{systemctl}}
 	\begin{itemize}
-		\item What is being manipulated is called a  \textsl{unit}: services (.service), mount points (.mount), devices (.device), sockets (.socket), etc.
+		\item What is being manipulated is called a  \alert{\textsl{unit}}: services (.service), mount points (.mount), devices (.device), sockets (.socket), etc.
 			\hbr
 		\item Basic commands:
 \hbr
@@ -198,13 +198,13 @@ Note: requires enabling \texttt{CPUAccounting}, \texttt{BlockIOAccounting}, \tex
 		\item With sysVinit, runlevels control which services are started automatically
 			\begin{itemize}
 				\item 0 = halt; 1 = single-user / minimal mode; 6 = reboot
-				\item Debian: no difference between levels 2, 3, 4, 5 (multi-user)
+				\item Debian: no difference by default between levels 2, 3, 4, 5
 				\item RHEL: 3 = multi-user text, 5 = multi-user graphical
 			\end{itemize}
 			\hbr
 		\item systemd replaces runlevels with \alert{targets}:
 			\begin{itemize}
-				\item Configured using symlinks farm in \texttt{/etc/systemd/system/\textbf{target}.wants/}
+				\item Configured using symlinks farms in \texttt{/etc/systemd/system/\textbf{target}.wants/}
 					\hbr
 				\item \texttt{systemctl enable}/\texttt{disable} manipule those symlinks
 					\hbr
@@ -273,42 +273,50 @@ local-fs-pre.target
 
 \begin{frame}[fragile]{Analyzing startup performance}
 	\begin{itemize}
-		\item Matters in some use-cases:
+		\item Fast boot matters in some use-cases:
+
 			\begin{itemize}
-				\item Faster reboots during maintenances
+				\item Virtualization, Cloud:
+					\begin{itemize}
+						\item Almost no BIOS / hardware checks $\leadsto$ only software startup
+							\hbr
+						\item Requirement for infrastructure elasticity
+					\end{itemize}
 					\hbr
-				\item Faster boots in the virtualization / cloud context\\
-					{\small (Almost no BIOS / hardware checks $\leadsto$ only software startup)}
+				\item Embedded world
 			\end{itemize}
 			\hbr
-		\item \texttt{systemd-analyze time}: 
+		\item \texttt{systemd-analyze time}: summary
 	\end{itemize}
-			\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,escapeinside={||}]
-			Startup finished in 4.883s (kernel) + 5.229s (userspace) = 10.112s
-			\end{lstlisting}
+	\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,escapeinside={||}]
+	Startup finished in 4.883s (kernel) + 5.229s (userspace) = 10.112s
+	\end{lstlisting}
 	\begin{itemize}
 			\hbr
-		\item \texttt{systemd-analyze blame}:
-\begin{lstlisting}[basicstyle=\ttfamily\normalsize,escapeinside={||}]
-2.417s systemd-udev-settle.service
-2.386s postgresql@9.4-main.service
-1.507s apache2.service
- 240ms NetworkManager.service
- 236ms ModemManager.service
- 194ms accounts-daemon.service
-\end{lstlisting}
+		\item \texttt{systemd-analyze blame}: worst offenders
+			\begin{lstlisting}[basicstyle=\ttfamily\normalsize,escapeinside={||}]
+			2.417s systemd-udev-settle.service
+			2.386s postgresql@9.4-main.service
+			1.507s apache2.service
+			240ms NetworkManager.service
+			236ms ModemManager.service
+			194ms accounts-daemon.service
+			\end{lstlisting}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{systemd-analyze plot}
 	\hbr
-	\includegraphics[width=\textwidth]{figs/systemd-analyze-plot.png}
 	\begin{itemize}
 		\item Similar to bootchartd, but does not require rebooting with a custom \texttt{init=} kernel command-line
 	\end{itemize}
+	\includegraphics[width=\textwidth]{figs/systemd-analyze-plot.png}
 \end{frame}
 
 \begin{frame}[fragile]{systemd-analyze critical-chain}
+	\begin{itemize}
+		\item Shows services in the critical path
+	\end{itemize}
 	\includegraphics[width=\textwidth]{figs/systemd-analyze-critical-chain.pdf}
 \end{frame}
 
@@ -344,23 +352,29 @@ Includes:
 \end{itemize}
 \end{frame}
 
-\section{Writing unit files}
+\section{Configuring services by writing unit files}
 
-\begin{frame}{Writing unit files}
+\begin{frame}{Configuring services by writing unit files}
 \begin{itemize}
 \item With sysVinit: shell scripts in \texttt{/etc/init.d/}
 \begin{itemize}
 \item Long and difficult to write
+	\hbr
 \item Redundant code between services
-\item Slow (numerous forks() calls)
+	\hbr
+\item Slow (numerous \texttt{fork()} calls)
 \end{itemize}
 \hbr
-\item With systemd: declarative syntax (.desktop-like)
+\item \alert{With systemd: declarative syntax} (.desktop-like)
 \begin{itemize}
-\item Most of the intelligence is moved from the script to systemd
+\item Move intelligence from scripts to systemd
+	\hbr
 \item Covers most of the needs, but shell scripts can still be used
+	\hbr
 \item Can use includes and overrides (\texttt{systemd-delta})
-\item View unit file for a service: \texttt{systemctl cat atd.service}
+	\hbr
+\item View config file for a unit: \texttt{systemctl cat atd.service}
+	\hbr
 \item Or just find the file under \texttt{/lib/systemd/system/} (distribution's defaults) or \texttt{/etc/systemd/system} (local overrides)
 \end{itemize}
 \end{itemize}
@@ -379,7 +393,7 @@ ExecStart=/usr/sbin/atd -f
 IgnoreSIGPIPE=false |\alert{\# Default is true}|
 
 [Install]
-|\alert{\# Indicates reverse-dependency}|
+|\alert{\# Where "systemctl enable" creates the symlink}|
 WantedBy=multi-user.target
 \end{lstlisting}
 \end{frame}
@@ -387,10 +401,10 @@ WantedBy=multi-user.target
 \begin{frame}[fragile]{Common options}
 \hbr
 \begin{itemize}
-\item Documented in \texttt{systemd.unit(5)} ([Unit]), \texttt{systemd.service(5)} ([Service]), \texttt{systemd.exec(5)} (execution environment)
+	\item \alert{Documented in \texttt{systemd.unit(5)}} ([Unit]), \alert{\texttt{systemd.service(5)}} ([Service]), \alert{\texttt{systemd.exec(5)}} (execution environment)
 \hbr
-\item Show all options for a given service:\\
-\texttt{systemctl show atd}
+\item \alert{Show all options} for a given service:\\
+	\alert{\texttt{systemctl show atd}}
 \hbr
 	\item Sourcing a configuration file:\\
 \texttt{EnvironmentFile=-/etc/default/ssh}\\
@@ -399,21 +413,21 @@ WantedBy=multi-user.target
 \item Using the \texttt{\$MAINPID} magic variable:\\
 \texttt{ExecReload=/bin/kill -HUP \$MAINPID}
 \hbr
-\item Auto-restart a service when crashed:\\
+\item Auto-restart a service when crashed: ($\approx$ runit / monit)\\
 \texttt{Restart=on-failure}
 \hbr
 \item Conditional start:\\
 \texttt{ConditionPathExists=!/etc/ssh/sshd\_not\_to\_be\_run}\\
-Also conditions on architecture, virtualization, kernel command-line, AC power, path properties, etc.
+{\small Conditions on architecture, virtualization, kernel~cmdline, AC~power, etc.}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Options for isolation and security}
 	\begin{itemize}
-		\item Use a network namespace to isolate the service from the network:\\
+		\item Use a \alert{network namespace} to isolate the service from the network:\\
 			\texttt{PrivateNetwork=yes}
 			\hbr
-		\item Use a filesystem namespaces:
+		\item Use a \alert{filesystem namespaces}:
 			\begin{itemize}
 				\item To provide a service-specific \texttt{/tmp} directory:\\
 					\texttt{PrivateTmp=yes}
@@ -423,7 +437,7 @@ Also conditions on architecture, virtualization, kernel command-line, AC power, 
 					\texttt{ReadOnlyDirectories=/var}
 			\end{itemize}
 			\hbr
-		\item Specify the list of \texttt{capabilities(7)} for a service:\\
+		\item Specify the list of \alert{\texttt{capabilities(7)}} for a service:\\
 			\texttt{CapabilityBoundingSet=CAP\_CHOWN CAP\_KILL}\\
 			Or just remove one:\\
 			\texttt{CapabilityBoundingSet=\textasciitilde{}CAP\_SYS\_PTRACE}
@@ -533,11 +547,14 @@ WantedBy=multi-user.target
 		\item systemd starts the service to handle the connection
 	\end{itemize}
 \hbr
-\item Useful for services that are seldomly used: cups, sshd
+\item Two use cases:
+	\begin{itemize}
+		\item Services that are \alert{seldomly used}: cups, sshd
+			\hbr
+		\item During system boot, \alert{parallelize startup} of services and delay synchronization until first interaction using sockets
+\end{itemize}
 \hbr
 \item Same idea for dbus activation and fs activation (autofs-like)
-\hbr
-\item Also makes it possible to parallelize startup\\ {\small (synchronization on first interaction using sockets)}
 \hbr
 \item More information: \href{http://0pointer.net/blog/projects/inetd.html}{\ul{Converting inetd Service}}, \href{http://0pointer.net/blog/projects/socket-activation.html}{\ul{Socket Activation for developers}} (+ \href{http://0pointer.net/blog/projects/socket-activation2.html}{\ul{follow-up}})
 \end{itemize}
@@ -582,9 +599,11 @@ sshd@172.31.0.52:22-172.31.0.54:52985.service loaded active running
 sshd.socket                                   loaded active listening
 \end{lstlisting}
 \begin{itemize}
-\item Instanciated services are also used by getty, for example\\
-	See \href{http://0pointer.de/blog/projects/serial-console.html}{\ul{Serial console}}
+\item Instanciated services are also used by getty
+	\begin{itemize}
+		\item See \href{http://0pointer.de/blog/projects/serial-console.html}{\ul{Serial console}}
 	and \href{http://0pointer.de/blog/projects/instances.html}{\ul{Instanciated services}}
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -596,15 +615,17 @@ sshd.socket                                   loaded active listening
 \hbr
 \item Captures syslog messages, kernel log messages, initrd and early boot messages, messages written to stdout/stderr by all services
 	\begin{itemize}
-		\item Forwards everything to syslog
+		\item \alert{Forwards everything to syslog}
 	\end{itemize}
 \hbr
-\item Structured format (key/value fields), can contain arbitrary data
+\item \alert{Structured format} (key/value fields), can contain \alert{arbitrary data}
 \begin{itemize}
-\item But viewable as syslog-like format with \texttt{journalctl}
+	\item But viewable as syslog-like format with \alert{\texttt{journalctl}}
 \end{itemize}
 \hbr
 \item Indexed, binary logs
+\hbr
+\item Rotation handled transparently
 \hbr
 \item Can replace syslog (but can also work in parallel)
 \hbr
@@ -657,7 +678,7 @@ LOGIN_USER=500
 			\hbr
 		\item Last entries ($\approx$ tail): \texttt{journalctl -n}
 		\hbr
-		\item Works with bash-completion (beware of sudo though)
+		\item Works with bash-completion
 			\hbr
 		\item See also: \href{https://docs.google.com/document/pub?id=1IC9yOXj7j6cdLLxWEBAGRL6wl97tFxgjLUEHIX3MSTs}{\ul{Journald design document}}, \href{http://0pointer.net/blog/projects/journalctl.html}{\ul{Using the Journal}}
 
@@ -681,7 +702,7 @@ LOGIN_USER=500
 			\end{itemize}
 	\end{itemize}
 \hbr
-\item systemd has its own mini-container manager: \texttt{systemd-nspawn}
+\item systemd has its own mini container manager: \texttt{systemd-nspawn}
 \hbr
 \item Other virtualization solutions can also \href{http://www.freedesktop.org/wiki/Software/systemd/machined/}{\ul{talk to \texttt{machined}}}
 \hbr
@@ -689,25 +710,9 @@ LOGIN_USER=500
 \end{itemize}
 \end{frame}
 
-\begin{frame}{From the service developer's point of view}
-	\begin{itemize}
-		\item Much easier to write service files than sysVinit scripts
-			\hbr
-		\item Many things can be handled by systemd for free:
-			\begin{itemize}
-				\item No need to fork
-					\hbr
-				\item No need to drop privileges
-					\hbr
-				\item No need to write a pid file
-					\hbr
-				\item Can just output logs to stdout (with systemd, stdout will go to journald and syslog)
-					\begin{itemize}
-						\item \href{http://0pointer.net/blog/projects/journal-submit.html}{\ul{Priorities are even supported}}
-					\end{itemize}
-			\end{itemize}
-	\end{itemize}
-\end{frame}
+\section{Conclusions}
+
+
 
 \begin{frame}{More stuff}
 	\begin{itemize}
@@ -727,6 +732,31 @@ LOGIN_USER=500
 			\end{itemize}
 			\hbr
 		\item systemd networking: systemd-networkd, systemd-resolved
+			\begin{itemize}
+				\item Started as a way to improve networking management for containers
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusions}
+	\begin{itemize}
+		\item systemd revisits the way we manage Linux systems
+			\begin{itemize}
+			\item \textsl{If we redesigned services management from scratch, would it look like systemd?}
+			\end{itemize}
+			\hbr
+
+		\item For service developers: easier to support systemd than sysVinit
+					\begin{itemize}
+						\item No need to fork, to drop privileges, to write a pid file
+							\hbr
+						\item Just output logs to stdout (redirected to syslog, \href{http://0pointer.net/blog/projects/journal-submit.html}{\ul{with priorities}})
+					\end{itemize}
+							\br
+
+		\item Some parts still have rough edges, or are still moving targets, but are promising: journal, containers, networking
+			\br
+		\item systemd might not be the final answer, but at least it's an interesting data point to look at
 	\end{itemize}
 \end{frame}
 
