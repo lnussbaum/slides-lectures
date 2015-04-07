@@ -14,7 +14,7 @@
    version="1.1"
    id="svg2"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="systemd-cgtop.svg">
+   sodipodi:docname="systemd-cgtop.pdf">
   <metadata
      id="metadata5062">
     <rdf:RDF>
@@ -44,9 +44,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="0.52200102"
-     inkscape:cx="1399.0802"
-     inkscape:cy="18.860497"
+     inkscape:zoom="2.0880041"
+     inkscape:cx="950.20392"
+     inkscape:cy="87.516396"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -15792,10 +15792,5 @@
          width="1572"
          height="1023" />
     </g>
-    <path
-       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       d="m 860,355 1,0 0,15 -1,0 z m 0,0"
-       id="path4684"
-       inkscape:connector-curvature="0" />
   </g>
 </svg>
