@@ -665,14 +665,14 @@ sshd.socket                                   loaded active listening
 	\item But viewable as syslog-like format with \alert{\texttt{journalctl}}
 \end{itemize}
 \hbr
-\item Indexed, binary logs
-\hbr
-\item Rotation handled transparently
+\item Indexed, binary logs; rotation handled transparently
 \hbr
 \item Can replace syslog (but can also work in parallel)
 \hbr
-\item Not persistent across reboots by default -- to make it persistent:\\
-	\texttt{mkdir -p /var/log/journal}
+\item Not persistent across reboots by default -- to make it persistent, create the
+	\texttt{/var/log/journal} directory, preferably with:\\
+	\texttt{install -d -g systemd-journal /var/log/journal}\\
+	\texttt{setfacl -R -nm g:adm:rx,d:g:adm:rx /var/log/journal}
 \hbr
 \item Can log to a remote host (with \texttt{systemd-journal-gateway}, not in Debian yet)
 \end{itemize}
