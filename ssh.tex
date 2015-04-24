@@ -606,6 +606,17 @@ no-port-forwarding ssh-rsa AAAA[...]oR user@my.host.net
 \end{itemize}
 \end{frame}
 
+\subsection{Related tools}
+\begin{frame}{Related tools}
+\begin{itemize}
+\item \texttt{screen} and \texttt{tmux}: provide virtual terminals on remote
+	machines where you can start long-running commands, disconnect, and
+	reconnect later
+	\hbr
+\item \texttt{mosh}: SSH alternative suited for Wi-Fi, cellular and long distance links
+\end{itemize}
+\end{frame}
+
 \section{Conclusions}
 \begin{frame}{Conclusions}
 	\begin{itemize}
@@ -614,17 +625,19 @@ no-port-forwarding ssh-rsa AAAA[...]oR user@my.host.net
 		\item Very powerful tool, many useful features
 			\hbr
 		\item Practical session: test everything mentioned in this presentation
-			\hbr
-		\item Other topics not covered in this presentation:
-			\begin{itemize}
-				\item Built-in support for VPN
-					\hbr
-				\item Other authentication methods (certificates)
-					\hbr
-				\item Managing long executions on a remote machine with \texttt{screen} or \texttt{tmux}
-					\hbr
-				\item Mosh, an SSH alternative suited for Wi-Fi, cellular and long distance links
-			\end{itemize}
+			\begin{enumerate}
+				\item \texttt{scp}, \texttt{rsync}
+				\item Key-based authentication
+				\item Using an SSH agent
+				\item aliases in SSH configuration
+				\item \texttt{sshfs}, \texttt{sftp}
+				\item SSH tunnels
+				\item X11 forwarding
+				\item SOCKS proxy with \texttt{tsocks}
+				\item Jumping through hosts
+				\item Escape sequences
+				\item \ldots
+			\end{enumerate}
 	\end{itemize}
 \end{frame}
 
