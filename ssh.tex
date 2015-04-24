@@ -462,7 +462,39 @@ server_type = 5
 server_port = 1080 # then start ssh with -D 1080
 $ tsocks pidgin # tunnel application through socks
 \end{lstlisting}
+\begin{itemize}
+	\item Another transparent proxifier is \texttt{redsocks} (uses \texttt{iptables} rules to redirect to a local daemon instead of \texttt{LD\_PRELOAD})
 \end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{VPN over SSH}
+\begin{frame}{VPN over SSH}
+	\begin{itemize}
+		\item Built-in support for tun-based VPN
+			\hhbr
+			\begin{itemize}
+				\item \texttt{PermitTunnel yes} required on server (disabled by default)
+					\hbr
+				\item \texttt{ssh -w 0:0 root@server} (0, 0 are the tun device numbers)
+					\hbr
+				\item Then configure IP addresses and routing on both sides
+			\end{itemize}
+			\br
+		\item \texttt{sshuttle}: another VPN over SSH solution
+			\hhbr
+			\begin{itemize}
+				\item Root access not required on the server side
+					\hbr
+				\item Idea similar to \texttt{slirp}
+					\hbr
+				\item Uses \texttt{iptables} rules to redirect traffic to VPN
+					\hbr
+				\item (as root:) \texttt{sshuttle -r user@server 0/0 -vv}
+					\hbr
+				\item Limitation: does not support tunnelling UDP or ICMP traffic
+			\end{itemize}
+	\end{itemize}
 \end{frame}
 
 \subsection{Jumping through hosts with ProxyCommand}
