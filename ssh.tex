@@ -507,7 +507,7 @@ $ tsocks pidgin # tunnel application through socks
 	\draw[name=server,darkred,fill] (2.5,0) circle (2mm);
 	\draw[darkred,fill] (7.5,0) circle (2mm);
 	\draw (-2.5,-1) node  {Client};
-	\draw (2.5,-1) node  {Server};
+	\draw (2.5,-1) node[align=center]  {Server\\(gateway, firewall, etc.)};
 	\draw (7.5,-1) node[align=center]  {Server2 on\\ private network};
 	\draw (5, -0.2) node [below] {\small \sl Private network};
 	\draw (0, -0.2) node [below] {\small \sl Internet};
@@ -546,7 +546,7 @@ Host *.priv # ssh host1.priv works
     ProxyCommand ssh -W $(basename %h .priv):%p server
 \end{lstlisting}\vspace{-0.2em}
 \begin{itemize}
-\item -W only available since OpenSSH 5.4 (circa 2010), but the same can be achieved with netcat:
+	\item \texttt{-W} only available since OpenSSH 5.4 (circa 2010), but the same can be achieved with \texttt{netcat}:
 \end{itemize}\vspace{-0.8em}
 \begin{lstlisting}[basicstyle=\ttfamily\small,escapeinside={||}]
 Host *.priv
