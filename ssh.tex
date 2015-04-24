@@ -179,7 +179,7 @@ $\end{lstlisting}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Remembering the passphrase}
+\begin{frame}{Avoiding typing the passphrase}
 \begin{itemize}
 \item If the private key is not protected with a passphrase, the connection is established immediately:\\ \hbr
 {\ttfamily\footnotesize 
@@ -192,7 +192,7 @@ $\end{lstlisting}
 Enter passphrase for key '/home/login/id\_rsa':  \textbf{[passphrase+ENTER]}\\ 
 *** rlogin@rhost:\tilda\$\\ }
 \hbr
-\item An \textbf{SSH agent} can be used to remember the passphrase
+\item An \textbf{SSH agent} can be used to store the decrypted private key
 \begin{itemize}
 	\item Most desktop environments act as SSH agents automatically
 	\item One can be started with \texttt{ssh-agent} if needed
