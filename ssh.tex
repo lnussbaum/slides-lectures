@@ -242,7 +242,7 @@ Host key verification failed.
 *** login@laptop:~$ 
 \end{lstlisting}
 \begin{itemize}
-	\item Remove a truly outdated key can be removed with\\ \texttt{ssh-keygen -R server}
+	\item A truly outdated key can be removed with\\ \texttt{ssh-keygen -R server}
 \end{itemize}
 \end{frame}
 
@@ -296,10 +296,7 @@ Host *
 \subsection{SSH as a communication layer for applications}
 \begin{frame}{SSH as a communication layer for applications}
 	\begin{itemize}
-		\item Several applications use SSH as their communication layer\\
-			\begin{itemize}
-				\item Sometimes also authentication layer
-			\end{itemize}
+		\item Several applications use SSH as their communication (and authentication) layer
 		\hbr
 		\item \texttt{scp}, \texttt{sftp}, \texttt{rsync} (data transfer)
 			\hbr
