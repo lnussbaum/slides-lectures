@@ -407,7 +407,11 @@ Host *
 \end{tikzpicture}
 \end{center}
 \begin{itemize}
-	\item Note: SSH tunnels don't work very well for HTTP, because IP+port are not enough to identify a website (\texttt{Host:} HTTP header)
+	\item Notes:
+		\begin{itemize}
+			\item SSH tunnels don't work very well for HTTP, because IP+port are not enough to identify a website (\texttt{Host:} HTTP header)
+			\item By default, tunnels are only bound to localhost. Use \texttt{-g} to allow remote hosts to connect to local forwarded ports
+		\end{itemize}
 \end{itemize}
 \end{frame}
 
