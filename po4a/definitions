@@ -2,6 +2,10 @@
 % po4a: command frame {}
 % po4a: environment axis [_]
 % po4a: environment frame []{_}
+% po4a: environment framed []{_}
+% po4a: environment adjustbox []{_}
+% po4a: environment columns []{_}
+% po4a: environment column []{_}
 % po4a: verbatim environment lstlisting
 % po4a: environment tikzpicture []
 % po4a: command title [_]{_}
