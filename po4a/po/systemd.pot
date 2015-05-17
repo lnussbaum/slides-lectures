@@ -1,0 +1,2975 @@
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2015-05-17 08:58-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#.  handout
+#. \usepackage{bera}
+#. \renewcommand*\ttdefault{cmvtt}
+#. type: Plain text
+#: ssh.tex:11 systemd.tex:14
+msgid "\\mode<presentation> \\usetheme{ln12en}"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:11 systemd.tex:14
+msgid "\\usepackage{listings}"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:11 systemd.tex:14
+msgid "\\usepackage{inconsolata}"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:11 systemd.tex:14
+msgid "\\usepackage{moresize}"
+msgstr ""
+
+#. type: title{#2}
+#: ssh.tex:19
+msgid "An introduction to SSH"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:19 systemd.tex:22
+msgid ""
+"\\authorteaching \\instituteiutlp \\newcommand{\\tilda}{\\textasciitilde{}} "
+"\\date{}"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:28
+msgid ""
+"\\AtBeginSection[] { \\begin{frame} \\frametitle{Plan} "
+"\\tableofcontents[currentsection] \\end{frame} }"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:32 systemd.tex:35
+msgid "\\usepackage{tikz}"
+msgstr ""
+
+#. type: Plain text
+#: ssh.tex:32 systemd.tex:35
+msgid "\\usetikzlibrary{shapes,arrows,positioning}"
+msgstr ""
+
+#. type: section{#2}
+#: ssh.tex:62
+msgid "SSH basics"
+msgstr ""
+
+#. type: subsection{#2}
+#: ssh.tex:62
+msgid "SSH 101"
+msgstr ""
+
+#. type: section{#2}
+#: ssh.tex:62 systemd.tex:45
+msgid "Introduction"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "SSH = Secure SHell"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Standard network protocol and service (TCP port 22)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Many implementations, including:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "OpenSSH: Linux/Unix, Mac OS X \\alert{$\\leftarrow$ this talk, mostly}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Putty: Windows, client only"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Dropbear: small systems (routers, embedded)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Unix command (\\texttt{ssh}); server-side: \\texttt{sshd}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Establish a \\alert{secure communication channel} between two machines"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Relies on cryptography"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Most basic usage: \\alert{get shell access} on a remote machine"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Many advanced usages:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Data transfer (\\texttt{scp}, \\texttt{sftp}, \\texttt{rsync})"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Connect to specific services (such as Git or SVN servers)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Dig secure tunnels through the public Internet"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:62
+msgid "Several authentication schemes: password, public key"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:68
+msgid "Basic usage"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:68
+msgid ""
+"Connecting to a remote server:\\\\ \\texttt{\\$ ssh login@remote-server} "
+"\\\\ $\\leadsto$ Provides a shell on \\textsl{remote-server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:72
+msgid ""
+"Executing a command on a remote server:\\\\ \\texttt{\\$ ssh "
+"login@remote-server ls /etc}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:89
+msgid ""
+"Copying data (with \\texttt{scp}, similar to \\texttt{cp}):\\\\ \\texttt{\\$ "
+"scp local-file login@remote-serv:remote-directory/} \\\\ \\texttt{\\$ scp "
+"login@remote-serv:remote-dir/file local-dir/}\\\\ Usual \\texttt{cp} options "
+"work, e.g. \\texttt{-r} (recursive)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:89
+msgid ""
+"Copying data (with \\texttt{rsync}, more efficient than \\texttt{scp} with "
+"many files):\\\\ \\texttt{\\$ rsync -avzP localdir "
+"login@server:path-to-rem-dir/}\\\\ \\hbr Note: trailing slash on source "
+"matters with \\texttt{rsync} (not with \\texttt{cp})\\\\"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:89
+msgid "\\texttt{rsync -a dir1 u@h:dir2} $\\leadsto$ dir1 copied inside dir2"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:89
+msgid "\\texttt{rsync -a dir1/ u@h:dir2} $\\leadsto$ content of dir1 copied to dir2"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:117 ssh.tex:117
+msgid "Public-key authentication"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "General idea:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "Asymmetric cryptography (or public-key cryptography):"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "The public key is used to encrypt something"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "Only the private key can decrypt it"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "User owns a private (secret) key, stored on the local machine"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "The server has the public key corresponding to the private key"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "Authentication = \\textsl{<server> prove that you own that private key!}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:117
+msgid "Implementation (\\textsl{challenge-response authentication}):"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Server generates a nonce (random value)"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Server encrypts the nonce with the Client's public key"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Server sends the encrypted nonce (= the challenge) to client"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Client uses the private key to decrypt the challenge"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Client sends the nonce (= the response) to the Server"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:117
+msgid "Server compares the nonce with the response"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:135
+msgid "Public-key authentication (2)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid "Advantages:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid "The password does not need to be sent over the network"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid "The private key never leaves the client"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid "The process can be automated"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid ""
+"However, the private key should be protected (what if your laptop gets "
+"stolen?)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:135
+msgid "Usually with a passphrase"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:162
+msgid "Key-pair generation"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:162
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\scriptsize,escapeinside={||}]\n"
+"$ ssh-keygen\n"
+"Generating public/private rsa key pair.\n"
+"Enter file in which to save the key (/home/user/.ssh/id_rsa): "
+"|\\textbf{[ENTER]}|\n"
+"Enter passphrase (empty for no passphrase): |\\textbf{passphrase}|\n"
+"Enter same passphrase again: |\\textbf{passphrase}|\n"
+"Your identification has been saved in /home/user/.ssh/id_rsa.\n"
+"Your public key has been saved in /home/user/.ssh/id_rsa.pub.\n"
+"The key fingerprint is:\n"
+"f6:35:53:71:2f:ff:00:73:59:78:ca:2c:7c:ff:89:7b user@my.hostname.net\n"
+"The key's randomart image is:\n"
+"+--[ RSA 2048]----+\n"
+"|              ..o|\n"
+"|\\textbf{(...)}|\n"
+"|             .o  |\n"
+"+-----------------+\n"
+"$"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:162
+msgid "Creates the key-pair:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:162
+msgid "\\texttt{\\tilda/.ssh/id\\_rsa} (private key)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:162
+msgid "\\texttt{\\tilda/.ssh/id\\_rsa.pub} (public key)"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:168
+msgid "Copying the public key to the server"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:168
+msgid ""
+"Example public key:\\\\ {\\footnotesize \\texttt{ssh-rsa "
+"AAAAB3NX[\\ldots]hpoR3/PLlXgGcZS4oR user@my.hostname.net}}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:171
+msgid ""
+"On the server, \\texttt{\\bf \\tilda{}user/.ssh/authorized\\_keys} contains "
+"the list of public keys authorized to connect to the \\texttt{user} account"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:181
+msgid "The key can be copied manually there"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:181
+msgid ""
+"Or use \\texttt{ssh-copy-id} to automatically copy the key:\\\\ "
+"\\texttt{client\\$ ssh-copy-id user@server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:181
+msgid ""
+"Sometimes the public key needs to be provided using a web interface (e.g. on "
+"GitHub, FusionForge, Redmine, etc.)"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:203
+msgid "Avoiding typing the passphrase"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid ""
+"If the private key is not protected with a passphrase, the connection is "
+"established immediately:\\\\ \\hbr {\\ttfamily\\footnotesize *** "
+"login@laptop:\\tilda\\$ ssh rlogin@rhost \\textbf{ [ENTER]}\\\\ *** "
+"rlogin@rhost:\\tilda\\$\\\\ }"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid ""
+"Otherwise, \\texttt{ssh} asks for the passphrase:\\\\ \\hbr "
+"{\\ttfamily\\footnotesize *** login@laptop:\\tilda\\$ ssh rlogin@rhost "
+"\\textbf{ [ENTER]}\\\\ Enter passphrase for key '/home/login/id\\_rsa': "
+"\\textbf{[passphrase+ENTER]}\\\\ *** rlogin@rhost:\\tilda\\$\\\\ }"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid "An \\textbf{SSH agent} can be used to store the decrypted private key"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid "Most desktop environments act as SSH agents automatically"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid "One can be started with \\texttt{ssh-agent} if needed"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:203
+msgid "Add keys manually with \\texttt{ssh-add}"
+msgstr ""
+
+#. type: subsection{#2}
+#: ssh.tex:205
+msgid "Checking the server's identity"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:222
+msgid "Checking the server identity: \\texttt{known\\_hosts}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:222
+msgid ""
+"Goal: detect hijacked servers\\\\ \\textsl{What if someone replaced the "
+"server to steal passwords?}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:222
+msgid ""
+"When you connect to a server for the first time, \\texttt{ssh} stores the "
+"server's public key in \\texttt{\\tilda/.ssh/known\\_hosts}"
+msgstr ""
+
+#. type: frame
+#: ssh.tex:222
+msgid ""
+"{\\ttfamily\\small *** login@laptop:\\tilda\\$ ssh rlogin@server\\textbf{ "
+"[ENTER]}\\\\ The authenticity of host 'server (10.1.6.2)' can't be "
+"established.\\\\ RSA key fingerprint is "
+"94:48:62:18:4b:37:d2:96:67:c9:7f:2f:af:2e:54:a5.\\\\ Are you sure you want "
+"to continue connecting (yes/no)? \\textbf{yes [ENTER]}\\\\ Warning: "
+"Permanently added 'server,10.1.6.2'(RSA) to the list of known hosts.\\\\ "
+"rlogin@server's password:\\\\ }"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:248
+msgid "Checking the server identity: \\texttt{known\\_hosts} (2)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:248
+msgid ""
+"During each following connection, \\texttt{ssh} ensures that the key still "
+"matches, and warns the user otherwise"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:248
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\ssmall,escapeinside={||}]\n"
+"*** login@laptop:~$ ssh rlogin@server|\\textbf{ [ENTER]}|\n"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
+"@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @\n"
+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
+"IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!\n"
+"Someone could be eavesdropping on you right now (man-in-the-middle "
+"attack)!\n"
+"It is also possible that a host key has just been changed.\n"
+"The fingerprint for the RSA key sent by the remote host is\n"
+"e3:94:03:90:5d:81:ed:bb:d5:d2:f2:de:ba:31:18:d8.\n"
+"Please contact your system administrator.\n"
+"Add correct host key in /home/login/.ssh/known_hosts to get rid of this "
+"message.\n"
+"Offending RSA key in /home/login/.ssh/known_hosts:12\n"
+"RSA host key for server has changed and you have requested strict "
+"checking.\n"
+"Host key verification failed.\n"
+"*** login@laptop:~$ "
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:248
+msgid "A truly outdated key can be removed with\\\\ \\texttt{ssh-keygen -R server}"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:270 ssh.tex:270
+msgid "Configuring SSH"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "SSH gets configuration data from:"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:270
+msgid "command-line options (\\texttt{-o ...})"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:270
+msgid "the user's configuration file: \\texttt{\\tilda/.ssh/config}"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:270
+msgid "the system-wide configuration file: \\texttt{/etc/ssh/ssh\\_config}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "Options are documented in the \\texttt{ssh\\_config(5)} man page"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "\\texttt{\\tilda/.ssh/config} contains a list of hosts (with wildcards)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "For each parameter, the first obtained value is used\\\\"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "Host-specific declarations are given near the beginning"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:270
+msgid "General defaults at the end"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:275
+msgid "Example: \\texttt{\\tilda/.ssh/config}"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:275
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"Host mail.acme.com\n"
+"    User root\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:279
+#, no-wrap
+msgid ""
+"Host foo # alias/shortcut. 'ssh foo' works\n"
+"    Hostname very-long-hostname.acme.net\n"
+"    Port 2222\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:285
+#, no-wrap
+msgid ""
+"Host *.acme.com\n"
+"    User jdoe\n"
+"    Compression yes # default is no\n"
+"    PasswordAuthentication no # only use public key\n"
+"    ServerAliveInternal 60 # keep-alives for bad firewall\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:288
+#, no-wrap
+msgid ""
+"Host *\n"
+"    User john"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:293
+msgid ""
+"Note: \\texttt{bash-completion} can auto-complete using "
+"\\texttt{ssh\\_config} hosts"
+msgstr ""
+
+#. type: section{#2}
+#: ssh.tex:295
+msgid "Advanced usage"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:308 ssh.tex:308
+msgid "SSH as a communication layer for applications"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:308
+msgid ""
+"Several applications use SSH as their communication (and authentication) "
+"layer"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:308
+msgid "\\texttt{scp}, \\texttt{sftp}, \\texttt{rsync} (data transfer)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:308
+msgid "\\texttt{lftp} (CLI) and \\texttt{gftp} (GUI) support the SFTP protocol"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:308
+msgid "\\texttt{unison} (synchronization)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:315
+msgid ""
+"\\alert{Subversion:} \\texttt{svn checkout "
+"svn+ssh://user@rhost/path/to/repo}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:315
+msgid ""
+"\\alert{Git:} \\texttt{git clone "
+"ssh://git@github.com/path-to/repository.git}\\\\ Or: \\texttt{git clone "
+"git@github.com:path-to/repository.git}"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:333 ssh.tex:333
+msgid "Access remote filesystems over SSH: sshfs"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:333
+msgid "\\texttt{sshfs}: FUSE-based solution to access remote machines"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:333
+msgid ""
+"Ideal for remote file editing with a GUI, copying small amounts of data, "
+"etc."
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:333
+msgid ""
+"Mount a remote directory:\\\\ \\texttt{sshfs root@server:/etc "
+"/tmp/local-mountpoint}\\\\ Unmount: \\texttt{fusermount -u "
+"/tmp/local-mountpoint}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:333
+msgid ""
+"Combine with \\texttt{afuse} to auto-mount any machine:\\\\ \\texttt{afuse "
+"-o mount\\_template=\"sshfs \\%r:/ \\%m\" -o \\textbackslash \\\\ "
+"unmount\\_template=\"fusermount -u -z \\%m\" \\tilda/.sshfs/}\\\\[0.5em] "
+"$\\leadsto$ \\texttt{cd \\tilda/.sshfs/rhost/etc/ssh}"
+msgstr ""
+
+#. type: subsection{#2}
+#: ssh.tex:353
+msgid "SSH tunnels, X11 forwarding, and SOCKS proxy"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:353 ssh.tex:387
+msgid "SSH tunnels with -L and -R"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "Goal: transport traffic through a secure connection"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "Work-around network filtering (firewalls)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "Avoid sending unencrypted data on the Internet"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "But only works for TCP connections"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "\\textbf{-L}: access a remote service behind a firewall (Intranet server)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "\\texttt{ssh -L 12345:service:1234 server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "Still on \\textsl{Client}: \\texttt{telnet localhost 12345}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid ""
+"\\textsl{Server} establishes a TCP connection to \\textsl{Service}, port "
+"1234"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:353
+msgid "The traffic is tunnelled inside the SSH connection to \\textsl{Server}"
+msgstr ""
+
+#. type: tikzpicture
+#: ssh.tex:360
+msgid ""
+"\\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (0,0) {}; "
+"\\node[name=private,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (5,0) {}; \\draw[blue,fill] "
+"(-2.5,-0.1) rectangle (2.5,0.1); \\draw[darkred,fill] (7.5,0) circle (2mm);"
+msgstr ""
+
+#. type: tikzpicture
+#: ssh.tex:376
+msgid ""
+"\\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
+"\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); \\draw (-2.5,-1) node "
+"{Client}; \\draw (2.5,-1) node {Server}; \\draw (7.5,-1) node[align=center] "
+"{TCP Service \\\\on port 1234}; \\draw (0, -0.2) node [below] {\\small \\sl "
+"Internet}; \\draw (5, -0.2) node [below] {\\small \\sl Private network}; "
+"\\only<2->{ \\draw[orange,fill,ultra thick,->] (-2.5,0) -- (7.3,0); "
+"\\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
+"\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); }"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:387
+msgid "\\textbf{-R}: provide remote access to a local private service"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:387
+msgid "\\texttt{ssh -R 12345:service:1234 server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:387
+msgid "On \\textsl{Server}: \\texttt{telnet localhost 12345}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:387
+msgid ""
+"\\textsl{Client} establishes a TCP connection to \\textsl{Service}, port "
+"1234"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:387
+msgid "The traffic is tunnelled inside the SSH connection to \\textsl{Client}"
+msgstr ""
+
+#. type: tikzpicture
+#: ssh.tex:393
+msgid ""
+"\\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (0,0) {}; "
+"\\node[name=private,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (5,0) {}; \\draw[blue,fill] (2.5,-0.1) "
+"rectangle (7.5,0.1);"
+msgstr ""
+
+#. type: tikzpicture
+#: ssh.tex:417
+msgid ""
+"\\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
+"\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); \\draw[darkred,fill] "
+"(7.5,0) circle (2mm); \\draw (2.5,-1) node {Client}; \\draw (7.5,-1) node "
+"{Server}; \\draw (-2.5,-1) node[align=center] {TCP Service \\\\on port "
+"1234}; \\draw (0, -0.2) node [below] {\\small \\sl Private network}; \\draw "
+"(5, -0.2) node [below] {\\small \\sl Internet}; \\only<2->{ "
+"\\draw[orange,fill,ultra thick,->] (7.5,0) -- (-2.3,0); \\draw[darkred,fill] "
+"(2.5,0) circle (2mm); \\draw[darkred,fill] (7.5,0) circle (2mm); }"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:417
+msgid "Notes:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:417
+msgid ""
+"SSH tunnels don't work very well for HTTP, because IP+port are not enough to "
+"identify a website (\\texttt{Host:} HTTP header)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:417
+msgid ""
+"By default, tunnels are only bound to localhost. Use \\texttt{-g} to allow "
+"remote hosts to connect to local forwarded ports"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:444
+msgid "X11 forwarding with -X: GUI apps over SSH"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid "Run a graphical application on a remote machine, display locally"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid "Similar to VNC, but on a per-application basis"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid "\\texttt{ssh -X server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid ""
+"\\texttt{\\$DISPLAY} will be set by SSH on the server:\\\\ \\texttt{\\$ echo "
+"\\$DISPLAY\\\\ localhost:10.0}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid "Then start GUI applications on server (e.g. \\texttt{xeyes})"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid "Troubleshooting:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid "\\texttt{xauth} must be installed on the remote machine"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid "The local Xorg server must allow TCP connections"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid "\\texttt{pgrep -a Xorg} $\\leadsto$ \\texttt{-nolisten} must not be included"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid "Can be configured in your login manager"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:444
+msgid "Does not work very well over slow or high-latency connections"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:474
+msgid "SOCKS proxy with -D"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:474
+msgid "SOCKS: protocol to proxy TCP connections via a remote machine"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:474
+msgid "SSH can act as a SOCKS server: \\texttt{ssh -D 1080 server}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:474
+msgid "Use case similar to tunnelling with -L, but more flexible"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:474
+msgid "Set up the proxy once, use for multiple connections"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:474
+msgid "Usage:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:474
+msgid "Manual: configure applications to use the SOCKS proxy"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:474
+msgid "Transparent: use \\texttt{tsocks} to re-route connections via SOCKS"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:474
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"$ cat /etc/tsocks.conf\n"
+"server = 127.0.0.1\n"
+"server_type = 5\n"
+"server_port = 1080 # then start ssh with -D 1080\n"
+"$ tsocks pidgin # tunnel application through socks"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:474
+msgid ""
+"Another transparent proxifier is \\texttt{redsocks} (uses \\texttt{iptables} "
+"rules to redirect to a local daemon instead of \\texttt{LD\\_PRELOAD})"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:503 ssh.tex:503
+msgid "VPN over SSH"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:503
+msgid "Built-in support for tun-based VPN"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:503
+msgid "\\texttt{PermitTunnel yes} required on server (disabled by default)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:503
+msgid "\\texttt{ssh -w 0:0 root@server} (0, 0 are the tun device numbers)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:503
+msgid "Then configure IP addresses and routing on both sides"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:503
+msgid "\\texttt{sshuttle}: another VPN over SSH solution"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:503
+msgid "Root access not required on the server side"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:503
+msgid "Idea similar to \\texttt{slirp}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:503
+msgid "Uses \\texttt{iptables} rules to redirect traffic to VPN"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:503
+msgid "(as root:) \\texttt{sshuttle -r user@server 0/0 -vv}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:503
+msgid "Limitation: does not support tunnelling UDP or ICMP traffic"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:506 ssh.tex:506
+msgid "Jumping through hosts with ProxyCommand"
+msgstr ""
+
+#. type: tikzpicture
+#: ssh.tex:568
+msgid ""
+"\\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (0,0) {}; "
+"\\node[name=private,gray,cloud,aspect=1,cloud puffs=23,minimum "
+"width=5cm,minimum height=2cm,draw] at (5,0) {}; "
+"\\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
+"\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); \\draw[darkred,fill] "
+"(7.5,0) circle (2mm); \\draw (-2.5,-1) node {Client}; \\draw (2.5,-1) "
+"node[align=center] {Server\\\\(gateway, firewall, etc.)}; \\draw (7.5,-1) "
+"node[align=center] {Server2 on\\\\ private network}; \\draw (5, -0.2) node "
+"[below] {\\small \\sl Private network}; \\draw (0, -0.2) node [below] "
+"{\\small \\sl Internet}; \\draw[orange,fill,ultra thick,->] (-2.3,0) -- "
+"(2.3,0); \\draw[orange,fill,ultra thick,->] (2.7,0) -- (7.3,0);"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid "Problem: to connect to Server2, you need to connect to Server"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid ""
+"Can you do that in a single step? (required for data transfer, tunnels, X11 "
+"forwarding)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid "Combines two SSH features:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid ""
+"\\texttt{ProxyCommand} option: command used to connect to host; connection "
+"available on standard input \\& output"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid ""
+"\\texttt{ssh -W host:port} $\\leadsto$ establish a TCP connection, provide "
+"it on standard input \\& output (suitable for \\texttt{ProxyCommand})"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:568
+msgid "Jumping through hosts with ProxyCommand (2)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid "Example configuration:"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:568
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"Host server2 # ssh server2 works\n"
+"    ProxyCommand ssh -W server2:22 server"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid "Also works with wildcards"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:568
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"Host *.priv # ssh host1.priv works\n"
+"    ProxyCommand ssh -W $(basename %h .priv):%p server"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid ""
+"\\texttt{-W} only available since OpenSSH 5.4 (circa 2010), but the same can "
+"be achieved with \\texttt{netcat}:"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:568
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"Host *.priv\n"
+"    ProxyCommand ssh serv nc -q 0 $(basename %h .priv) %p"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid "Similar solution to connect via a proxy:"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid "SOCKS: \\texttt{connect-proxy -4 -S myproxy:1080 rhost 22}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid "HTTP (with CONNECT): \\texttt{corkscrew myproxy 1080 rhost 22}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:568
+msgid ""
+"When CONNECT requests are forbidden, set up \\texttt{httptunnel} on a remote "
+"server, and use \\texttt{htc} and \\texttt{hts}"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:589 ssh.tex:589
+msgid "Triggering remote command execution securely"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:589
+msgid "Goal: notify Server2 that something finished on Server1"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:589
+msgid "But Server1 must not have full shell access on Server2"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:589
+msgid "Method: limit to a single command in \\texttt{authorized\\_keys}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:589
+msgid "Also known as SSH triggers"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:589
+msgid "Example \\texttt{authorized\\_keys} on Server2:"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:589
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"from=\"server1.acme.com\",command=\"tar czf - /home\",no-pty,\n"
+"no-port-forwarding ssh-rsa AAAA[...]oR user@my.host.net"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:612 ssh.tex:612 ssh.tex:647
+msgid "Escape sequences"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:612
+msgid "Goal: interact with an already established SSH connection"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:612
+msgid "Add tunnels or SOCKS proxy, kill unresponsive connection"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:612
+msgid "Escape sequences start with '\\tilda', at the beginning of a line"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:612
+msgid "So press \\texttt{[enter]}, then \\texttt{\\tilda}, then e.g. '\\texttt{?}'"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:612
+msgid "Main sequences (others documented in \\texttt{ssh(1)}):"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:612
+msgid "\\texttt{\\tilda{}.} -- disconnect (for unresponsive connections)"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:612
+msgid "\\texttt{\\tilda{}?} -- show the list of escape sequences"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:612
+msgid ""
+"\\texttt{\\tilda{}C} -- open SSH command-line. e.g. \\texttt{\\tilda{}C -D "
+"1080}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:612
+msgid ""
+"\\texttt{\\tilda{}\\&} -- logout and background SSH while waiting for "
+"forwarded connections or X11 sessions to terminate"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:623 ssh.tex:623
+msgid "Related tools"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:623
+msgid ""
+"\\texttt{screen} and \\texttt{tmux}: provide virtual terminals on remote "
+"machines where you can start long-running commands, disconnect, and "
+"reconnect later"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:623
+msgid ""
+"\\texttt{mosh}: SSH alternative suited for Wi-Fi, cellular and long distance "
+"links"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:647 ssh.tex:647 systemd.tex:756 systemd.tex:790
+msgid "Conclusions"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:647
+msgid "The Swiss-army knife of remote administration"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:647
+msgid "Very powerful tool, many useful features"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:647
+msgid "Practical session: test everything mentioned in this presentation"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:647
+msgid "\\texttt{scp}, \\texttt{rsync}"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:647
+msgid "Key-based authentication"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:647
+msgid "Using an SSH agent"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:647
+msgid "aliases in SSH configuration"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:647
+msgid "\\texttt{sshfs}, \\texttt{sftp}"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:647
+msgid "SSH tunnels"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:647
+msgid "X11 forwarding"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:647
+msgid "SOCKS proxy with \\texttt{tsocks}"
+msgstr ""
+
+#. type: enumerate
+#: ssh.tex:647
+msgid "Jumping through hosts"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:647 systemd.tex:66
+msgid "\\ldots"
+msgstr ""
+
+#. type: Plain text
+#: systemd.tex:14
+msgid "\\usepackage{ucs}"
+msgstr ""
+
+#. type: Plain text
+#: systemd.tex:14
+msgid "\\usepackage{framed}"
+msgstr ""
+
+#. type: Plain text
+#: systemd.tex:14
+msgid "\\usepackage{adjustbox}"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:22 systemd.tex:94 systemd.tex:195
+msgid "systemd"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:43
+msgid "Outline"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:66
+msgid "Init system"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:66
+msgid "First process started by the kernel (pid 1)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:66
+msgid "Responsible for \\alert{bringing up the rest of userspace}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:66
+msgid "Mounting filesystems"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:66
+msgid "Starting services"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:66
+msgid "Also the parent for orphan processes"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:66
+msgid "Traditional init system on Linux: \\alert{sysVinit}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:66
+msgid "Inherited from Unix System V"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:66
+msgid ""
+"With additional tools (insserv, startpar) to handle dependencies and "
+"parallel initialization"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid "Written (since 2010) by Lennart Poettering (Red Hat) and others"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid "Now the default on most Linux distributions"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid ""
+"Shifts the scope from \\textsl{starting all services} (sysVinit) to\\\\ "
+"\\alert{managing the system and all services}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid "Key features:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid "Relies on cgroups for"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid "Services supervision"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid "Control of services execution environment"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid "Declarative syntax for unit files $\\leadsto$ more efficient/robust"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid "Socket activation for parallel services startup"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid "Nicer user interface (systemctl \\& friends)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:94
+msgid ""
+"Additional features: logging, timer units (cron-like), user sessions "
+"handling, containers management"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:96 systemd.tex:117
+msgid "Behind the scenes: cgroups"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:117
+msgid "Abbreviated from \\textsl{control groups}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:117
+msgid "Linux kernel feature"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:117
+msgid ""
+"Limit, account for and isolate \\alert{processes and their resource usage} "
+"(CPU, memory, disk I/O, network, etc.)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:117
+msgid "Related to \\alert{namespace isolation}:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:117
+msgid "Isolate processes from the rest of the system"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:117
+msgid "\\textsl{Chroots on steroids}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:117
+msgid "PID, network, UTS, mount, user, etc."
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:117
+msgid "LXC, Docker $\\approx$ cgroups + namespaces (+ management tools)"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:146
+msgid "cgroups and systemd"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid "\\alert{Each service runs in its own cgroup}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid "Enables:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid "Tracking and killing all processes created by each service"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid "Per-service accounting and resources allocation/limitation"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid "Previously, with sysVinit:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid "No tracking of which service started which processes"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid ""
+"PID files, or hacks in init scripts: \\texttt{pidof} / \\texttt{killall} / "
+"\\texttt{pgrep}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid ""
+"Hard to completely terminate a service (left-over CGI scripts when killing "
+"Apache)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid ""
+"No resources limitation (or using \\texttt{setrlimit} (= \\texttt{ulimit}), "
+"which is per-process, not per-service)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid ""
+"\\alert{Also isolate user sessions} $\\leadsto$ kill all user processes (not "
+"by default)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:146
+msgid ""
+"More information: "
+"\\href{http://0pointer.net/blog/projects/cgroups-vs-cgroups.html}{\\ul{Control "
+"Groups vs. Control Groups}} and\\\\ "
+"\\href{http://0pointer.net/blog/projects/systemd-for-admins-2.html}{\\ul{Which "
+"Service Owns Which Processes?}}"
+msgstr ""
+
+#.  export GTK_MODULES=/usr/lib/gtk-3.0/modules/libgtk-vector-screenshot.so
+#.  take-vector-screenshot
+#. type: frame{#2}
+#: systemd.tex:155
+msgid "\\texttt{systemd-cgls}: visualizing the cgroups hierarchy"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:162
+msgid "\\texttt{systemd-cgtop}: per-service resources usage"
+msgstr ""
+
+#. type: frame
+#: systemd.tex:162
+msgid ""
+"Requires enabling \\texttt{CPUAccounting}, \\texttt{BlockIOAccounting}, "
+"\\texttt{MemoryAccounting}"
+msgstr ""
+
+#. type: section{#2}
+#: systemd.tex:164
+msgid "Managing services"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:195
+msgid "Managing services with \\texttt{systemctl}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:195
+msgid ""
+"What is being manipulated is called a \\alert{\\textsl{unit}}: services "
+"(.service), mount points (.mount), devices (.device), sockets (.socket), "
+"etc."
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:195
+msgid "Basic commands:"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "sysVinit"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "notes"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "service foo start"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "systemctl start foo"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "service foo stop"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "systemctl stop foo"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "service foo restart"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "systemctl restart foo"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "service foo reload"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "systemctl reload foo"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "service foo condrestart"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "systemctl condrestart foo"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "restart if already running"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "update-rc.d foo enable"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "systemctl enable foo"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "auto-start at next boot"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "update-rc.d foo disable"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "systemctl disable foo"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "disable auto-start"
+msgstr ""
+
+#. type: tabular
+#: systemd.tex:195
+msgid "systemctl is-enabled foo"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:195
+msgid ""
+"There's auto-completion (\\texttt{apache2} and \\texttt{apache2.service} "
+"work)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:195
+msgid ""
+"Several services can be specified:\\\\ \\texttt{systemctl restart apache2 "
+"postgresql}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:219
+msgid "systemd and runlevels"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:219
+msgid "With sysVinit, runlevels control which services are started automatically"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:219
+msgid "0 = halt; 1 = single-user / minimal mode; 6 = reboot"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:219
+msgid "Debian: no difference by default between levels 2, 3, 4, 5"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:219
+msgid "RHEL: 3 = multi-user text, 5 = multi-user graphical"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:219
+msgid "systemd replaces runlevels with \\alert{targets}:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:219
+msgid ""
+"Configured using symlinks farms in "
+"\\texttt{/etc/systemd/system/\\textbf{target}.wants/}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:219
+msgid "\\texttt{systemctl enable}/\\texttt{disable} manipule those symlinks"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:219
+msgid ""
+"\\texttt{systemctl mask} disables the service and prevents it from being "
+"started manually"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:219
+msgid ""
+"The default target can be configured with\\\\ \\texttt{systemctl "
+"get-default/set-default}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:219
+msgid ""
+"More information: "
+"\\href{http://0pointer.net/blog/projects/three-levels-of-off.html}{\\ul{The "
+"Three Levels of \"Off\"}}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:271
+msgid "Default targets (\\texttt{bootup(7)})"
+msgstr ""
+
+#. type: adjustbox{#2}
+#: systemd.tex:271
+msgid "height=0.45\\textheight,keepaspectratio"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:271
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\tiny,escapeinside={<<}]\n"
+"local-fs-pre.target\n"
+"         |\n"
+"         v\n"
+"(various mounts and   (various swap   (various cryptsetup\n"
+" fsck services...)     devices...)        devices...)       (various "
+"low-level   (various low-level\n"
+"         |                  |                  |             services: "
+"udevd,     API VFS mounts:\n"
+"         v                  v                  v             tmpfiles, "
+"random     mqueue, configfs,\n"
+"  local-fs.target      swap.target     cryptsetup.target    seed, sysctl, "
+"...)      debugfs, ...)\n"
+"         |                  |                  |                    |                    "
+"|\n"
+"         \\__________________|_________________ | "
+"___________________|____________________/\n"
+"                                              \\|/\n"
+"                                               v\n"
+"                                        sysinit.target\n"
+"                                               |\n"
+"          "
+"____________________________________/|\\________________________________________\n"
+"         /                  |                  |                    |                    "
+"\\\n"
+"         |                  |                  |                    |                    "
+"|\n"
+"         v                  v                  |                    v                    "
+"v\n"
+"     (various           (various               |                (various          "
+"rescue.service\n"
+"    timers...)          paths...)              |               sockets...)               "
+"|\n"
+"         |                  |                  |                    |                    "
+"v\n"
+"         v                  v                  |                    v               "
+"<\\textbf{rescue.target}<\n"
+"   timers.target      paths.target             |             "
+"sockets.target\n"
+"         |                  |                  |                    |\n"
+"         \\__________________|_________________ | ___________________/\n"
+"                                              \\|/\n"
+"                                               v\n"
+"                                         basic.target\n"
+"                                               |\n"
+"          ____________________________________/|                                 "
+"emergency.service\n"
+"         /                  |                  |                                         "
+"|\n"
+"         |                  |                  |                                         "
+"v\n"
+"         v                  v                  v                                  "
+"<\\textbf{emergency.target}<\n"
+"     display-        (various system    (various system\n"
+" manager.service         services           services)\n"
+"         |             required for            |\n"
+"         |            graphical UIs)           v\n"
+"         |                  |            <\\textbf{multi-user.target}<\n"
+"         |                  |                  |\n"
+"         \\_________________ | _________________/\n"
+"                           \\|/\n"
+"                            v\n"
+"                      <\\textbf{graphical.target}<"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:273 systemd.tex:277
+msgid "Analyzing startup performance"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:277
+msgid "Fast boot matters in some use-cases:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:307
+msgid "Virtualization, Cloud:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:307
+msgid "Almost no BIOS / hardware checks $\\leadsto$ only software startup"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:307
+msgid "Requirement for infrastructure elasticity"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:307
+msgid "Embedded world"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:307
+msgid "\\texttt{systemd-analyze time}: summary"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:307
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\scriptsize,escapeinside={||}]\n"
+"\tStartup finished in 4.883s (kernel) + 5.229s (userspace) = 10.112s\n"
+"\t"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:307
+msgid "\\texttt{systemd-analyze blame}: worst offenders"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:307
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\normalsize,escapeinside={||}]\n"
+"\t\t\t2.417s systemd-udev-settle.service\n"
+"\t\t\t2.386s postgresql@9.4-main.service\n"
+"\t\t\t1.507s apache2.service\n"
+"\t\t\t240ms NetworkManager.service\n"
+"\t\t\t236ms ModemManager.service\n"
+"\t\t\t194ms accounts-daemon.service\n"
+"\t\t\t"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:315
+msgid "systemd-analyze plot"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:315
+msgid ""
+"Similar to bootchartd, but does not require rebooting with a custom "
+"\\texttt{init=} kernel command-line"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:322
+msgid "systemd-analyze critical-chain"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:322
+msgid "Shows services in the critical path"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:324 systemd.tex:341
+msgid "Exploring the system status"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:341
+msgid ""
+"Listing units with \\texttt{systemctl list-units} (or just "
+"\\texttt{systemctl}):"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:341
+msgid "active units: \\texttt{systemctl}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:341
+msgid "List only services: \\texttt{systemctl -t service}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:341
+msgid "List units in failed state: \\texttt{systemctl --failed}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:341
+msgid "Whole system overview: \\texttt{systemctl status}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:341
+msgid "GUI available: \\texttt{systemadm}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:354
+msgid "\\texttt{systemctl status \\textsl{\\tt service}}"
+msgstr ""
+
+#. type: frame
+#: systemd.tex:354
+msgid "Includes:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:354
+msgid "Service name and description, state, PID"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:354
+msgid ""
+"Free-form status line from \\texttt{systemd-notify(1)} or "
+"\\texttt{sd\\_notify(3)}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:354
+msgid "Processes tree inside the cgroup"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:354
+msgid "Last lines from journald (syslog messages and stdout/stderr)"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:356 systemd.tex:382
+msgid "Configuring services by writing unit files"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:382
+msgid "With sysVinit: shell scripts in \\texttt{/etc/init.d/}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:382
+msgid "Long and difficult to write"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:382
+msgid "Redundant code between services"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:382
+msgid "Slow (numerous \\texttt{fork()} calls)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:382
+msgid "\\alert{With systemd: declarative syntax} (.desktop-like)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:382
+msgid "Move intelligence from scripts to systemd"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:382
+msgid "Covers most of the needs, but shell scripts can still be used"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:382
+msgid "Can use includes and overrides (\\texttt{systemd-delta})"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:382
+msgid "View config file for a unit: \\texttt{systemctl cat atd.service}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:382
+msgid ""
+"Or just find the file under \\texttt{/lib/systemd/system/} (distribution's "
+"defaults) or \\texttt{/etc/systemd/system} (local overrides)"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:389
+msgid "Simple example: atd"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:389
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\normalsize,escapeinside={||}]\n"
+"[Unit]\n"
+"Description=Deferred execution scheduler\n"
+"|\\alert{\\# Pointer to documentation shown in systemctl status}|\n"
+"Documentation=man:atd(8)\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:394
+#, no-wrap
+msgid ""
+"[Service]\n"
+"|\\alert{\\# Command to start the service}|\n"
+"ExecStart=/usr/sbin/atd -f\n"
+"IgnoreSIGPIPE=false |\\alert{\\# Default is true}|\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:398
+#, no-wrap
+msgid ""
+"[Install]\n"
+"|\\alert{\\# Where \"systemctl enable\" creates the symlink}|\n"
+"WantedBy=multi-user.target"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:424
+msgid "Common options"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:424
+msgid ""
+"\\alert{Documented in \\texttt{systemd.unit(5)}} ([Unit]), "
+"\\alert{\\texttt{systemd.service(5)}} ([Service]), "
+"\\alert{\\texttt{systemd.exec(5)}} (execution environment)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:424
+msgid ""
+"\\alert{Show all options} for a given service:\\\\ "
+"\\alert{\\texttt{systemctl show atd}}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:424
+msgid ""
+"Sourcing a configuration file:\\\\ "
+"\\texttt{EnvironmentFile=-/etc/default/ssh}\\\\ "
+"\\texttt{ExecStart=/usr/sbin/sshd -D \\$SSHD\\_OPTS}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:424
+msgid ""
+"Using the \\texttt{\\$MAINPID} magic variable:\\\\ "
+"\\texttt{ExecReload=/bin/kill -HUP \\$MAINPID}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:424
+msgid ""
+"Auto-restart a service when crashed: ($\\approx$ runit / monit)\\\\ "
+"\\texttt{Restart=on-failure}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:424
+msgid ""
+"Conditional start:\\\\ "
+"\\texttt{ConditionPathExists=!/etc/ssh/sshd\\_not\\_to\\_be\\_run}\\\\ "
+"{\\small Conditions on architecture, virtualization, kernel~cmdline, "
+"AC~power, etc.}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:473
+msgid "Options for isolation and security"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:473
+msgid ""
+"Use a \\alert{network namespace} to isolate the service from the "
+"network:\\\\ \\texttt{PrivateNetwork=yes}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:473
+msgid "Use a \\alert{filesystem namespaces}:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:473
+msgid ""
+"To provide a service-specific \\texttt{/tmp} directory:\\\\ "
+"\\texttt{PrivateTmp=yes}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:473
+msgid ""
+"To make some directories inaccessible or read-only:\\\\ "
+"\\texttt{InaccessibleDirectories=/home}\\\\ "
+"\\texttt{ReadOnlyDirectories=/var}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:473
+msgid ""
+"Specify the list of \\alert{\\texttt{capabilities(7)}} for a service:\\\\ "
+"\\texttt{CapabilityBoundingSet=CAP\\_CHOWN CAP\\_KILL}\\\\ Or just remove "
+"one:\\\\ "
+"\\texttt{CapabilityBoundingSet=\\textasciitilde{}CAP\\_SYS\\_PTRACE}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:473
+msgid "Disallow forking:\\\\ \\texttt{LimitNPROC=1}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:473
+msgid "Options for isolation and security (2)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:473
+msgid "Run as user/group: \\texttt{User=}, \\texttt{Group=}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:473
+msgid ""
+"Run service inside a chroot:\\\\ "
+"\\texttt{RootDirectory=/srv/chroot/foobar}\\\\ "
+"\\texttt{ExecStartPre=/usr/local/bin/setup-foobar-chroot.sh}\\\\ "
+"\\texttt{ExecStart=/usr/bin/foobard}\\\\ "
+"\\texttt{RootDirectoryStartOnly=yes}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:473
+msgid ""
+"Control CPU shares, memory limits, block I/O, swapiness:\\\\ "
+"\\texttt{CPUShares=1500}\\\\ \\texttt{MemoryLimit=1G}\\\\ "
+"\\texttt{BlockIOWeight=500}\\\\ \\texttt{BlockIOReadBandwith=/var/log "
+"5M}\\\\ \\texttt{ControlGroupAttribute=memory.swappiness 70}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:473
+msgid ""
+"More information: "
+"\\href{http://0pointer.net/blog/projects/systemd-for-admins-3.html}{\\ul{Converting "
+"sysV init scripts to systemd service files}}, "
+"\\href{http://0pointer.net/blog/projects/security.html}{\\ul{Securing your "
+"services}}, "
+"\\href{http://0pointer.net/blog/projects/changing-roots.html}{\\ul{Changing "
+"roots}}, "
+"\\href{http://0pointer.net/blog/projects/resources.html}{\\ul{Managing "
+"resources}}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:475 systemd.tex:499
+msgid "Timer units"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:499
+msgid ""
+"Similar to cron, but with all the power of systemd (dependencies, execution "
+"environment configuration, etc)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:499
+msgid "\\alert{Realtime (wallclock) timers}: calendar event expressions"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:499
+msgid ""
+"Expressed using a complex format (see \\texttt{systemd.time(7)}), matching "
+"timestamps like: \\texttt{Fri 2012-11-23 11:12:13}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:499
+msgid ""
+"Examples of valid values: \\texttt{hourly} (= \\texttt{*-*-* *:00:00}), "
+"\\texttt{daily} (= \\texttt{*-*-* 00:00:00}), \\texttt{*:2/3} (= "
+"\\texttt{*-*-* *:02/3:00})"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:499
+msgid "\\alert{Monotonic timers}, relative to different starting points:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:499
+msgid "5 hours and 30 mins after system boot: \\texttt{OnBootSec=5h 30m}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:499
+msgid "50s after systemd startup: \\texttt{OnstartupSec=50s}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:499
+msgid ""
+"1 hour after the unit was last activated: \\texttt{OnUnitActiveSec=1h}\\\\ "
+"(can be combined with \\texttt{OnBootSec} or \\texttt{OnStartupSec} to "
+"ensure that a unit runs on a regular basis)"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:506
+msgid "Timer units example"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:506
+msgid "\\texttt{myscript.service}:"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:506
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\footnotesize,escapeinside={||}]\n"
+"[Unit]\n"
+"Description=MyScript\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:510
+#, no-wrap
+msgid ""
+"[Service]\n"
+"Type=simple\n"
+"ExecStart=/usr/local/bin/myscript"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:515
+msgid "\\texttt{myscript.timer}:"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:515
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\footnotesize,escapeinside={||}]\n"
+"[Unit]\n"
+"Description=Runs myscript every hour\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:522
+#, no-wrap
+msgid ""
+"[Timer]\n"
+"# Time to wait after booting before we run first time\n"
+"OnBootSec=10min\n"
+"# Time between running each consecutive time\n"
+"OnUnitActiveSec=1h\n"
+"Unit=myscript.service\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:525 systemd.tex:600
+#, no-wrap
+msgid ""
+"[Install]\n"
+"WantedBy=multi-user.target"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:538
+msgid "Timer units example (2)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:538
+msgid "Start timer:\\\\ \\texttt{systemctl start myscript.timer}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:538
+msgid "Enable timer to start at boot:\\\\ \\texttt{systemctl enable myscript.timer}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:538
+msgid "List all timers:\\\\ \\texttt{systemctl list-timers}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:540 systemd.tex:561
+msgid "Socket activation"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:561
+msgid ""
+"systemd listens for connection on behalf of service until the service is "
+"ready, then passes pending connections"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:561
+msgid "Benefits:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:561
+msgid "\\alert{No need to express ordering of services during boot}:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:561
+msgid "They can all be started in parallel $\\leadsto$ \\alert{faster boot}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:561
+msgid ""
+"And they will wait for each other when needed (when they will talk to each "
+"other), thanks to socket activation"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:561
+msgid ""
+"Services that are \\alert{seldomly used do not need to keep running}, and "
+"can be started on-demand"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:561
+msgid "Not limited to network services: also D-Bus activation and path activation"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:561
+msgid ""
+"More information: "
+"\\href{http://0pointer.net/blog/projects/inetd.html}{\\ul{Converting inetd "
+"Service}}, "
+"\\href{http://0pointer.net/blog/projects/socket-activation.html}{\\ul{Socket "
+"Activation for developers}} (+ "
+"\\href{http://0pointer.net/blog/projects/socket-activation2.html}{\\ul{follow-up}})"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:570
+msgid "Socket activation example: dovecot"
+msgstr ""
+
+#. type: column{#2}
+#: systemd.tex:570
+msgid "0.41\\textwidth"
+msgstr ""
+
+#. type: column
+#: systemd.tex:570
+msgid "\\alert{\\texttt{dovecot.socket}:}"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:570
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\scriptsize,escapeinside={||}]\n"
+"[Unit]\n"
+"Description=Dovecot IMAP/POP3 \\\n"
+" email server activation socket\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:580
+#, no-wrap
+msgid ""
+"[Socket]\n"
+"# dovecot expects separate\n"
+"# IPv4 and IPv6 sockets\n"
+"BindIPv6Only=ipv6-only\n"
+"ListenStream=0.0.0.0:143\n"
+"ListenStream=[::]:143\n"
+"ListenStream=0.0.0.0:993\n"
+"ListenStream=[::]:993\n"
+"KeepAlive=true\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:583 systemd.tex:618
+#, no-wrap
+msgid ""
+"[Install]\n"
+"WantedBy=sockets.target"
+msgstr ""
+
+#. type: column{#2}
+#: systemd.tex:592
+msgid "0.49\\textwidth"
+msgstr ""
+
+#. type: column
+#: systemd.tex:592
+msgid "\\alert{\\texttt{dovecot.service}:}"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:592
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\scriptsize,escapeinside={||}]\n"
+"[Unit]\n"
+"Description=Dovecot IMAP/POP3 \\\n"
+" email server\n"
+"After=local-fs.target network.target\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:597
+#, no-wrap
+msgid ""
+"[Service]\n"
+"Type=simple\n"
+"ExecStart=/usr/sbin/dovecot -F\n"
+"NonBlocking=yes\n"
+"\n"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:611
+msgid "Socket activation example: sshd"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:611
+msgid "\\texttt{sshd.socket}:"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:611
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\footnotesize,escapeinside={||}]\n"
+"[Unit]\n"
+"Description=SSH Socket for Per-Connection Servers\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:615
+#, no-wrap
+msgid ""
+"[Socket]\n"
+"ListenStream=22\n"
+"Accept=yes\n"
+"\n"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:623
+msgid "\\texttt{sshd@.service}:"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:623
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\footnotesize,escapeinside={||}]\n"
+"[Unit]\n"
+"Description=SSH Per-Connection Server\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:627
+#, no-wrap
+msgid ""
+"[Service]\n"
+"ExecStart=-/usr/sbin/sshd -i\n"
+"StandardInput=socket"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:651
+msgid "Socket activation example: sshd (2)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:651
+msgid "\\texttt{sshd@.service} means that this is an \\alert{instantiated service}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:651
+msgid "There's one instance of \\texttt{sshd@.service} per connection:"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:651
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\scriptsize]\n"
+"# systemctl --full | grep ssh\n"
+"sshd@172.31.0.52:22-172.31.0.4:47779.service  loaded active running\n"
+"sshd@172.31.0.52:22-172.31.0.54:52985.service loaded active running\n"
+"sshd.socket                                   loaded active listening"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:651
+msgid "Instanciated services are also used by getty"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:651
+msgid ""
+"See \\href{http://0pointer.de/blog/projects/serial-console.html}{\\ul{Serial "
+"console}} and "
+"\\href{http://0pointer.de/blog/projects/instances.html}{\\ul{Instanciated "
+"services}}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:653 systemd.tex:680
+msgid "Logging with journald"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:680
+msgid "Component of systemd"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:680
+msgid ""
+"Captures syslog messages, kernel log messages, initrd and early boot "
+"messages, messages written to stdout/stderr by all services"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:680
+msgid "\\alert{Forwards everything to syslog}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:680
+msgid ""
+"\\alert{Structured format} (key/value fields), can contain \\alert{arbitrary "
+"data}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:680
+msgid "But viewable as syslog-like format with \\alert{\\texttt{journalctl}}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:680
+msgid "Indexed, binary logs; rotation handled transparently"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:680
+msgid "Can replace syslog (but can also work in parallel)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:680
+msgid ""
+"Not persistent across reboots by default -- to make it persistent, create "
+"the \\texttt{/var/log/journal} directory, preferably with:\\\\ "
+"\\texttt{install -d -g systemd-journal /var/log/journal}\\\\ "
+"\\texttt{setfacl -R -nm g:adm:rx,d:g:adm:rx /var/log/journal}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:680
+msgid ""
+"Can log to a remote host (with \\texttt{systemd-journal-gateway}, not in "
+"Debian yet)"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:701
+msgid "Example journal entry"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:701
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small]\n"
+"_SERVICE=systemd-logind.service\n"
+"MESSAGE=User harald logged in\n"
+"MESSAGE_ID=422bc3d271414bc8bc9570f222f24a9\n"
+"_EXE=/lib/systemd/systemd-logind\n"
+"_COMM=systemd-logind\n"
+"_CMDLINE=/lib/systemd/systemd-logind\n"
+"_PID=4711\n"
+"_UID=0\n"
+"_GID=0\n"
+"_SYSTEMD_CGROUP=/system/systemd-logind.service\n"
+"_CGROUPS=cpu:/system/systemd-logind.service\n"
+"PRIORITY=6\n"
+"_BOOT_ID=422bc3d271414bc8bc95870f222f24a9\n"
+"_MACHINE_ID=c686f3b205dd48e0b43ceb6eda479721\n"
+"_HOSTNAME=waldi\n"
+"LOGIN_USER=500"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:726
+msgid "Using \\texttt{journalctl}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:726
+msgid "View the full log: \\texttt{journalctl}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:726
+msgid "Since last boot: \\texttt{journalctl -b}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:726
+msgid ""
+"For a given time interval: \\texttt{journalctl --since=yesterday}\\\\ or "
+"\\texttt{journalctl --until=\"2013-03-15 13:10:30\"}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:726
+msgid "View it in the verbose (native) format: \\texttt{journalctl -o verbose}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:726
+msgid "Filter by systemd unit: \\texttt{journalctl -u ssh}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:726
+msgid ""
+"Filter by field from the verbose format:\\\\ \\texttt{journalctl "
+"\\_SYSTEMD\\_UNIT=ssh.service}\\\\ \\texttt{journalctl \\_PID=810}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:726
+msgid "Line view ($\\approx$ tail -f): \\texttt{journalctl -f}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:726
+msgid "Last entries ($\\approx$ tail): \\texttt{journalctl -n}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:726
+msgid "Works with bash-completion"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:726
+msgid ""
+"See also: "
+"\\href{https://docs.google.com/document/pub?id=1IC9yOXj7j6cdLLxWEBAGRL6wl97tFxgjLUEHIX3MSTs}{\\ul{Journald "
+"design document}}, "
+"\\href{http://0pointer.net/blog/projects/journalctl.html}{\\ul{Using the "
+"Journal}}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:754
+msgid "Containers integration"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid ""
+"General philosophy: \\alert{integrate management of services from machines "
+"(VMs and containers) with those of the host}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid ""
+"\\texttt{systemd-machined}: tracks machines, provides an API to list, "
+"create, register, kill, terminate machines"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid "\\texttt{machinectl}: command-line utility to manipulate machines"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid "other tools also have containers support:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid "\\texttt{systemctl -M mycontainer restart foo}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid "\\texttt{systemctl list-machines}: provides state of containers"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid "\\texttt{journalctl -M mycontainer}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid "\\texttt{journalctl -m}: combined log of all containers"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid "systemd has its own mini container manager: \\texttt{systemd-nspawn}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid ""
+"Other virtualization solutions can also "
+"\\href{http://www.freedesktop.org/wiki/Software/systemd/machined/}{\\ul{talk "
+"to \\texttt{machined}}}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:754
+msgid ""
+"More information: "
+"\\href{http://0pointer.net/blog/systemd-for-administrators-part-xxi.html}{\\ul{Container "
+"integration}}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:782
+msgid "More stuff"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:782
+msgid ""
+"\\href{http://0pointer.net/blog/projects/the-new-configuration-files.html}{\\ul{New "
+"cross-distro configuration files}}: \\texttt{/etc/hostname}, "
+"\\texttt{/etc/locale.conf}, \\texttt{/etc/sysctl.d/*.conf}, "
+"\\texttt{/etc/tmpfiles.d/*.conf}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:782
+msgid ""
+"\\href{http://www.certdepot.net/rhel7-get-started-systemd/}{\\ul{Tools to "
+"manage hostname, locale, time and date}}: \\texttt{hostnamectl}, "
+"\\texttt{localectl}, \\texttt{timedatectl}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:782
+msgid ""
+"\\href{http://0pointer.net/blog/projects/watchdog.html}{\\ul{Support for "
+"watchdogs}}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:782
+msgid "Handling of user sessions"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:782
+msgid "Each within its own cgroup"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:782
+msgid ""
+"\\href{http://0pointer.net/blog/projects/multi-seat.html}{\\ul{Multi-seat "
+"support}}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:782
+msgid "\\texttt{loginctl} to manage sessions, users, seats"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:782
+msgid "systemd networking: systemd-networkd, systemd-resolved"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:782
+msgid "Started as a way to improve networking management for containers"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:790
+msgid "systemd revisits the way we manage Linux systems"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:790
+msgid ""
+"\\textsl{If we redesigned services management from scratch, would it look "
+"like systemd?}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:798
+msgid "For service developers: easier to support systemd than sysVinit"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:798
+msgid "No need to fork, to drop privileges, to write a pid file"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:798
+msgid ""
+"Just output logs to stdout (redirected to syslog, "
+"\\href{http://0pointer.net/blog/projects/journal-submit.html}{\\ul{with "
+"priorities}})"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:804
+msgid ""
+"Some parts still have rough edges, or are still moving targets, but are "
+"promising: journal, containers, networking"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:804
+msgid ""
+"systemd might not be the final answer, but at least it's an interesting data "
+"point to look at"
+msgstr ""
