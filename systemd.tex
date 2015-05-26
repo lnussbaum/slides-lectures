@@ -752,32 +752,104 @@ LOGIN_USER=500
 \end{itemize}
 \end{frame}
 
-\section{Conclusions}
 
-
-
-\begin{frame}{More stuff}
+\begin{frame}{Networking with systemd-networkd}
+	\hbr
+\begin{itemize}
+\item Replacement for \texttt{/etc/network/interfaces}, on servers and VMs
 	\begin{itemize}
-		\item \href{http://0pointer.net/blog/projects/the-new-configuration-files.html}{\ul{New cross-distro configuration files}}: \texttt{/etc/hostname}, \texttt{/etc/locale.conf}, \texttt{/etc/sysctl.d/*.conf}, \texttt{/etc/tmpfiles.d/*.conf}
-			\hbr
-		\item \href{http://www.certdepot.net/rhel7-get-started-systemd/}{\ul{Tools to manage hostname, locale, time and date}}: \texttt{hostnamectl}, \texttt{localectl}, \texttt{timedatectl}
-			\hbr
-		\item \href{http://0pointer.net/blog/projects/watchdog.html}{\ul{Support for watchdogs}}
-			\hbr
-		\item Handling of user sessions
-			\begin{itemize}
-				\item Each within its own cgroup
-					\hbr
-				\item \href{http://0pointer.net/blog/projects/multi-seat.html}{\ul{Multi-seat support}}
-					\hbr
-				\item \texttt{loginctl} to manage sessions, users, seats
-			\end{itemize}
-			\hbr
-		\item systemd networking: systemd-networkd, systemd-resolved
-			\begin{itemize}
-				\item Started as a way to improve networking management for containers
-			\end{itemize}
+		\item Not really for Network Manager on desktops and laptops
 	\end{itemize}
+\hbr
+\item Supports setting IP configuration, configuring bridges, vlans, bonding, tunnels, etc
+\hbr
+\item Configuration files with a \texttt{[Match]} section to match on MAC address, driver, udev path, type, hostname, etc
+	\begin{itemize}
+		\item \alert{foo.link:} link-level configuration -- MAC address, interface name, MTU, rate, Duplex mode, Wake on Lan
+			\hbr
+		\item \alert{foo.netdev:} creation of virtual network devices (bridges, bonds, vlans, IPIP or GRE tunnels, VXLAN, tun, tap, veth)
+			\hbr
+		\item \alert{foo.network:} network devices configuration: IP (static or DHCP, gateway, additional routes, DNS), addition to bridge
+	\end{itemize}
+	\hhbr
+\item More information: systemd-networkd(8), systemd.link(5), systemd.network(5), systemd.netdev(5)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Example 1: DHCP, additional route}
+\begin{itemize}
+\item For higher performance, systemd includes a DHCP client
+\end{itemize}
+
+\begin{lstlisting}[basicstyle=\ttfamily\small,escapeinside={<<}]
+<\textbf{\# /etc/systemd/network/ethernet.network}<
+[Match]
+Name=eth0
+
+[Network]
+DHCP=yes
+
+[Route]
+Gateway=192.168.1.253
+Destination=10.0.0.0/8
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Example 2: static addressing and VLAN}
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize,escapeinside={<<}]
+<\textbf{\# /etc/systemd/network/vlan1.netdev}<
+[NetDev]
+Name=vlan1
+Kind=vlan
+<\vspace{-0.5em}<
+[VLAN]
+Id=1
+<\vspace{-0.5em}<
+<\textbf{\# /etc/systemd/network/ethernet.network}<
+[Match]
+Name=eth0
+<\vspace{-0.5em}<
+[Network]
+DHCP=yes
+VLAN=vlan1 # will create vlan1 on this device
+<\vspace{-0.5em}<
+<\textbf{\# /etc/systemd/network/vlan1.network}<
+[Match]
+Name=vlan1
+<\vspace{-0.5em}<
+[Network]
+Address=192.168.1.1/24
+Gateway=192.168.1.254
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Example 3: bridge and tap}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,escapeinside={<<}]
+<\textbf{\# /etc/systemd/network/bridge0.netdev}<
+[NetDev]
+Name=bridge0
+Kind=bridge
+<\vspace{-0.5em}<
+<\textbf{\# /etc/systemd/network/bridge0.network}<
+[Match]
+Name=bridge0
+<\vspace{-0.5em}<
+[Network]
+Address=192.168.1.1/24
+DHCPServer=yes
+<\vspace{-0.5em}<
+<\textbf{\# /etc/systemd/network/tap.netdev}<
+[NetDev]
+Name=tap0
+Kind=tap
+<\vspace{-0.5em}<
+<\textbf{\# /etc/systemd/network/tap.network}<
+[Match]
+Name=bridge0
+<\vspace{-0.5em}<
+[NetDev]
+Bridge=bridge0
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{Migration from sysvinit}
@@ -813,6 +885,27 @@ KillMode=process
 \end{lstlisting}
 \end{adjustbox}
 \end{center}
+\end{frame}
+
+\section{Conclusions}
+
+\begin{frame}{More stuff}
+	\begin{itemize}
+		\item \href{http://0pointer.net/blog/projects/the-new-configuration-files.html}{\ul{New cross-distro configuration files}}: \texttt{/etc/hostname}, \texttt{/etc/locale.conf}, \texttt{/etc/sysctl.d/*.conf}, \texttt{/etc/tmpfiles.d/*.conf}
+			\hbr
+		\item \href{http://www.certdepot.net/rhel7-get-started-systemd/}{\ul{Tools to manage hostname, locale, time and date}}: \texttt{hostnamectl}, \texttt{localectl}, \texttt{timedatectl}
+			\hbr
+		\item \href{http://0pointer.net/blog/projects/watchdog.html}{\ul{Support for watchdogs}}
+			\hbr
+		\item Handling of user sessions
+			\begin{itemize}
+				\item Each within its own cgroup
+					\hbr
+				\item \href{http://0pointer.net/blog/projects/multi-seat.html}{\ul{Multi-seat support}}
+					\hbr
+				\item \texttt{loginctl} to manage sessions, users, seats
+			\end{itemize}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Conclusions}
