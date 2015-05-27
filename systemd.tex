@@ -801,25 +801,26 @@ Destination=10.0.0.0/8
 \begin{frame}[fragile]{Example 2: static addressing and VLAN}
 \begin{lstlisting}[basicstyle=\ttfamily\footnotesize,escapeinside={<<}]
 <\textbf{\# /etc/systemd/network/vlan1.netdev}<
+# [Match] section is optional in netdev files
 [NetDev]
 Name=vlan1
 Kind=vlan
-<\vspace{-0.5em}<
+<\vspace{-0.7em}<
 [VLAN]
 Id=1
-<\vspace{-0.5em}<
+<\vspace{-0.7em}<
 <\textbf{\# /etc/systemd/network/ethernet.network}<
 [Match]
 Name=eth0
-<\vspace{-0.5em}<
+<\vspace{-0.7em}<
 [Network]
 DHCP=yes
 VLAN=vlan1 # will create vlan1 on this device
-<\vspace{-0.5em}<
+<\vspace{-0.7em}<
 <\textbf{\# /etc/systemd/network/vlan1.network}<
 [Match]
 Name=vlan1
-<\vspace{-0.5em}<
+<\vspace{-0.7em}<
 [Network]
 Address=192.168.1.1/24
 Gateway=192.168.1.254
