@@ -859,14 +859,25 @@ Bridge=bridge0
 \section{Migration from sysvinit}
 
 \begin{frame}[fragile]{Migration from sysvinit}
-\begin{itemize}
-	\item \texttt{service foo start|stop|status|\ldots} redirect to \texttt{systemctl}
-	\hbr
-\item \texttt{systemd-sysv-generator} creates wrapper units for LSB scripts:
+	\begin{itemize}
+		\item systemd hooks into LSB init scripts: \texttt{service foo start|stop|...} and \texttt{/etc/init.d/foo} redirect to \texttt{systemctl}
+			\hbr
+		\item \texttt{systemd-sysv-generator} creates wrapper units for LSB scripts:
+			\begin{itemize}
+				\item Using LSB dependencies
+					\hbr
+				\item Services are described as \textsl{LSB: foo}
+				\begin{itemize}
+				\item List all generated services:\\
+					\texttt{systemctl list-units | grep LSB:}
+			\end{itemize}
+			\end{itemize}
 	\end{itemize}
-	\vspace{-0.5em}
+\end{frame}
+
+\begin{frame}[fragile]{Generated wrapper service file for apache2}
 \begin{center}
-\begin{adjustbox}{height=0.40\textheight,keepaspectratio}
+\begin{adjustbox}{height=0.45\textheight,keepaspectratio}
 \begin{lstlisting}[basicstyle=\ttfamily\tiny,escapeinside={<<}]
 $ systemctl cat <\textbf{apache2.service}<
 # /run/systemd/generator.late/apache2.service
