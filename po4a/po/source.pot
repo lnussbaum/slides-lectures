@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-05 08:42+0200\n"
+"POT-Creation-Date: 2015-08-18 11:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1266,7 +1266,7 @@ msgid ""
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:647 ssh.tex:647 systemd.tex:756 systemd.tex:790
+#: ssh.tex:647 ssh.tex:647 systemd.tex:908 systemd.tex:935
 msgid "Conclusions"
 msgstr ""
 
@@ -1812,7 +1812,7 @@ msgid "Default targets (\\texttt{bootup(7)})"
 msgstr ""
 
 #. type: adjustbox{#2}
-#: systemd.tex:271
+#: systemd.tex:271 systemd.tex:885
 msgid "height=0.45\\textheight,keepaspectratio"
 msgstr ""
 
@@ -2800,61 +2800,62 @@ msgid ""
 msgstr ""
 
 #. type: frame{#2}
-#: systemd.tex:754
+#: systemd.tex:731 systemd.tex:756
 msgid "Containers integration"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid ""
 "General philosophy: \\alert{integrate management of services from machines "
 "(VMs and containers) with those of the host}"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid ""
 "\\texttt{systemd-machined}: tracks machines, provides an API to list, "
-"create, register, kill, terminate machines"
+"create, register, kill, terminate machines, transfer images (tar, raw, "
+"Docker)"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid "\\texttt{machinectl}: command-line utility to manipulate machines"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid "other tools also have containers support:"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid "\\texttt{systemctl -M mycontainer restart foo}"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid "\\texttt{systemctl list-machines}: provides state of containers"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid "\\texttt{journalctl -M mycontainer}"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid "\\texttt{journalctl -m}: combined log of all containers"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid "systemd has its own mini container manager: \\texttt{systemd-nspawn}"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid ""
 "Other virtualization solutions can also "
 "\\href{http://www.freedesktop.org/wiki/Software/systemd/machined/}{\\ul{talk "
@@ -2862,7 +2863,7 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:754
+#: systemd.tex:756
 msgid ""
 "More information: "
 "\\href{http://0pointer.net/blog/systemd-for-administrators-part-xxi.html}{\\ul{Container "
@@ -2870,12 +2871,256 @@ msgid ""
 msgstr ""
 
 #. type: frame{#2}
-#: systemd.tex:782
+#: systemd.tex:758 systemd.tex:781
+msgid "Networking with systemd-networkd"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:781
+msgid "Replacement for \\texttt{/etc/network/interfaces}, on servers and VMs"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:781
+msgid "Not really for Network Manager on desktops and laptops"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:781
+msgid ""
+"Supports setting IP configuration, configuring bridges, vlans, bonding, "
+"tunnels, etc"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:781
+msgid ""
+"Configuration files with a \\texttt{[Match]} section to match on MAC "
+"address, driver, udev path, type, hostname, etc"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:781
+msgid ""
+"\\alert{foo.link:} link-level configuration -- MAC address, interface name, "
+"MTU, rate, Duplex mode, Wake on Lan"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:781
+msgid ""
+"\\alert{foo.netdev:} creation of virtual network devices (bridges, bonds, "
+"vlans, IPIP or GRE tunnels, VXLAN, tun, tap, veth)"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:781
+msgid ""
+"\\alert{foo.network:} network devices configuration: IP (static or DHCP, "
+"gateway, additional routes, DNS), addition to bridge"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:781
+msgid ""
+"More information: systemd-networkd(8), systemd.link(5), systemd.network(5), "
+"systemd.netdev(5)"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:786
+msgid "Example 1: DHCP, additional route"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:786
+msgid "For higher performance, systemd includes a DHCP client"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:791
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={<<}]\n"
+"<\\textbf{\\# /etc/systemd/network/ethernet.network}<\n"
+"[Match]\n"
+"Name=eth0\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:794
+#, no-wrap
+msgid ""
+"[Network]\n"
+"DHCP=yes\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:798
+#, no-wrap
+msgid ""
+"[Route]\n"
+"Gateway=192.168.1.253\n"
+"Destination=10.0.0.0/8"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:829
+msgid "Example 2: static addressing and VLAN"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:829
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\footnotesize,escapeinside={<<}]\n"
+"<\\textbf{\\# /etc/systemd/network/vlan1.netdev}<\n"
+"# [Match] section is optional in netdev files\n"
+"[NetDev]\n"
+"Name=vlan1\n"
+"Kind=vlan\n"
+"<\\vspace{-0.7em}<\n"
+"[VLAN]\n"
+"Id=1\n"
+"<\\vspace{-0.7em}<\n"
+"<\\textbf{\\# /etc/systemd/network/ethernet.network}<\n"
+"[Match]\n"
+"Name=eth0\n"
+"<\\vspace{-0.7em}<\n"
+"[Network]\n"
+"DHCP=yes\n"
+"VLAN=vlan1 # will create vlan1 on this device\n"
+"<\\vspace{-0.7em}<\n"
+"<\\textbf{\\# /etc/systemd/network/vlan1.network}<\n"
+"[Match]\n"
+"Name=vlan1\n"
+"<\\vspace{-0.7em}<\n"
+"[Network]\n"
+"Address=192.168.1.1/24\n"
+"Gateway=192.168.1.254"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:858
+msgid "Example 3: bridge and tap"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:858
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\scriptsize,escapeinside={<<}]\n"
+"<\\textbf{\\# /etc/systemd/network/bridge0.netdev}<\n"
+"[NetDev]\n"
+"Name=bridge0\n"
+"Kind=bridge\n"
+"<\\vspace{-0.5em}<\n"
+"<\\textbf{\\# /etc/systemd/network/bridge0.network}<\n"
+"[Match]\n"
+"Name=bridge0\n"
+"<\\vspace{-0.5em}<\n"
+"[Network]\n"
+"Address=192.168.1.1/24\n"
+"DHCPServer=yes # systemd has its own, very basic, DHCP server\n"
+"<\\vspace{-0.5em}<\n"
+"<\\textbf{\\# /etc/systemd/network/tap.netdev}<\n"
+"[NetDev]\n"
+"Name=tap0\n"
+"Kind=tap\n"
+"<\\vspace{-0.5em}<\n"
+"<\\textbf{\\# /etc/systemd/network/tap.network}<\n"
+"[Match]\n"
+"Name=bridge0\n"
+"<\\vspace{-0.5em}<\n"
+"[NetDev]\n"
+"Bridge=bridge0"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:860 systemd.tex:877
+msgid "Migration from sysvinit"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:877
+msgid ""
+"systemd hooks into LSB init scripts: \\texttt{service foo start|stop|...} "
+"and \\texttt{/etc/init.d/foo} redirect to \\texttt{systemctl}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:877
+msgid "\\texttt{systemd-sysv-generator} creates wrapper units for LSB scripts:"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:877
+msgid "Using LSB dependencies"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:877
+msgid "Services are described as \\textsl{LSB: foo}"
+msgstr ""
+
+#. type: itemize
+#: systemd.tex:877
+msgid "List all generated services:\\\\ \\texttt{systemctl list-units | grep LSB:}"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:885
+msgid "Generated wrapper service file for apache2"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:885
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\tiny,escapeinside={<<}]\n"
+"$ systemctl cat <\\textbf{apache2.service}<\n"
+"# /run/systemd/generator.late/apache2.service\n"
+"# Automatically generated by systemd-sysv-generator\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:894
+#, no-wrap
+msgid ""
+"[Unit]\n"
+"Description=<\\textbf{LSB:}< Apache2 web server\n"
+"Before=runlevel2.target runlevel3.target runlevel4.target\n"
+"  runlevel5.target shutdown.target\n"
+"After=local-fs.target remote-fs.target network-online.target\n"
+"  systemd-journald-dev-log.socket nss-lookup.target\n"
+"Wants=network-online.target\n"
+"Conflicts=shutdown.target\n"
+"\n"
+msgstr ""
+
+#. type: lstlisting
+#: systemd.tex:902
+#, no-wrap
+msgid ""
+"[Service]\n"
+"Type=forking\n"
+"KillMode=process\n"
+"[...]\n"
+"<\\textbf{ExecStart=/etc/init.d/apache2 start}<\n"
+"<\\textbf{ExecStop=/etc/init.d/apache2 stop}<\n"
+"<\\textbf{ExecReload=/etc/init.d/apache2 reload}<"
+msgstr ""
+
+#. type: frame{#2}
+#: systemd.tex:927
 msgid "More stuff"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:782
+#: systemd.tex:927
 msgid ""
 "\\href{http://0pointer.net/blog/projects/the-new-configuration-files.html}{\\ul{New "
 "cross-distro configuration files}}: \\texttt{/etc/hostname}, "
@@ -2884,7 +3129,7 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:782
+#: systemd.tex:927
 msgid ""
 "\\href{http://www.certdepot.net/rhel7-get-started-systemd/}{\\ul{Tools to "
 "manage hostname, locale, time and date}}: \\texttt{hostnamectl}, "
@@ -2892,68 +3137,58 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:782
+#: systemd.tex:927
 msgid ""
 "\\href{http://0pointer.net/blog/projects/watchdog.html}{\\ul{Support for "
 "watchdogs}}"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:782
+#: systemd.tex:927
 msgid "Handling of user sessions"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:782
+#: systemd.tex:927
 msgid "Each within its own cgroup"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:782
+#: systemd.tex:927
 msgid ""
 "\\href{http://0pointer.net/blog/projects/multi-seat.html}{\\ul{Multi-seat "
 "support}}"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:782
+#: systemd.tex:927
 msgid "\\texttt{loginctl} to manage sessions, users, seats"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:782
-msgid "systemd networking: systemd-networkd, systemd-resolved"
-msgstr ""
-
-#. type: itemize
-#: systemd.tex:782
-msgid "Started as a way to improve networking management for containers"
-msgstr ""
-
-#. type: itemize
-#: systemd.tex:790
+#: systemd.tex:935
 msgid "systemd revisits the way we manage Linux systems"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:790
+#: systemd.tex:935
 msgid ""
 "\\textsl{If we redesigned services management from scratch, would it look "
 "like systemd?}"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:798
+#: systemd.tex:943
 msgid "For service developers: easier to support systemd than sysVinit"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:798
+#: systemd.tex:943
 msgid "No need to fork, to drop privileges, to write a pid file"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:798
+#: systemd.tex:943
 msgid ""
 "Just output logs to stdout (redirected to syslog, "
 "\\href{http://0pointer.net/blog/projects/journal-submit.html}{\\ul{with "
@@ -2961,14 +3196,14 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:804
+#: systemd.tex:949
 msgid ""
 "Some parts still have rough edges, or are still moving targets, but are "
 "promising: journal, containers, networking"
 msgstr ""
 
 #. type: itemize
-#: systemd.tex:804
+#: systemd.tex:949
 msgid ""
 "systemd might not be the final answer, but at least it's an interesting data "
 "point to look at"
