@@ -410,7 +410,7 @@ Host *
 	\item Notes:
 		\begin{itemize}
 			\item SSH tunnels don't work very well for HTTP, because IP+port are not enough to identify a website (\texttt{Host:} HTTP header)
-			\item By default, tunnels are only bound to localhost. Use \texttt{-g} to allow remote hosts to connect to local forwarded ports
+			\item By default, tunnels are only bound to localhost. Use \texttt{-g} (gateway) to allow remote hosts to connect to local forwarded ports
 		\end{itemize}
 \end{itemize}
 \end{frame}
@@ -618,6 +618,9 @@ no-port-forwarding ssh-rsa AAAA[...]oR user@my.host.net
 	reconnect later
 	\hbr
 \item \texttt{mosh}: SSH alternative suited for Wi-Fi, cellular and long distance links
+	\hbr
+\item \texttt{autossh}: checks an SSH session every 10 minutes, and restart it if needed\\
+	\texttt{autossh -t server 'screen -RD'}: maintain a screen session open despite network disconnections
 \end{itemize}
 \end{frame}
 
