@@ -1,0 +1,14 @@
+% po4a: environment frame []{_}
+
+% po4a: command *usepackage {}
+% po4a: command *usepackage []{} 
+% po4a: command *newcommand {}[]{}
+% po4a: command *renewcommand {}{}
+% po4a: command *lstset {}
+% po4a: command *usetikzlibrary {}
+% po4a: command *setbeamercovered {}
+% po4a: command *beamertemplatetransparentcovereddynamic
+% po4a: command *pgfdeclareimage []{}{}
+% po4a: command *logo {}
+% po4a: command *AtBeginSection []{_}
+% po4a: command *frametitle {_}
