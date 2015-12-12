@@ -1473,6 +1473,7 @@ msgid ""
 "machines where you can start long-running commands, disconnect, and "
 "reconnect later"
 msgstr ""
+"\\texttt{screen} et \\texttt{tmux}: fournissent des terminaux virtuels sur les machines distantes, pour démarrer des commandes, s'en détacher, et s'y reconnecter plus tard"
 
 #. type: itemize
 #: ssh.tex:626
@@ -1490,6 +1491,8 @@ msgid ""
 "needed\\\\ \\texttt{autossh -t server 'screen -RD'}: maintain a screen "
 "session open despite network disconnections"
 msgstr ""
+"\\texttt{autossh}: vérifie qu'une session SSH est toujours active, et la relance si besoin"
+"\\\\ \\texttt{autossh -t server 'screen -RD'}: maintient une session screen ouverte malgré les déconnexions réseaux"
 
 #. type: frame{#2}
 #: ssh.tex:650
