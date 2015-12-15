@@ -175,7 +175,7 @@ msgid ""
 "\\ $\\leadsto$ Provides a shell on \\textsl{remote-server}"
 msgstr ""
 "Se connecter à un serveur distant:\\\\ \\texttt{\\$ ssh login@remote-server} "
-"\\\\ $\\leadsto$ Fournit un shell  \\textsl{remote-server}"
+"\\\\ $\\leadsto$ Fournit un shell sur \\textsl{remote-server}"
 
 #. type: itemize
 #: ssh.tex:72
@@ -317,7 +317,7 @@ msgstr "Avantages:"
 #. type: itemize
 #: ssh.tex:135
 msgid "The password does not need to be sent over the network"
-msgstr "Les mots de passes ne sont pas envoyés par le réseau"
+msgstr "Les mots de passe ne sont pas envoyés par le réseau"
 
 #. type: itemize
 #: ssh.tex:135
@@ -1532,7 +1532,7 @@ msgstr "Utilisation d'un agent SSH"
 #. type: enumerate
 #: ssh.tex:650
 msgid "aliases in SSH configuration"
-msgstr "Aliass dans la configuration SSH"
+msgstr "Alias dans la configuration SSH"
 
 #. type: enumerate
 #: ssh.tex:650
