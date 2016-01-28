@@ -1,0 +1,48 @@
+#!/usr/bin/ruby
+
+require 'optparse'
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: faked [options]"
+
+  opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
+    options[:verbose] = v
+  end
+end.parse!
+
+Signal.trap("USR1") do
+  puts "faked terminating because of SIGUSR1..."
+  exit(1)
+end
+
+Signal.trap("TERM") do
+  puts "faked terminating..."
+  exit(0)
+end
+
+# fake startup: sleep for 0.5s between each message
+puts "faked starting... phase 0"
+sleep 0.5
+puts "faked starting... phase 1"
+sleep 0.5
+puts "faked starting... phase 2"
+sleep 0.5
+puts "faked started!"
+# main loop
+# - create one child per second
+# - each child sleeps for 10s before terminating
+(1..86400).each do |i|
+  pid = fork do
+    # avoid being killed by CTRL+C
+    Process.setsid
+    Signal.trap("INT") {}
+
+    puts "faked[#{i}] child created"
+    sleep 10
+    puts "faked[#{i}] child stopping"
+  end
+  Process.detach(pid)
+  sleep 1
+end
+# sleep forever after one day
+sleep
