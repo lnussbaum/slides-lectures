@@ -281,7 +281,7 @@ Host *.acme.com
     User jdoe
     Compression yes # default is no
     PasswordAuthentication no # only use public key
-    ServerAliveInternal 60 # keep-alives for bad firewall
+    ServerAliveInterval 60 # keep-alives for bad firewall
 
 Host *
     User john
@@ -501,7 +501,7 @@ $ tsocks pidgin # tunnel application through socks
 	\end{itemize}
 \end{frame}
 
-\subsection{Jumping through hosts with ProxyCommand}
+\subsection{Jumping through hosts}
 \begin{frame}[fragile]{Jumping through hosts with ProxyCommand}
 
 \begin{tikzpicture}
@@ -557,6 +557,8 @@ Host *.priv
     ProxyCommand ssh serv nc -q 0 $(basename %h .priv) %p
 \end{lstlisting}\vspace{-0.2em}
 \begin{itemize}
+\item More generic version: \url{https://glandium.org/blog/?p=3631}
+\hbr
 \item Similar solution to connect via a proxy:
 \begin{itemize}
 	\item SOCKS: \texttt{connect-proxy -4 -S myproxy:1080 rhost 22}
@@ -564,6 +566,21 @@ Host *.priv
 	\item When CONNECT requests are forbidden, set up \texttt{httptunnel} on a remote server, and use \texttt{htc} and \texttt{hts}
 \end{itemize}
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Jumping through hosts with ProxyJump}
+	\hbr
+\begin{itemize}
+\item Available since OpenSSH 7.3
+\item A simpler way to write ProxyCommand configuration:
+\begin{lstlisting}[basicstyle=\ttfamily\small,escapeinside={||}]
+Host server2 # ssh server2 works
+    ProxyJump server
+\end{lstlisting}\vspace{-0.2em}
+\hbr
+\item Or on the command line:\\
+	\texttt{ssh -J server server2}
+	\end{itemize}
 \end{frame}
 
 \subsection{Triggering remote command execution securely}
