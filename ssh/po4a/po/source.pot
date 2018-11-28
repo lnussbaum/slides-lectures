@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-12-11 14:01+0100\n"
+"POT-Creation-Date: 2018-11-28 18:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,7 +105,7 @@ msgstr ""
 
 #. type: itemize
 #: ssh.tex:62
-msgid "Putty: Windows, client only"
+msgid "Putty, MobaXterm: Windows, client only"
 msgstr ""
 
 #. type: itemize
@@ -281,49 +281,54 @@ msgid "Server compares the nonce with the response"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:135
+#: ssh.tex:137
 msgid "Public-key authentication (2)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:135
+#: ssh.tex:137
 msgid "Advantages:"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:135
+#: ssh.tex:137
 msgid "The password does not need to be sent over the network"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:135
+#: ssh.tex:137
 msgid "The private key never leaves the client"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:135
+#: ssh.tex:137
+msgid "The same key can be used for many servers"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:137
 msgid "The process can be automated"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:135
+#: ssh.tex:137
 msgid ""
 "However, the private key should be protected (what if your laptop gets "
 "stolen?)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:135
+#: ssh.tex:137
 msgid "Usually with a passphrase"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:162
+#: ssh.tex:164
 msgid "Key-pair generation"
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:162
+#: ssh.tex:164
 #, no-wrap
 msgid ""
 "[basicstyle=\\ttfamily\\scriptsize,escapeinside={||}]\n"
@@ -347,65 +352,65 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:162
+#: ssh.tex:164
 msgid "Creates the key-pair:"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:162
+#: ssh.tex:164
 msgid "\\texttt{\\tilda/.ssh/id\\_rsa} (private key)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:162
+#: ssh.tex:164
 msgid "\\texttt{\\tilda/.ssh/id\\_rsa.pub} (public key)"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:168
+#: ssh.tex:170
 msgid "Copying the public key to the server"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:168
+#: ssh.tex:170
 msgid ""
 "Example public key:\\\\ {\\footnotesize \\texttt{ssh-rsa "
 "AAAAB3NX[\\ldots]hpoR3/PLlXgGcZS4oR user@my.hostname.net}}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:171
+#: ssh.tex:173
 msgid ""
 "On the server, \\texttt{\\bf \\tilda{}user/.ssh/authorized\\_keys} contains "
 "the list of public keys authorized to connect to the \\texttt{user} account"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:181
+#: ssh.tex:183
 msgid "The key can be copied manually there"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:181
+#: ssh.tex:183
 msgid ""
 "Or use \\texttt{ssh-copy-id} to automatically copy the key:\\\\ "
 "\\texttt{client\\$ ssh-copy-id user@server}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:181
+#: ssh.tex:183
 msgid ""
 "Sometimes the public key needs to be provided using a web interface (e.g. on "
 "GitHub, FusionForge, Redmine, etc.)"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:203
+#: ssh.tex:205
 msgid "Avoiding typing the passphrase"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:203
+#: ssh.tex:205
 msgid ""
 "If the private key is not protected with a passphrase, the connection is "
 "established immediately:\\\\ \\hbr {\\ttfamily\\footnotesize *** "
@@ -414,7 +419,7 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:203
+#: ssh.tex:205
 msgid ""
 "Otherwise, \\texttt{ssh} asks for the passphrase:\\\\ \\hbr "
 "{\\ttfamily\\footnotesize *** login@laptop:\\tilda\\$ ssh rlogin@rhost "
@@ -423,51 +428,51 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:203
+#: ssh.tex:205
 msgid "An \\textbf{SSH agent} can be used to store the decrypted private key"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:203
+#: ssh.tex:205
 msgid "Most desktop environments act as SSH agents automatically"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:203
+#: ssh.tex:205
 msgid "One can be started with \\texttt{ssh-agent} if needed"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:203
+#: ssh.tex:205
 msgid "Add keys manually with \\texttt{ssh-add}"
 msgstr ""
 
 #. type: subsection{#2}
-#: ssh.tex:205
+#: ssh.tex:207
 msgid "Checking the server's identity"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:222
+#: ssh.tex:224
 msgid "Checking the server identity: \\texttt{known\\_hosts}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:222
+#: ssh.tex:224
 msgid ""
 "Goal: detect hijacked servers\\\\ \\textsl{What if someone replaced the "
 "server to steal passwords?}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:222
+#: ssh.tex:224
 msgid ""
 "When you connect to a server for the first time, \\texttt{ssh} stores the "
 "server's public key in \\texttt{\\tilda/.ssh/known\\_hosts}"
 msgstr ""
 
 #. type: frame
-#: ssh.tex:222
+#: ssh.tex:224
 msgid ""
 "{\\ttfamily\\small *** login@laptop:\\tilda\\$ ssh rlogin@server\\textbf{ "
 "[ENTER]}\\\\ The authenticity of host 'server (10.1.6.2)' can't be "
@@ -479,19 +484,19 @@ msgid ""
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:248
+#: ssh.tex:250
 msgid "Checking the server identity: \\texttt{known\\_hosts} (2)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:248
+#: ssh.tex:250
 msgid ""
 "During each following connection, \\texttt{ssh} ensures that the key still "
 "matches, and warns the user otherwise"
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:248
+#: ssh.tex:250
 #, no-wrap
 msgid ""
 "[basicstyle=\\ttfamily\\ssmall,escapeinside={||}]\n"
@@ -516,67 +521,67 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:248
+#: ssh.tex:250
 msgid "A truly outdated key can be removed with\\\\ \\texttt{ssh-keygen -R server}"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:270 ssh.tex:270
+#: ssh.tex:272 ssh.tex:272
 msgid "Configuring SSH"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:270
+#: ssh.tex:272
 msgid "SSH gets configuration data from:"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:270
+#: ssh.tex:272
 msgid "command-line options (\\texttt{-o ...})"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:270
+#: ssh.tex:272
 msgid "the user's configuration file: \\texttt{\\tilda/.ssh/config}"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:270
+#: ssh.tex:272
 msgid "the system-wide configuration file: \\texttt{/etc/ssh/ssh\\_config}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:270
+#: ssh.tex:272
 msgid "Options are documented in the \\texttt{ssh\\_config(5)} man page"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:270
+#: ssh.tex:272
 msgid "\\texttt{\\tilda/.ssh/config} contains a list of hosts (with wildcards)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:270
+#: ssh.tex:272
 msgid "For each parameter, the first obtained value is used\\\\"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:270
+#: ssh.tex:272
 msgid "Host-specific declarations are given near the beginning"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:270
+#: ssh.tex:272
 msgid "General defaults at the end"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:275
+#: ssh.tex:277
 msgid "Example: \\texttt{\\tilda/.ssh/config}"
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:275
+#: ssh.tex:277
 #, no-wrap
 msgid ""
 "[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
@@ -586,7 +591,7 @@ msgid ""
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:279
+#: ssh.tex:281
 #, no-wrap
 msgid ""
 "Host foo # alias/shortcut. 'ssh foo' works\n"
@@ -596,19 +601,19 @@ msgid ""
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:285
+#: ssh.tex:287
 #, no-wrap
 msgid ""
 "Host *.acme.com\n"
 "    User jdoe\n"
 "    Compression yes # default is no\n"
 "    PasswordAuthentication no # only use public key\n"
-"    ServerAliveInternal 60 # keep-alives for bad firewall\n"
+"    ServerAliveInterval 60 # keep-alives for bad firewall\n"
 "\n"
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:288
+#: ssh.tex:290
 #, no-wrap
 msgid ""
 "Host *\n"
@@ -616,53 +621,53 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:293
+#: ssh.tex:295
 msgid ""
 "Note: \\texttt{bash-completion} can auto-complete using "
 "\\texttt{ssh\\_config} hosts"
 msgstr ""
 
 #. type: section{#2}
-#: ssh.tex:295
+#: ssh.tex:297
 msgid "Advanced usage"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:308 ssh.tex:308
+#: ssh.tex:310 ssh.tex:310
 msgid "SSH as a communication layer for applications"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:308
+#: ssh.tex:310
 msgid ""
 "Several applications use SSH as their communication (and authentication) "
 "layer"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:308
+#: ssh.tex:310
 msgid "\\texttt{scp}, \\texttt{sftp}, \\texttt{rsync} (data transfer)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:308
+#: ssh.tex:310
 msgid "\\texttt{lftp} (CLI) and \\texttt{gftp} (GUI) support the SFTP protocol"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:308
+#: ssh.tex:310
 msgid "\\texttt{unison} (synchronization)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:315
+#: ssh.tex:317
 msgid ""
 "\\alert{Subversion:} \\texttt{svn checkout "
 "svn+ssh://user@rhost/path/to/repo}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:315
+#: ssh.tex:317
 msgid ""
 "\\alert{Git:} \\texttt{git clone "
 "ssh://git@github.com/path-to/repository.git}\\\\ Or: \\texttt{git clone "
@@ -670,24 +675,24 @@ msgid ""
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:333 ssh.tex:333
+#: ssh.tex:335 ssh.tex:335
 msgid "Access remote filesystems over SSH: sshfs"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:333
+#: ssh.tex:335
 msgid "\\texttt{sshfs}: FUSE-based solution to access remote machines"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:333
+#: ssh.tex:335
 msgid ""
 "Ideal for remote file editing with a GUI, copying small amounts of data, "
 "etc."
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:333
+#: ssh.tex:335
 msgid ""
 "Mount a remote directory:\\\\ \\texttt{sshfs root@server:/etc "
 "/tmp/local-mountpoint}\\\\ Unmount: \\texttt{fusermount -u "
@@ -695,7 +700,7 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:333
+#: ssh.tex:335
 msgid ""
 "Combine with \\texttt{afuse} to auto-mount any machine:\\\\ \\texttt{afuse "
 "-o mount\\_template=\"sshfs \\%r:/ \\%m\" -o \\textbackslash \\\\ "
@@ -704,64 +709,64 @@ msgid ""
 msgstr ""
 
 #. type: subsection{#2}
-#: ssh.tex:353
+#: ssh.tex:355
 msgid "SSH tunnels, X11 forwarding, and SOCKS proxy"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:353 ssh.tex:387
+#: ssh.tex:355 ssh.tex:389
 msgid "SSH tunnels with -L and -R"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:353
+#: ssh.tex:355
 msgid "Goal: transport traffic through a secure connection"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:353
+#: ssh.tex:355
 msgid "Work-around network filtering (firewalls)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:353
+#: ssh.tex:355
 msgid "Avoid sending unencrypted data on the Internet"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:353
+#: ssh.tex:355
 msgid "But only works for TCP connections"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:353
+#: ssh.tex:355
 msgid "\\textbf{-L}: access a remote service behind a firewall (Intranet server)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:353
+#: ssh.tex:355
 msgid "\\texttt{ssh -L 12345:service:1234 server}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:353
+#: ssh.tex:355
 msgid "Still on \\textsl{Client}: \\texttt{telnet localhost 12345}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:353
+#: ssh.tex:355
 msgid ""
 "\\textsl{Server} establishes a TCP connection to \\textsl{Service}, port "
 "1234"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:353
+#: ssh.tex:355
 msgid "The traffic is tunnelled inside the SSH connection to \\textsl{Server}"
 msgstr ""
 
 #. type: tikzpicture
-#: ssh.tex:360
+#: ssh.tex:362
 msgid ""
 "\\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum "
 "width=5cm,minimum height=2cm,draw] at (0,0) {}; "
@@ -771,7 +776,7 @@ msgid ""
 msgstr ""
 
 #. type: tikzpicture
-#: ssh.tex:376
+#: ssh.tex:378
 msgid ""
 "\\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
 "\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); \\draw (-2.5,-1) node "
@@ -784,34 +789,34 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:387
+#: ssh.tex:389
 msgid "\\textbf{-R}: provide remote access to a local private service"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:387
+#: ssh.tex:389
 msgid "\\texttt{ssh -R 12345:service:1234 server}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:387
+#: ssh.tex:389
 msgid "On \\textsl{Server}: \\texttt{telnet localhost 12345}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:387
+#: ssh.tex:389
 msgid ""
 "\\textsl{Client} establishes a TCP connection to \\textsl{Service}, port "
 "1234"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:387
+#: ssh.tex:389
 msgid "The traffic is tunnelled inside the SSH connection to \\textsl{Client}"
 msgstr ""
 
 #. type: tikzpicture
-#: ssh.tex:393
+#: ssh.tex:395
 msgid ""
 "\\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum "
 "width=5cm,minimum height=2cm,draw] at (0,0) {}; "
@@ -821,7 +826,7 @@ msgid ""
 msgstr ""
 
 #. type: tikzpicture
-#: ssh.tex:417
+#: ssh.tex:419
 msgid ""
 "\\draw[name=client,darkred,fill] (-2.5,0) circle (2mm); "
 "\\draw[name=server,darkred,fill] (2.5,0) circle (2mm); \\draw[darkred,fill] "
@@ -834,128 +839,128 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:417
+#: ssh.tex:419
 msgid "Notes:"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:417
+#: ssh.tex:419
 msgid ""
 "SSH tunnels don't work very well for HTTP, because IP+port are not enough to "
 "identify a website (\\texttt{Host:} HTTP header)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:417
+#: ssh.tex:419
 msgid ""
 "By default, tunnels are only bound to localhost. Use \\texttt{-g} (gateway) "
 "to allow remote hosts to connect to local forwarded ports"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "X11 forwarding with -X: GUI apps over SSH"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "Run a graphical application on a remote machine, display locally"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "Similar to VNC, but on a per-application basis"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "\\texttt{ssh -X server}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid ""
 "\\texttt{\\$DISPLAY} will be set by SSH on the server:\\\\ \\texttt{\\$ echo "
 "\\$DISPLAY\\\\ localhost:10.0}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "Then start GUI applications on server (e.g. \\texttt{xeyes})"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "Troubleshooting:"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "\\texttt{xauth} must be installed on the remote machine"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "The local Xorg server must allow TCP connections"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "\\texttt{pgrep -a Xorg} $\\leadsto$ \\texttt{-nolisten} must not be included"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "Can be configured in your login manager"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:444
+#: ssh.tex:446
 msgid "Does not work very well over slow or high-latency connections"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:474
+#: ssh.tex:476
 msgid "SOCKS proxy with -D"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:474
+#: ssh.tex:476
 msgid "SOCKS: protocol to proxy TCP connections via a remote machine"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:474
+#: ssh.tex:476
 msgid "SSH can act as a SOCKS server: \\texttt{ssh -D 1080 server}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:474
+#: ssh.tex:476
 msgid "Use case similar to tunnelling with -L, but more flexible"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:474
+#: ssh.tex:476
 msgid "Set up the proxy once, use for multiple connections"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:474
+#: ssh.tex:476
 msgid "Usage:"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:474
+#: ssh.tex:476
 msgid "Manual: configure applications to use the SOCKS proxy"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:474
+#: ssh.tex:476
 msgid "Transparent: use \\texttt{tsocks} to re-route connections via SOCKS"
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:474
+#: ssh.tex:476
 #, no-wrap
 msgid ""
 "[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
@@ -967,74 +972,79 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:474
+#: ssh.tex:476
 msgid ""
 "Another transparent proxifier is \\texttt{redsocks} (uses \\texttt{iptables} "
 "rules to redirect to a local daemon instead of \\texttt{LD\\_PRELOAD})"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:503 ssh.tex:503
+#: ssh.tex:505 ssh.tex:505
 msgid "VPN over SSH"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:503
+#: ssh.tex:505
 msgid "Built-in support for tun-based VPN"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:503
+#: ssh.tex:505
 msgid "\\texttt{PermitTunnel yes} required on server (disabled by default)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:503
+#: ssh.tex:505
 msgid "\\texttt{ssh -w 0:0 root@server} (0, 0 are the tun device numbers)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:503
+#: ssh.tex:505
 msgid "Then configure IP addresses and routing on both sides"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:503
+#: ssh.tex:505
 msgid "\\texttt{sshuttle}: another VPN over SSH solution"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:503
+#: ssh.tex:505
 msgid "Root access not required on the server side"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:503
+#: ssh.tex:505
 msgid "Idea similar to \\texttt{slirp}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:503
+#: ssh.tex:505
 msgid "Uses \\texttt{iptables} rules to redirect traffic to VPN"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:503
+#: ssh.tex:505
 msgid "(as root:) \\texttt{sshuttle -r user@server 0/0 -vv}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:503
+#: ssh.tex:505
 msgid "Limitation: does not support tunnelling UDP or ICMP traffic"
 msgstr ""
 
+#. type: enumerate
+#: ssh.tex:508 ssh.tex:669
+msgid "Jumping through hosts"
+msgstr ""
+
 #. type: frame{#2}
-#: ssh.tex:506 ssh.tex:506
+#: ssh.tex:508
 msgid "Jumping through hosts with ProxyCommand"
 msgstr ""
 
 #. type: tikzpicture
-#: ssh.tex:568
+#: ssh.tex:572
 msgid ""
 "\\node[name=internet,gray,cloud,aspect=1,cloud puffs=23,minimum "
 "width=5cm,minimum height=2cm,draw] at (0,0) {}; "
@@ -1051,48 +1061,48 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid "Problem: to connect to Server2, you need to connect to Server"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid ""
 "Can you do that in a single step? (required for data transfer, tunnels, X11 "
 "forwarding)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid "Combines two SSH features:"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid ""
 "\\texttt{ProxyCommand} option: command used to connect to host; connection "
 "available on standard input \\& output"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid ""
 "\\texttt{ssh -W host:port} $\\leadsto$ establish a TCP connection, provide "
 "it on standard input \\& output (suitable for \\texttt{ProxyCommand})"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:568
+#: ssh.tex:572
 msgid "Jumping through hosts with ProxyCommand (2)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid "Example configuration:"
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:568
+#: ssh.tex:572
 #, no-wrap
 msgid ""
 "[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
@@ -1101,12 +1111,12 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid "Also works with wildcards"
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:568
+#: ssh.tex:572
 #, no-wrap
 msgid ""
 "[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
@@ -1115,14 +1125,14 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid ""
 "\\texttt{-W} only available since OpenSSH 5.4 (circa 2010), but the same can "
 "be achieved with \\texttt{netcat}:"
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:568
+#: ssh.tex:572
 #, no-wrap
 msgid ""
 "[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
@@ -1131,59 +1141,93 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
+msgid "More generic version: \\url{https://glandium.org/blog/?p=3631}"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:572
 msgid "Similar solution to connect via a proxy:"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid "SOCKS: \\texttt{connect-proxy -4 -S myproxy:1080 rhost 22}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid "HTTP (with CONNECT): \\texttt{corkscrew myproxy 1080 rhost 22}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:568
+#: ssh.tex:572
 msgid ""
 "When CONNECT requests are forbidden, set up \\texttt{httptunnel} on a remote "
 "server, and use \\texttt{htc} and \\texttt{hts}"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:589 ssh.tex:589
+#: ssh.tex:587
+msgid "Jumping through hosts with ProxyJump"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:587
+msgid "Available since OpenSSH 7.3"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:587
+msgid "A simpler way to write ProxyCommand configuration:"
+msgstr ""
+
+#. type: lstlisting
+#: ssh.tex:587
+#, no-wrap
+msgid ""
+"[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
+"Host server2 # ssh server2 works\n"
+"    ProxyJump server"
+msgstr ""
+
+#. type: itemize
+#: ssh.tex:587
+msgid "Or on the command line:\\\\ \\texttt{ssh -J server server2}"
+msgstr ""
+
+#. type: frame{#2}
+#: ssh.tex:608 ssh.tex:608
 msgid "Triggering remote command execution securely"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:589
+#: ssh.tex:608
 msgid "Goal: notify Server2 that something finished on Server1"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:589
+#: ssh.tex:608
 msgid "But Server1 must not have full shell access on Server2"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:589
+#: ssh.tex:608
 msgid "Method: limit to a single command in \\texttt{authorized\\_keys}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:589
+#: ssh.tex:608
 msgid "Also known as SSH triggers"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:589
+#: ssh.tex:608
 msgid "Example \\texttt{authorized\\_keys} on Server2:"
 msgstr ""
 
 #. type: lstlisting
-#: ssh.tex:589
+#: ssh.tex:608
 #, no-wrap
 msgid ""
 "[basicstyle=\\ttfamily\\small,escapeinside={||}]\n"
@@ -1192,66 +1236,66 @@ msgid ""
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:612 ssh.tex:612 ssh.tex:650
+#: ssh.tex:631 ssh.tex:631 ssh.tex:669
 msgid "Escape sequences"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:612
+#: ssh.tex:631
 msgid "Goal: interact with an already established SSH connection"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:612
+#: ssh.tex:631
 msgid "Add tunnels or SOCKS proxy, kill unresponsive connection"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:612
+#: ssh.tex:631
 msgid "Escape sequences start with '\\tilda', at the beginning of a line"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:612
+#: ssh.tex:631
 msgid "So press \\texttt{[enter]}, then \\texttt{\\tilda}, then e.g. '\\texttt{?}'"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:612
+#: ssh.tex:631
 msgid "Main sequences (others documented in \\texttt{ssh(1)}):"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:612
+#: ssh.tex:631
 msgid "\\texttt{\\tilda{}.} -- disconnect (for unresponsive connections)"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:612
+#: ssh.tex:631
 msgid "\\texttt{\\tilda{}?} -- show the list of escape sequences"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:612
+#: ssh.tex:631
 msgid ""
 "\\texttt{\\tilda{}C} -- open SSH command-line. e.g. \\texttt{\\tilda{}C -D "
 "1080}"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:612
+#: ssh.tex:631
 msgid ""
 "\\texttt{\\tilda{}\\&} -- logout and background SSH while waiting for "
 "forwarded connections or X11 sessions to terminate"
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:626 ssh.tex:626
+#: ssh.tex:645 ssh.tex:645
 msgid "Related tools"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:626
+#: ssh.tex:645
 msgid ""
 "\\texttt{screen} and \\texttt{tmux}: provide virtual terminals on remote "
 "machines where you can start long-running commands, disconnect, and "
@@ -1259,14 +1303,14 @@ msgid ""
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:626
+#: ssh.tex:645
 msgid ""
 "\\texttt{mosh}: SSH alternative suited for Wi-Fi, cellular and long distance "
 "links"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:626
+#: ssh.tex:645
 msgid ""
 "\\texttt{autossh}: checks an SSH session every 10 minutes, and restart it if "
 "needed\\\\ \\texttt{autossh -t server 'screen -RD'}: maintain a screen "
@@ -1274,71 +1318,66 @@ msgid ""
 msgstr ""
 
 #. type: frame{#2}
-#: ssh.tex:650 ssh.tex:650
+#: ssh.tex:669 ssh.tex:669
 msgid "Conclusions"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "The Swiss-army knife of remote administration"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "Very powerful tool, many useful features"
 msgstr ""
 
 #. type: itemize
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "Practical session: test everything mentioned in this presentation"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "\\texttt{scp}, \\texttt{rsync}"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "Key-based authentication"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "Using an SSH agent"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "aliases in SSH configuration"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "\\texttt{sshfs}, \\texttt{sftp}"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "SSH tunnels"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "X11 forwarding"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "SOCKS proxy with \\texttt{tsocks}"
 msgstr ""
 
 #. type: enumerate
-#: ssh.tex:650
-msgid "Jumping through hosts"
-msgstr ""
-
-#. type: enumerate
-#: ssh.tex:650
+#: ssh.tex:669
 msgid "\\ldots"
 msgstr ""

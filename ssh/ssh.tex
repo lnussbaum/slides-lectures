@@ -43,7 +43,7 @@
 \item Many implementations, including:
 	\begin{itemize}
 		\item OpenSSH: Linux/Unix, Mac OS X \alert{$\leftarrow$ this talk, mostly}
-		\item Putty: Windows, client only
+		\item Putty, MobaXterm: Windows, client only
 		\item Dropbear: small systems (routers, embedded)
 	\end{itemize}
 \item Unix command (\texttt{ssh}); server-side: \texttt{sshd}
@@ -122,6 +122,8 @@
 			\item The password does not need to be sent over the network
 			\hbr
 			\item The private key never leaves the client
+				\hbr
+			\item The same key can be used for many servers
 			\hbr
 			\item The process can be automated
 		\end{itemize}

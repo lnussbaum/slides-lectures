@@ -295,12 +295,12 @@ local-fs-pre.target
 			\hbr
 		\item \texttt{systemd-analyze blame}: worst offenders
 			\begin{lstlisting}[basicstyle=\ttfamily\normalsize,escapeinside={||}]
-			2.417s systemd-udev-settle.service
-			2.386s postgresql@9.4-main.service
-			1.507s apache2.service
-			240ms NetworkManager.service
-			236ms ModemManager.service
-			194ms accounts-daemon.service
+2.417s systemd-udev-settle.service
+2.386s postgresql@9.4-main.service
+1.507s apache2.service
+240ms NetworkManager.service
+236ms ModemManager.service
+194ms accounts-daemon.service
 			\end{lstlisting}
 	\end{itemize}
 \end{frame}
@@ -330,7 +330,7 @@ local-fs-pre.target
 \hhbr
 \item List only services: \texttt{systemctl -t service}
 \hhbr
-\item List units in failed state: \texttt{systemctl --failed}
+\item List units in failed state: \texttt{systemctl --state failed}
 \end{itemize}
 \hbr
 \item Whole system overview: \texttt{systemctl status}
@@ -563,7 +563,7 @@ WantedBy=multi-user.target
 \begin{columns}[t]
 \begin{column}{0.41\textwidth}
 	\alert{\texttt{dovecot.socket}:}
-\begin{lstlisting}[basicstyle=\ttfamily\scriptsize,escapeinside={||}]
+\begin{lstlisting}[basicstyle=\color{black}\ttfamily\scriptsize,escapeinside={||}]
 [Unit]
 Description=Dovecot IMAP/POP3 \
  email server activation socket
@@ -674,7 +674,7 @@ sshd.socket                                   loaded active listening
 	\texttt{install -d -g systemd-journal /var/log/journal}\\
 	\texttt{setfacl -R -nm g:adm:rx,d:g:adm:rx /var/log/journal}
 \hbr
-\item Can log to a remote host (with \texttt{systemd-journal-gateway}, not in Debian yet)
+\item Can log to a remote host (with \texttt{systemd-journal-gatewayd})
 \end{itemize}
 \end{frame}
 
@@ -942,8 +942,6 @@ KillMode=process
 							\br
 
 		\item Some parts still have rough edges, or are still moving targets, but are promising: journal, containers, networking
-			\br
-		\item systemd might not be the final answer, but at least it's an interesting data point to look at
 	\end{itemize}
 \end{frame}
 

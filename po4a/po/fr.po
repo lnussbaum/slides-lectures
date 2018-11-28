@@ -103,7 +103,7 @@ msgstr "De nombreuses implémentations, dont:"
 #: ssh.tex:62
 msgid "OpenSSH: Linux/Unix, Mac OS X \\alert{$\\leftarrow$ this talk, mostly}"
 msgstr ""
-"OpenSSH: Linux/Unix, Mac OS X \\alert{$\\leftarrow$ on parle surtout de ca}"
+"OpenSSH: Linux/Unix, Mac OS X \\alert{$\\leftarrow$ on parlera surtout de ca}"
 
 #. type: itemize
 #: ssh.tex:62
